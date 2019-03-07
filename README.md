@@ -1,5 +1,8 @@
 # medLar_Lei19
 
+### Relatório
+https://www.overleaf.com/9367518492qrrdrrhdpndj
+
 ## Planeamento da Medicação Semanal de Utentes num Lar
 - Processo de login para auxiliares – Número de identificação interno (identificador único) + password;
 - Criar uma ficha da medicação atual para cada utente – inclui a medicação habitual e a medicação temporária:
