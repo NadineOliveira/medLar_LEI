@@ -66,3 +66,4 @@ fastlane/readme.md
 
 # Node Modules
 medLar_v1_apk/node_modules/*
+medLar_rest/node_modules/*
