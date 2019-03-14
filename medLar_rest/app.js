@@ -5,9 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sequelize = require('sequelize')
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
 var app = express();
 
 // DATABASE
@@ -34,8 +31,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+// Routes Handler
+var apiUsersRouter = require('./routes/api/users');
+var apiUtentesRouter = require('./routes/api/utentes');
+var apiMedicamentosRouter = require('./routes/api/medicamentos');
+var apiCaixasRouter = require('./routes/api/caixas');
+
+app.use('/api/users', apiUsersRouter);
+app.use('/api/utentes', apiUtentesRouter);
+app.use('/api/medicamentos', apiMedicamentosRouter);
+app.use('/api/caixas', apiCaixasRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

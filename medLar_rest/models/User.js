@@ -1,37 +1,25 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Utente', {
+  return sequelize.define('User', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true
     },
+    password: {
+      type: DataTypes.STRING(45),
+      allowNull: false
+    },
+    telemovel: {
+      type: DataTypes.STRING(45),
+      allowNull: false
+    },
     nome: {
       type: DataTypes.STRING(45),
       allowNull: false
     },
-    data_Nascimento: {
-      type: DataTypes.STRING(45),
-      allowNull: false
-    },
-    genero: {
-      type: DataTypes.STRING(45),
-      allowNull: false
-    },
-    contacto: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    nome_Encarregado: {
-      type: DataTypes.STRING(45),
-      allowNull: false
-    },
-    grau: {
-      type: DataTypes.STRING(45),
-      allowNull: false
-    },
-    contacto_Encarregado: {
+    data_Nacimento: {
       type: DataTypes.STRING(45),
       allowNull: false
     },
@@ -46,12 +34,8 @@ module.exports = function(sequelize, DataTypes) {
     cod_Postal: {
       type: DataTypes.STRING(45),
       allowNull: false
-    },
-    ativo: {
-      type: DataTypes.INTEGER(4),
-      allowNull: false
     }
   }, {
-    tableName: 'Utente'
+    tableName: 'User'
   });
 };
