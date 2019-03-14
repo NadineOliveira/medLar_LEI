@@ -42,7 +42,13 @@ export default class HomeScreen extends React.Component {
             </View>
 
             <Text style={styles.getStartedText}>
-              Text Changed!
+              Ola Cesário
+            </Text>
+            <Text style={styles.getStartedText}>
+              Ola Cesário
+            </Text>
+            <Text style={styles.getStartedText}>
+              Ola Cesário
             </Text>
           </View>
 

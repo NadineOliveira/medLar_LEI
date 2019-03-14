@@ -3,11 +3,26 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var sequelize = require('sequelize')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+// DATABASE
+var connection = new sequelize('medLar', 'root', 'root', {
+  host: 'localhost',
+  dialect: 'mysql',
+  loggin: false,
+  define: {
+    timestamps: false
+  }
+});
+
+connection.authenticate()
+      .then(()=> console.log("Connection has been established"))
+      .catch(()=> console.log("Connection Failed"))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
