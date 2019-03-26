@@ -45,3 +45,5 @@ router.get('/desativar/:uid',passport.authenticate('jwt',{session: false}), (req
             .catch(error => res.status(500).send('Erro na desativação do utente!'))
 })
 
+
+module.exports = router;

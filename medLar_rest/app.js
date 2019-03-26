@@ -4,10 +4,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sequelize = require('sequelize')
+var uuid = require('uuid/v4')
+var session = require('express-session')
+var FileStore = require('session-file-store')(session)
+var passport = require('passport')
+
+require('./authentic/aut');
 
 var app = express();
 
 // DATABASE
+console.log("1")
 var connection = new sequelize('medLar', 'root', 'root', {
   host: 'localhost',
   dialect: 'mysql',
@@ -16,14 +23,27 @@ var connection = new sequelize('medLar', 'root', 'root', {
     timestamps: false
   }
 });
-
+console.log("2")
 connection.authenticate()
       .then(()=> console.log("Connection has been established"))
       .catch(()=> console.log("Connection Failed"))
 
+//Passport Autentication
+app.use(session({
+  genid: req => {
+    return uuid()},
+  store: new FileStore(),
+  secret: 'O meu segredo',
+  resave: false,
+  saveUninitialized: true
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());

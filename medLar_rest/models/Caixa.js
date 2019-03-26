@@ -20,6 +20,10 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     },
+    quantidade: {
+      type: DataTypes.STRING(45),
+      allowNull: false
+    },
     data_inicio: {
       type: DataTypes.STRING(45),
       allowNull: false

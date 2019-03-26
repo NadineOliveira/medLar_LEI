@@ -37,3 +37,4 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req, res, next
 
 // Apagar Medicamento (Necessário apagar relaçoes)
 
+module.exports = router;

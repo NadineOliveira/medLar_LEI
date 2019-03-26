@@ -16,11 +16,14 @@ router.get('/:utente',passport.authenticate('jwt',{session: false}), (req,res,ne
 router.post('/', passport.authenticate('jwt', {session: false}), (req, res, next) => {
     var Medicamento_id = req.body.Medicamento_id
     var Utente_id = req.body.Utente_id
+    var quantidade = req.body.quantidade
     var data_inicio = req.body.data_inicio
     var data_fim = req.body.data_fim
     var periodo = req.body.periodo
     
-    CaixasController.addMedToCaixa({Medicamento_id,Utente_id,data_inicio,data_fim,periodo})
+    CaixasController.addMedToCaixa({Medicamento_id,Utente_id,quantidade,data_inicio,data_fim,periodo})
             .then(() => res.status(200).send('Medicamento adicionado à caixa com sucesso!'))
             .catch(error => res.status(500).send('Erro na adição de medicamento à caixa!'))
 })
+
+module.exports = router;

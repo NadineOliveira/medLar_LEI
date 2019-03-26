@@ -1,14 +1,13 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Notificacao', {
-    idNotificacao: {
+  return sequelize.define('Tarefa', {
+    id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
-    tipo: {
+    nome: {
       type: DataTypes.STRING(45),
       allowNull: false
     },
@@ -16,24 +15,24 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: false
     },
-    data: {
+    data_limite: {
       type: DataTypes.DATE,
       allowNull: false
     },
     estado: {
-      type: DataTypes.INTEGER(4),
+      type: DataTypes.DATE,
       allowNull: false
     },
-    Tarefa_id: {
+    User_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'Tarefa',
+        model: 'User',
         key: 'id'
       }
     }
   }, {
-    tableName: 'Notificacao'
+    tableName: 'Tarefa'
   });
 };
