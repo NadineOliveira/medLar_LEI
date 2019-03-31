@@ -15,7 +15,7 @@ var app = express();
 
 // DATABASE
 console.log("1")
-var connection = new sequelize('medLar', 'root', 'root', {
+var connection = new sequelize('medLar', 'root', 'pass', {
   host: 'localhost',
   dialect: 'mysql',
   loggin: false,
