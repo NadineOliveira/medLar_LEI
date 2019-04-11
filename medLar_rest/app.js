@@ -8,25 +8,10 @@ var uuid = require('uuid/v4')
 var session = require('express-session')
 var FileStore = require('session-file-store')(session)
 var passport = require('passport')
-
+var db = require('./config/database');
 require('./authentic/aut');
 
 var app = express();
-
-// DATABASE
-console.log("1")
-var connection = new sequelize('medLar', 'root', 'pass', {
-  host: 'localhost',
-  dialect: 'mysql',
-  loggin: false,
-  define: {
-    timestamps: false
-  }
-});
-console.log("2")
-connection.authenticate()
-      .then(()=> console.log("Connection has been established"))
-      .catch(()=> console.log("Connection Failed"))
 
 //Passport Autentication
 app.use(session({
