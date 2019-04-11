@@ -9,6 +9,7 @@ var session = require('express-session')
 var FileStore = require('session-file-store')(session)
 var passport = require('passport')
 var db = require('./config/database');
+var dbC = require('./models/ModelConnections')
 require('./authentic/aut');
 
 var app = express();

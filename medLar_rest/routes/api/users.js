@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require("passport")
 var jwt = require('jsonwebtoken')
 var UsersController = require("../../controllers/usersControllers")
-var modelsU = require('../../models/User')
+var modelsU = require('../../models/Auxiliar')
 // User Route
 router.get('/', (req,res) => {
     modelsU.findAll({

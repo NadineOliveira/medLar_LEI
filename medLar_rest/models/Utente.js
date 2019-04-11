@@ -1,8 +1,8 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Utente', {
-    id: {
+  return sequelize.define('utente', {
+    nr_processo: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true
@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: false
     },
-    data_Nascimento: {
+    apelido: {
       type: DataTypes.STRING(45),
       allowNull: false
     },
@@ -19,19 +19,23 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: false
     },
+    data_nascimento: {
+      type: DataTypes.STRING(45),
+      allowNull: false
+    },
     contacto: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: false
     },
-    nome_Encarregado: {
+    encarregado: {
       type: DataTypes.STRING(45),
       allowNull: false
     },
-    grau: {
+    parentesco: {
       type: DataTypes.STRING(45),
       allowNull: false
     },
-    contacto_Encarregado: {
+    contacto_enc: {
       type: DataTypes.STRING(45),
       allowNull: false
     },
@@ -43,15 +47,19 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: false
     },
-    cod_Postal: {
+    codigo_postal: {
       type: DataTypes.STRING(45),
       allowNull: false
     },
-    ativo: {
+    cidade: {
+      type: DataTypes.STRING(45),
+      allowNull: false
+    },
+    estado: {
       type: DataTypes.INTEGER(4),
       allowNull: false
     }
   }, {
-    tableName: 'Utente'
+    tableName: 'utente'
   });
 };

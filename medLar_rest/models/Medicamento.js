@@ -1,8 +1,8 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Medicamento', {
-    id: {
+  return sequelize.define('medicamento', {
+    id_med: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true
@@ -11,31 +11,31 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: false
     },
+    preco: {
+      type: "DOUBLE",
+      allowNull: false
+    },
+    lab: {
+      type: DataTypes.STRING(90),
+      allowNull: false
+    },
+    uni_emb: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false
+    },
+    formato: {
+      type: DataTypes.STRING(45),
+      allowNull: false
+    },
     dosagem: {
       type: DataTypes.STRING(45),
       allowNull: false
     },
-    forma: {
-      type: DataTypes.STRING(45),
-      allowNull: false
-    },
-    unidades: {
-      type: DataTypes.STRING(45),
-      allowNull: false
-    },
-    laboratorio: {
-      type: DataTypes.STRING(45),
-      allowNull: false
-    },
-    preco: {
-      type: DataTypes.STRING(45),
-      allowNull: false
-    },
-    comparticipacao: {
-      type: DataTypes.STRING(45),
+    quantidade: {
+      type: DataTypes.INTEGER(11),
       allowNull: false
     }
   }, {
-    tableName: 'Medicamento'
+    tableName: 'medicamento'
   });
 };

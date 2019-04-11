@@ -1,8 +1,8 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Tarefa', {
-    id: {
+  return sequelize.define('tarefa', {
+    id_Tarefa: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true
@@ -15,24 +15,24 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: false
     },
-    data_limite: {
-      type: DataTypes.DATE,
+    data: {
+      type: DataTypes.STRING(45),
       allowNull: false
     },
     estado: {
-      type: DataTypes.DATE,
+      type: DataTypes.INTEGER(4),
       allowNull: false
     },
-    User_id: {
+    auxiliar: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'User',
+        model: 'auxiliar',
         key: 'id'
       }
     }
   }, {
-    tableName: 'Tarefa'
+    tableName: 'tarefa'
   });
 };

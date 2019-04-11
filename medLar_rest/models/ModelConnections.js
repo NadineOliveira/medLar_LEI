@@ -1,18 +1,17 @@
-const Caixa = require('./Caixa');
-const Gere = require('./Gere');
-const Log = require('./Log');
-const Medicamento = require('./Medicamento');
-const Notificacao = require('./Notificacao');
-const Tarefa = require('./Tarefa');
-const User = require('./User');
-const Utente = require('./Utente');
+var db = require('../config/database');
+const Caixa = db.import('./Caixa');
+const Horario = db.import('./horario');
+const Medicamento = db.import('./Medicamento');
+const Tarefa = db.import('./Tarefa');
+const Auxiliar = db.import('./auxiliar');
+const Utente = db.import('./Utente');
 
-User.hasMany(Log,{foreignKey: 'id'});
-User.hasMany(Tarefa,{foreignKey: 'id'});
-User.belongsToMany(Medicamento,{through: 'Gere', foreignKey: 'id'})
-Medicamento.belongsToMany(User,{through: 'Gere', foreignKey: 'id'})
+Auxiliar.hasMany(Tarefa,{foreignKey: 'id'});
+Auxiliar.belongsToMany(Medicamento,{through: 'Gere', foreignKey: 'id'})
+Medicamento.belongsToMany(Auxiliar,{through: 'Gere', foreignKey: 'id'})
 
 Medicamento.belongsToMany(Utente,{through:'Caixa', foreignKey: 'id'})
 Utente.belongsToMany(Medicamento, {through:'Caixa', foreignKey:'id'})
 
-//Caixa.hasMany(Horario)
+Caixa.belongsToMany(Horario,{through: 'Caixa_Horario', foreignKey:['med','utente']})
+Horario.belongsToMany(Caixa,{through: 'Caixa_Horario', foreignKey:'idHorario'})

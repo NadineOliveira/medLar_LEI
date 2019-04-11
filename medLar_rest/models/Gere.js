@@ -1,26 +1,34 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Gere', {
-    User_id: {
+  return sequelize.define('gere', {
+    auxiliar: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'User',
+        model: 'auxiliar',
         key: 'id'
       }
     },
-    Medicamento_id: {
+    med: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'Medicamento',
-        key: 'id'
+        model: 'medicamento',
+        key: 'id_med'
       }
+    },
+    data: {
+      type: DataTypes.STRING(45),
+      allowNull: false
+    },
+    quantidade: {
+      type: DataTypes.STRING(45),
+      allowNull: false
     }
   }, {
-    tableName: 'Gere'
+    tableName: 'gere'
   });
 };

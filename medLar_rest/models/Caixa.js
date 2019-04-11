@@ -1,28 +1,24 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Caixa', {
-    Medicamento_id: {
+  return sequelize.define('caixa', {
+    med: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'Medicamento',
-        key: 'id'
+        model: 'medicamento',
+        key: 'id_med'
       }
     },
-    Utente_id: {
+    utente: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'Utente',
-        key: 'id'
+        model: 'utente',
+        key: 'nr_processo'
       }
-    },
-    quantidade: {
-      type: DataTypes.STRING(45),
-      allowNull: false
     },
     data_inicio: {
       type: DataTypes.STRING(45),
@@ -30,13 +26,13 @@ module.exports = function(sequelize, DataTypes) {
     },
     data_fim: {
       type: DataTypes.STRING(45),
-      allowNull: false
+      allowNull: true
     },
-    periodo: {
-      type: DataTypes.STRING(200),
+    quantidade: {
+      type: DataTypes.STRING(45),
       allowNull: false
     }
   }, {
-    tableName: 'Caixa'
+    tableName: 'caixa'
   });
 };

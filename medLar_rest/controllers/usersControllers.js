@@ -1,5 +1,5 @@
 var bcrypt = require('bcrypt')
-var User = require('../models/User')
+var User = require('../models/Auxiliar')
 
 module.exports.getUserById = async (id) => {
     User.findAll({
