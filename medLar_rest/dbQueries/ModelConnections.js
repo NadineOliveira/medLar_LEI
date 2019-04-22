@@ -1,10 +1,10 @@
 var db = require('../config/database');
-const Caixa = db.import('./Caixa');
-const Horario = db.import('./horario');
-const Medicamento = db.import('./Medicamento');
-const Tarefa = db.import('./Tarefa');
-const Auxiliar = db.import('./auxiliar');
-const Utente = db.import('./Utente');
+const Caixa = db.import('../models/Caixa');
+const Horario = db.import('../models/horario');
+const Medicamento = db.import('../models/Medicamento');
+const Tarefa = db.import('../models/Tarefa');
+const Auxiliar = db.import('../models/auxiliar');
+const Utente = db.import('../models/Utente');
 
 Auxiliar.hasMany(Tarefa,{foreignKey: 'id'});
 Auxiliar.belongsToMany(Medicamento,{through: 'Gere', foreignKey: 'id'})
