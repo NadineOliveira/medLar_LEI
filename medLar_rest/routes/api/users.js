@@ -7,8 +7,7 @@ var modelsU = require('../../models/Auxiliar')
 var utente = require('../..//dbQueries/utenteQueries');
 // User Route
 router.get('/all',async (req,res) => {
-    res.send( await utente.addUtente(2, "Manuel","Oliveira", "M", "1960-11-11", "999000888", "Maria",
-        "filha", "968887543", "Rua do Carmo", "Barcelos", "4775-189", "Barcelos"));
+    res.send( await utente.desativarUtenteById(1));
 });
 
 router.get('/', (req,res) => {

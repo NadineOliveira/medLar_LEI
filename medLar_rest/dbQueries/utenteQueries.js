@@ -42,3 +42,16 @@ module.exports.addUtente = function(np, nome,apelido, genero, data_nascimento, c
     console.log("Erro a criar novo utente");
   });
 }
+
+module.exports.desativarUtenteById = function(id){
+  Utente.update(
+    { estado: 0},
+    { where: { nr_processo: id } }
+  )
+    .then(result =>
+      console.log(result)
+    )
+    .catch(err =>
+      console.log(err)
+    )
+}
