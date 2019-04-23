@@ -5,9 +5,10 @@ var jwt = require('jsonwebtoken')
 var UsersController = require("../../controllers/usersControllers")
 var modelsU = require('../../models/Auxiliar')
 var utente = require('../..//dbQueries/utenteQueries');
+var auxiliar = require('../../dbQueries/auxiliarQueries')
 // User Route
 router.get('/all',async (req,res) => {
-    res.send( await utente.desativarUtenteById(1));
+    res.send( await auxiliar.desativarAuxiliarById(2));
 });
 
 router.get('/', (req,res) => {

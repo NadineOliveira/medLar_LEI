@@ -12,6 +12,32 @@ module.exports.getAllUsers = async function(){
     return result;
 };
 
+module.exports.getUsersAtivos = async function(){
+  var result;
+  await Utente.findAll({
+      where: {estado: 1}})
+      .then(values => {
+      result = values;
+  }).catch(err => {
+    result = null;
+  });
+  console.log(result)
+  return result;
+};
+
+module.exports.getUsersInativos = async function(){
+  var result;
+  await Utente.findAll({
+      where: {estado: 0}})
+      .then(values => {
+      result = values;
+  }).catch(err => {
+    result = null;
+  });
+  console.log(result)
+  return result;
+};
+
 module.exports.getUtenteById = async function(id){
     var result;
     await Utente.findOne({
