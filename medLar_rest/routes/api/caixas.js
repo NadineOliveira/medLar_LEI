@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
-var CaixasController = require('../../controllers/caixasController')
 
 // Caixa Router
 // Caixa de Medicamento do Utente

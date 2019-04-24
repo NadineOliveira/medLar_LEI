@@ -1,83 +1,98 @@
 var Auxiliar = require('./ModelConnections').auxiliar;
+var bcrypt = require('bcryptjs');
 
 module.exports.getAllAuxiliares = async function(){
-    var result;
-
-    await Auxiliar.findAll().then(values => {
-      result = values[0].dataValues;
-    }).catch(err => {
-      result = null;
-    });
-    console.log(result)
-    return result;
+  var result = [];
+  await Auxiliar.findAll().then(values => {
+    for(aux in values)
+      result.push(values[aux].dataValues);
+  }).catch(err => {
+    result = err;
+  });
+  return result;
 };
 
-module.exports.getAuxiliaresAtivos = async function(){
-    var result;
-    await Auxiliar.findAll({
-        where: {estado: 1}})
-        .then(values => {
-        result = values;
+module.exports.getAuxiliaresByEstado = async function(estado){
+  var result = [];
+  await Auxiliar.findAll({
+      where: {
+        estado: estado
+    }}).then(values => {
+        for(aux in values)
+          result.push(values[aux].dataValues);
     }).catch(err => {
-      result = null;
-    });
-    console.log(result)
-    return result;
-  };
-  
-  module.exports.getAuxiliarInativos = async function(){
-    var result;
-    await Auxiliar.findAll({
-        where: {estado: 0}})
-        .then(values => {
-        result = values;
-    }).catch(err => {
-      result = null;
-    });
-    console.log(result)
-    return result;
-  };
+      result = err;
+  });
+  return result;
+};  
 
-  module.exports.getAuxiliarById = async function(id){
-    var result;
-    await Auxiliar.findOne({
-        where: {id: id}})
-        .then(values => {
-        result = values;
-        console.log("Entrou")
-    }).catch(err => {
-      result = null;
-    });
-    console.log(result)
-    return result;
+module.exports.addAuxiliar = async function(id,password,contacto,nome,apelido,
+  data_nascimento,rua,localidade,codigo_postal,cidade,estado){
+    
+  var hash = await bcrypt.hash(password, 10);
+
+  var result;
+
+  await Auxiliar.create({
+    id: id,
+    password: hash,
+    contacto: contacto,
+    nome: nome, 
+    apelido: apelido, 
+    data_nascimento: data_nascimento, 
+    rua: rua, 
+    localidade: localidade,
+    codigo_postal: codigo_postal, 
+    cidade: cidade, 
+    estado: estado
+  }).then(() => Auxiliar.findOrCreate({
+        where: {
+          id: id
+        }, defaults: {
+          estado: 1
+        }})).then(([ax, created]) => {
+            result = ax;
+  }).catch(err => {
+    result = err
+  });
+  return result;
+}
+
+module.exports.mudarEstadoAuxiliarById = async function(id, estado){
+  var result;
+  await Auxiliar.update(
+    { estado: estado},
+    { where: { id: id } }
+  )
+    .then(()=> result = {message: "Utilizador "+id+" mudado para estado "+estado+"!"})
+    .catch(err=> result = err)
+  return result;
+}
+
+module.exports.getAuxiliarById = async (id) => {
+  var result;
+  await Auxiliar.findOne({
+    where: {
+      id: id
+    }
+  }).then(values => {
+      result = values.dataValues;
+  }).catch(err => {
+      result = err
+  });
+  return result
 };
 
-module.exports.addAuxiliar = function(id,password,contacto,nome,apelido,
-    data_nascimento,rua,localidade,codigo_postal,cidade){
-    Auxiliar.create({id: id, password: password, contacto: contacto,nome: nome, apelido: apelido,
-        data_nascimento: data_nascimento, rua: rua, localidade: localidade,
-        codigo_postal: codigo_postal, cidade: cidade, estado: 1})
-    .then(() => Auxiliar.findOrCreate({where: {id: id}, defaults: {estado: 1}}))
-    .then(([ax, created]) => {
-      console.log(ax.get({
-        plain: true
-      }))
-      console.log(created)
+module.exports.validatePassword = async (id, password) => {
+  var auxiliar = await this.getAuxiliarById(id)
   
-    }).catch(err => {
-      console.log("Erro a criar novo utente");
-    });
-  }
+  if(!auxiliar) 
+      throw new Error("Utilizador não encontrado!")
 
-  module.exports.desativarAuxiliarById = function(id){
-    Auxiliar.update(
-      { estado: 0},
-      { where: { id: id } }
-    )
-      .then(result =>
-        console.log(result)
-      )
-      .catch(err =>
-        console.log(err)
-      )
-  }
+  var compare = await bcrypt.compare(password, auxiliar.password)
+  
+  if(!compare)
+      throw new Error ("Invalid password")
+  
+  return auxiliar
+}

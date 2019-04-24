@@ -1,7 +1,7 @@
 var passport = require('passport')
 var localStrategy = require('passport-local').Strategy
 
-var UsersController = require('../controllers/usersControllers')
+var Auxiliar = require('../dbQueries/auxiliarQueries')
 
 // Login de utilizadores
 passport.use('login', new localStrategy ({
@@ -14,10 +14,9 @@ passport.use('login', new localStrategy ({
         if (typeof password === "undefined" && !password)
             throw new Error ("Password não definida")
     
-        user = await UsersController.validatePassword(id, password)
+        auxiliar = await Auxiliar.validatePassword(id, password)
 
-
-        return done(null, user, {message: "Utilizador Autenticado!"})
+        return done(null, auxiliar, {message: "Auxiliar Autenticado!"})
     }
     catch(erro) {
         return done(erro,false, {message: erro})
@@ -44,6 +43,22 @@ passport.use('jwt', new JWTstrategy({
     try{
         if (typeof token === 'undefined')
             return done(erro)
+        return done(null, token.user)
+    } catch (erro) {
+        return done(erro)
+    }
+}))
+
+passport.use('jwtAdmin', new JWTstrategy({
+    secretOrKey: "MedLar_Lei2019",
+    jwtFromRequest: ExtractJWT.fromExtractors([extractToken])
+}, async (token,done) => {
+    try{
+        if (typeof token === 'undefined')
+            return done(erro)
+        if (token.user.estado != 2)
+            return done(erro)
+            
         return done(null, token.user)
     } catch (erro) {
         return done(erro)

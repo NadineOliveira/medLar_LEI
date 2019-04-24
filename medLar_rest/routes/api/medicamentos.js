@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
-var MedicamentosController = require('../../controllers/medicamentosController')
-
 // Medicamentos Router
 // Lista de Medicamentos
 router.get('/',passport.authenticate('jwt',{session: false}), (req,res,next) => {
