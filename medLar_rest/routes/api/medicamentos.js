@@ -1,15 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-
-var MedicamentosController = require('../../controllers/medicamentosController')
+var MedicamentosController = require('../../controllers/medicamentos')
 
 // Medicamentos Router
 // Lista de Medicamentos
 router.get('/',passport.authenticate('jwt',{session: false}), (req,res,next) => {
-    MedicamentosController.getAllMedicamentos()
-            .then(dados => res.jsonp(dados))
-            .catch(error => res.status(500).send('Erro na consulta de medicamentos!'))
+    var meds = await MedicamentosController.getAllMedicamentos()
+    res.status(200).send(auxiliares)
 })
 
 // Medicamento por ID

@@ -3,7 +3,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var sequelize = require('sequelize')
 var uuid = require('uuid/v4')
 var session = require('express-session')
 var FileStore = require('session-file-store')(session)
@@ -17,7 +16,7 @@ app.use(session({
   genid: req => {
     return uuid()},
   store: new FileStore(),
-  secret: 'O meu segredo',
+  secret: 'MedLar_secret',
   resave: false,
   saveUninitialized: true
 }))
@@ -35,14 +34,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 // Routes Handler
-var apiUsersRouter = require('./routes/api/users');
+var apiAuxiliaresRouter = require('./routes/api/auxiliares');
 var apiUtentesRouter = require('./routes/api/utentes');
 var apiMedicamentosRouter = require('./routes/api/medicamentos');
 var apiCaixasRouter = require('./routes/api/caixas');
+var indexRouter = require('./routes/index');
 
-app.use('/api/users', apiUsersRouter);
+app.use('/', indexRouter);
+app.use('/api/auxiliares', apiAuxiliaresRouter);
 app.use('/api/utentes', apiUtentesRouter);
 app.use('/api/medicamentos', apiMedicamentosRouter);
 app.use('/api/caixas', apiCaixasRouter);

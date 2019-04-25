@@ -26,3 +26,23 @@ https://www.overleaf.com/9367518492qrrdrrhdpndj
 - Frontend:React Native – NativeBase (ui components); react-native-navigation (navegação); Formik/Yup (criar formulários e a sua validação); Redux (gerir o estado da app);
 - REST API:Node.js – Express (Node.js web application framework); body-parser (to handle HTTP POST request in Express.js version 4 and above/extract the entire body portion of an incoming request stream and exposes it on req.body); Sequelize (Node.js ORM (Object-relational mapping)); bcrypt (cifrarpasswords); jsonwebtoken (implementar JSON Web Tokens); nodemon (automatically restart server after changes);
 - Database:MySQL
+
+## Rotas par o servidor (http://localhost:8000)
+| Metodo | Rota            | Sub-Rota        | Utilizador | Descrição                          |
+|--------|-----------------|-----------------|------------|------------------------------------|
+| POST   |                 | /login          | Todos      | Inicio de Sessão                   |
+| GET    |                 | /logout         | Todos      | Terminar Sessão                    |
+| GET    | /api/auxiliares | /               | Admin      | Lista de Auxiliares                |
+| GET    | /api/auxiliares | /ativos         | Admin      | Lista de Auxiliares ativos         |
+| GET    | /api/auxiliares | /inativos       | Admin      | Lista de Auxiliares inativos       |
+| GET    | /api/auxiliares | /admins         | Admin      | Lista de Administradores           |
+| POST   | /api/auxiliares | /criar          | Admin      | Criação de Auxiliar                |
+| GET    | /api/auxiliares | /:uid           | Admin      | Consulta Auxiliar por id           |
+| GET    | /api/auxiliares | /desativar/:uid | Admin      | Desativa Auxiliar por id           |
+| GET    | /api/auxiliares | /ativar/:uid    | Admin      | Ativa Auxiliar por id              |
+| GET    | /api/auxiliares | /desativar/:uid | Admin      | Trasforma Auxiliar por id em Admin |
+
+
+
+
+

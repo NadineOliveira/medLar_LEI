@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
-var UtentesController = require('../../controllers/utentesController')
 
 // Utentes Router
 // Lista de Utentes
