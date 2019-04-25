@@ -5,32 +5,31 @@ var MedicamentosController = require('../../controllers/medicamentos')
 
 // Medicamentos Router
 // Lista de Medicamentos
-router.get('/',passport.authenticate('jwt',{session: false}), (req,res,next) => {
+router.get('/',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     var meds = await MedicamentosController.getAllMedicamentos()
-    res.status(200).send(auxiliares)
+    res.status(200).send(meds)
 })
 
-// Medicamento por ID
-router.get('/:mid',passport.authenticate('jwt',{session: false}), (req,res,next) => {
-    MedicamentosController.getMedicamentoById(req.params.mid)
-            .then(dados => res.jsonp(dados))
-            .catch(error => res.status(500).send('Erro na consulta de medicamento!'))
+// Medicamento por ID ou quantidade (?qt=)
+router.get('/:mid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
+    console.log(req.query.qt)
+    var med = await MedicamentosController.getMedicamentoById(req.params.mid)
+    res.status(200).send(med)            
 })
 
 // Adicionar Medicamento
-router.post('/', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+router.post('/', passport.authenticate('jwt', {session: false}), async (req, res, next) => {
     var id = req.body.id
     var nome = req.body.nome
-    var dosagem = req.body.dosagem
-    var forma = req.body.forma
-    var unidades = req.body.unidades
-    var laboratorio = req.body.laboratorio
     var preco = req.body.preco
-    var comparticipacao = req.body.comparticipacao
+    var lab = req.body.lab
+    var uni_emb = req.body.uni_emb
+    var formato = req.body.formato
+    var dosagem = req.body.dosagem
+    var quantidade = req.body.quantidade
     
-    MedicamentosController.addMedicamento({id,nome,dosagem,forma,unidades,laboratorio,preco,comparticipacao})
-            .then(() => res.status(200).send('Medicamento adicionado com sucesso!'))
-            .catch(error => res.status(500).send('Erro na adição de medicamento!'))
+    var med = await MedicamentosController.addMedicamento({id,nome,preco,lab,uni_emb,formato,dosagem,quantidade})
+    res.status(200).send(med)
 })
 
 // Apagar Medicamento (Necessário apagar relaçoes)

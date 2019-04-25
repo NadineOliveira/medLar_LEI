@@ -16,6 +16,7 @@ Utente.belongsToMany(Medicamento, {through:'Caixa', foreignKey:'id'})
 Caixa.belongsToMany(Horario,{through: 'Caixa_Horario', foreignKey:['med','utente']})
 Horario.belongsToMany(Caixa,{through: 'Caixa_Horario', foreignKey:'idHorario'})
 
+exports.medicamento = Medicamento;
 exports.utente = Utente;
 exports.auxiliar = Auxiliar;
-exposts.medicamento = Medicamento;
+

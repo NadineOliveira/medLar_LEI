@@ -5,7 +5,7 @@ var AuxiliaresController = require('../../controllers/auxiliares')
 
 // Auxiliar Route
 
-router.get('/',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
+router.get('/',passport.authenticate('jwtAdmin',{session: false}), async (req,res,next) => {
     var auxiliares = await AuxiliaresController.getAllAuxiliares()
     res.status(200).send(auxiliares)
 })

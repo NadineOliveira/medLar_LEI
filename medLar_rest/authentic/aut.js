@@ -1,7 +1,7 @@
 var passport = require('passport')
 var localStrategy = require('passport-local').Strategy
 
-var Auxiliar = require('../dbQueries/auxiliarQueries')
+var Auxiliar = require('../controllers/auxiliares')
 
 // Login de utilizadores
 passport.use('login', new localStrategy ({

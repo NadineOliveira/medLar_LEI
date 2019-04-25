@@ -48,8 +48,6 @@ module.exports.addAuxiliar = async function(id,password,contacto,nome,apelido,
   }).then(() => Auxiliar.findOrCreate({
         where: {
           id: id
-        }, defaults: {
-          estado: 1
         }})).then(([ax, created]) => {
             result = ax;
   }).catch(err => {
