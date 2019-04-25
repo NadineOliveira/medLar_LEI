@@ -19,4 +19,5 @@ Horario.belongsToMany(Caixa,{through: 'Caixa_Horario', foreignKey:'idHorario'})
 exports.medicamento = Medicamento;
 exports.utente = Utente;
 exports.auxiliar = Auxiliar;
+exports.db = db;
 
