@@ -1,4 +1,5 @@
 var Medicamento = require('./ModelConnections').medicamento;
+var db = require('./ModelConnections').db;
 
 module.exports.getAllMedicamentos = async function() {
     var result = [];
@@ -57,13 +58,11 @@ formato,dosagem,quantidade){
         result = err
     });
     return result;
-<<<<<<< HEAD
   }
 
   module.exports.addQuantidade = async function(id,qt){
-    console.log(getMedicamentoById(id))
-    /*Medicamento.update(
-      { quantidade: 0},
+    Medicamento.update(
+      { quantidade: db.literal('quantidade +'+ qt)},
       { where: { id_med: id } }
     )
       .then(result =>
@@ -71,8 +70,5 @@ formato,dosagem,quantidade){
       )
       .catch(err =>
         console.log(err)
-      )*/
+      )
   }
-=======
-}
->>>>>>> cfa8b9659f56bee7188cc2b4864cb019b4adb6f2
