@@ -28,9 +28,9 @@ https://www.overleaf.com/9367518492qrrdrrhdpndj
 - Database:MySQL
 
 ## Adiconar administrador na Base de Dados
-
+```mysql
 INSERT INTO `medlar`.`auxiliar` (`id`, `password`, `contacto`, `nome`, `apelido`, `data_nascimento`, `rua`, `localidade`, `codigo_postal`, `cidade`, `estado`) VALUES ('1', '$2b$10$dWVz3HQ6zGIJaX6zq.NzUu8HyjoSY6CuXA1dD/HU/gHNE6uNT2DEy', '911111111', 'Auxiliar', 'primeiro', '1965-05-05', 'Qualquer', 'Qualquer', '4800', 'Qualquer', '2');
-
+```
 Utilizar o Postman e fazer 
     - POST http://localhost:8000/login
     - body - x-www-form-urlencoded
