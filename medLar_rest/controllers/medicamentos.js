@@ -49,3 +49,17 @@ module.exports.getMedicamentoById = async (id) => {
     });
     return result;
   }
+
+  module.exports.addQuantidade = async function(id,qt){
+    console.log(getMedicamentoById(id))
+    /*Medicamento.update(
+      { quantidade: 0},
+      { where: { id_med: id } }
+    )
+      .then(result =>
+        console.log(result)
+      )
+      .catch(err =>
+        console.log(err)
+      )*/
+  }
