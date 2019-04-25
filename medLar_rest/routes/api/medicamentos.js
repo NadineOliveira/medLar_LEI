@@ -12,8 +12,10 @@ router.get('/',passport.authenticate('jwt',{session: false}), async (req,res,nex
 
 // Medicamento por ID ou quantidade (?qt=)
 router.get('/:mid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
-    console.log(req.query.qt)
-    var med = await MedicamentosController.getMedicamentoById(req.params.mid)
+    if(req.query.qt==null)
+        var med = await MedicamentosController.getMedicamentoById(req.params.mid)
+    else
+        var med = await MedicamentosController.addQuantidadeById(req.params.mid,req.query.qt)
     res.status(200).send(med)            
 })
 

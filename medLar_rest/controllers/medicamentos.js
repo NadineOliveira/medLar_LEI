@@ -23,31 +23,41 @@ module.exports.getMedicamentoById = async (id) => {
         result = err
     });
     return result
-  };
-  
-  module.exports.addMedicamento = async function(id,nome,preco,lab,uni_emb,
-    formato,dosagem,quantidade){
-  
+};
+
+module.exports.addEstadoAuxiliarById = async function(id, estado){
     var result;
-  
+    await Auxiliar.update(
+      { estado: estado},
+      { where: { id: id } }
+    )
+      .then(()=> result = {message: "Utilizador "+id+" mudado para estado "+estado+"!"})
+      .catch(err=> result = err)
+    return result;
+}
+
+module.exports.addMedicamento = async function(id,nome,preco,lab,uni_emb,
+formato,dosagem,quantidade){
+    var result;
     await Medicamento.create({
-      id_med: id,
-      nome: nome,
-      preco: preco,
-      lab: lab, 
-      uni_emb: uni_emb, 
-      formato: formato, 
-      dosagem: dosagem,
-      quantidade: quantidade
+        id_med: id,
+        nome: nome,
+        preco: preco,
+        lab: lab, 
+        uni_emb: uni_emb, 
+        formato: formato, 
+        dosagem: dosagem,
+        quantidade: quantidade
     }).then(() => Medicamento.findOrCreate({
-          where: {
+            where: {
             id_med: id
-          }})).then(([ax, created]) => {
-              result = ax;
+            }})).then(([ax, created]) => {
+                result = ax;
     }).catch(err => {
-      result = err
+        result = err
     });
     return result;
+<<<<<<< HEAD
   }
 
   module.exports.addQuantidade = async function(id,qt){
@@ -63,3 +73,6 @@ module.exports.getMedicamentoById = async (id) => {
         console.log(err)
       )*/
   }
+=======
+}
+>>>>>>> cfa8b9659f56bee7188cc2b4864cb019b4adb6f2

@@ -27,6 +27,16 @@ https://www.overleaf.com/9367518492qrrdrrhdpndj
 - REST API:Node.js – Express (Node.js web application framework); body-parser (to handle HTTP POST request in Express.js version 4 and above/extract the entire body portion of an incoming request stream and exposes it on req.body); Sequelize (Node.js ORM (Object-relational mapping)); bcrypt (cifrarpasswords); jsonwebtoken (implementar JSON Web Tokens); nodemon (automatically restart server after changes);
 - Database:MySQL
 
+## Adiconar administrador na Base de Dados
+```mysql
+INSERT INTO `medlar`.`auxiliar` (`id`, `password`, `contacto`, `nome`, `apelido`, `data_nascimento`, `rua`, `localidade`, `codigo_postal`, `cidade`, `estado`) VALUES ('1', '$2b$10$dWVz3HQ6zGIJaX6zq.NzUu8HyjoSY6CuXA1dD/HU/gHNE6uNT2DEy', '911111111', 'Auxiliar', 'primeiro', '1965-05-05', 'Qualquer', 'Qualquer', '4800', 'Qualquer', '2');
+```
+Utilizar o Postman e fazer 
+- POST http://localhost:8000/login
+    - body - x-www-form-urlencoded
+        - id    -   1
+        - pass  -   pass
+
 ## Rotas par o servidor (http://localhost:8000)
 | Metodo | Rota            | Sub-Rota        | Utilizador | Descrição                          |
 |--------|-----------------|-----------------|------------|------------------------------------|
