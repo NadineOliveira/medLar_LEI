@@ -29,9 +29,9 @@ https://www.overleaf.com/9367518492qrrdrrhdpndj
 
 ## Configurações da Base de Dados
 ### Medicamento
-Correr o ficheiro [a relative link](Extra_Files/medicamentos.sql)
+Correr o ficheiro [medicamentos.sql](Extra_Files/medicamentos.sql)
 ### Horarios
-Correr o ficheiro [a relative link](Extra_Files/horario.sql)
+Correr o ficheiro [horario.sql](Extra_Files/horario.sql)
 ### User Admin
 Executar o comando:
 ```mysql
