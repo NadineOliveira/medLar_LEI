@@ -9,6 +9,7 @@ router.get('/',passport.authenticate('jwt',{session: false}), async (req,res,nex
     res.status(200).send(uts);
 })
 
+
 router.get('/ativos',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     var uts = await UtentesController.getUtentesByEstado(1);
     res.status(200).send(uts);
@@ -17,6 +18,11 @@ router.get('/ativos',passport.authenticate('jwt',{session: false}), async (req,r
 router.get('/inativos',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     var uts = await UtentesController.getUtentesByEstado(1);
     res.status(200).send(uts);
+})
+
+router.get('/:uid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
+    var ut = await UtentesController.getUtenteById(req.params.uid);
+    res.status(200).send(ut);
 })
 
 router.post('/',passport.authenticate('jwtAdmin',{session: false}), async (req,res,next) => {

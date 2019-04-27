@@ -23,17 +23,16 @@ module.exports.getUtentesByEstado = async function(estado){
   return result;
 };
 
-module.exports.getUtentesById = async function(id){
+module.exports.getUtenteById = async function(id){
     var result;
     await Utente.findOne({
-        where: {nr_processo: id}})
-        .then(values => {
-        result = values;
-        console.log("Entrou")
-    }).catch(err => {
-      result = null;
-    });
-    console.log(result)
+        where: {
+          nr_processo: id
+        }}).then(values => {
+          result = values.dataValues;
+        }).catch(err => {
+          result = err;
+      });
     return result;
 };
 
