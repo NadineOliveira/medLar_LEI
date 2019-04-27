@@ -40,12 +40,14 @@ var apiAuxiliaresRouter = require('./routes/api/auxiliares');
 var apiMedicamentosRouter = require('./routes/api/medicamentos');
 var apiHorariosRouter = require('./routes/api/horarios');
 var apiUtentesRouter = require('./routes/api/utentes');
+var apiTarefasRouter = require('./routes/api/tarefas');
 
 app.use('/', indexRouter);
 app.use('/api/auxiliares', apiAuxiliaresRouter);
 app.use('/api/medicamentos', apiMedicamentosRouter);
 app.use('/api/horarios', apiHorariosRouter);
 app.use('/api/utentes',apiUtentesRouter);
+app.use('/api/tarefas',apiTarefasRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -6,7 +6,7 @@ const Tarefa = db.import('../models/Tarefa');
 const Auxiliar = db.import('../models/auxiliar');
 var Utente = db.import('../models/Utente');
 
-Auxiliar.hasMany(Tarefa,{foreignKey: 'id'});
+Auxiliar.hasMany(Tarefa,{foreignKey: 'auxiliar'});
 Auxiliar.belongsToMany(Medicamento,{through: 'Gere', foreignKey: 'id'})
 Medicamento.belongsToMany(Auxiliar,{through: 'Gere', foreignKey: 'id'})
 
@@ -20,5 +20,6 @@ exports.medicamento = Medicamento;
 exports.utente = Utente;
 exports.auxiliar = Auxiliar;
 exports.horario = Horario;
+exports.tarefa = Tarefa;
 exports.db = db;
 
