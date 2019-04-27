@@ -35,17 +35,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes Handler
-var apiAuxiliaresRouter = require('./routes/api/auxiliares');
-var apiUtentesRouter = require('./routes/api/utentes');
-var apiMedicamentosRouter = require('./routes/api/medicamentos');
-var apiCaixasRouter = require('./routes/api/caixas');
 var indexRouter = require('./routes/index');
+var apiAuxiliaresRouter = require('./routes/api/auxiliares');
+var apiMedicamentosRouter = require('./routes/api/medicamentos');
+var apiHorariosRouter = require('./routes/api/horarios');
+var apiUtentesRouter = require('./routes/api/utentes');
 
 app.use('/', indexRouter);
 app.use('/api/auxiliares', apiAuxiliaresRouter);
-app.use('/api/utentes', apiUtentesRouter);
 app.use('/api/medicamentos', apiMedicamentosRouter);
-app.use('/api/caixas', apiCaixasRouter);
+app.use('/api/horarios', apiHorariosRouter);
+app.use('/api/utentes',apiUtentesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

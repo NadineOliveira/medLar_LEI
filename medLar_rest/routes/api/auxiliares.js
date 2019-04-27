@@ -29,7 +29,7 @@ router.get('/admins',passport.authenticate('jwtAdmin',{session: false}), async (
 })
 
 
-router.post('/criar',passport.authenticate('jwtAdmin',{session: false}), async (req,res,next) => {
+router.post('/',passport.authenticate('jwtAdmin',{session: false}), async (req,res,next) => {
     var id = req.body.id;
     var password = req.body.password;
     var contacto = req.body.contacto;

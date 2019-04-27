@@ -10,14 +10,18 @@ router.get('/',passport.authenticate('jwt',{session: false}), async (req,res,nex
     res.status(200).send(meds)
 })
 
-// Medicamento por ID ou quantidade (?qt=)
+// Medicamento por ID ou quantidade/preco (?qt=/?price=)
 router.get('/:mid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
-    if(req.query.qt==null)
-        var med = await MedicamentosController.getMedicamentoById(req.params.mid)
-    else
+    if(req.query.qt!=null)
         var med = await MedicamentosController.addQuantidadeById(req.params.mid,req.query.qt)
+    else if(req.query.price!=null)
+        var med = await MedicamentosController.updatePrecoById(req.params.mid, req.query.price)    
+    else
+        var med = await MedicamentosController.getMedicamentoById(req.params.mid)
     res.status(200).send(med)            
 })
+
+
 
 // Adicionar Medicamento
 router.post('/', passport.authenticate('jwt', {session: false}), async (req, res, next) => {

@@ -27,7 +27,13 @@ https://www.overleaf.com/9367518492qrrdrrhdpndj
 - REST API:Node.js – Express (Node.js web application framework); body-parser (to handle HTTP POST request in Express.js version 4 and above/extract the entire body portion of an incoming request stream and exposes it on req.body); Sequelize (Node.js ORM (Object-relational mapping)); bcrypt (cifrarpasswords); jsonwebtoken (implementar JSON Web Tokens); nodemon (automatically restart server after changes);
 - Database:MySQL
 
-## Adiconar administrador na Base de Dados
+## Configurações da Base de Dados
+### Medicamento
+Correr o ficheiro [a relative link](Extra_Files/medicamentos.sql)
+### Horarios
+Correr o ficheiro [a relative link](Extra_Files/horario.sql)
+### User Admin
+Executar o comando:
 ```mysql
 INSERT INTO `medlar`.`auxiliar` (`id`, `password`, `contacto`, `nome`, `apelido`, `data_nascimento`, `rua`, `localidade`, `codigo_postal`, `cidade`, `estado`) VALUES ('1', '$2b$10$dWVz3HQ6zGIJaX6zq.NzUu8HyjoSY6CuXA1dD/HU/gHNE6uNT2DEy', '911111111', 'Auxiliar', 'primeiro', '1965-05-05', 'Qualquer', 'Qualquer', '4800', 'Qualquer', '2');
 ```
@@ -38,19 +44,30 @@ Utilizar o Postman e fazer
         - pass  -   pass
 
 ## Rotas par o servidor (http://localhost:8000)
-| Metodo | Rota            | Sub-Rota        | Utilizador | Descrição                          |
-|--------|-----------------|-----------------|------------|------------------------------------|
-| POST   |                 | /login          | Todos      | Inicio de Sessão                   |
-| GET    |                 | /logout         | Todos      | Terminar Sessão                    |
-| GET    | /api/auxiliares | /               | Admin      | Lista de Auxiliares                |
-| GET    | /api/auxiliares | /ativos         | Admin      | Lista de Auxiliares ativos         |
-| GET    | /api/auxiliares | /inativos       | Admin      | Lista de Auxiliares inativos       |
-| GET    | /api/auxiliares | /admins         | Admin      | Lista de Administradores           |
-| POST   | /api/auxiliares | /criar          | Admin      | Criação de Auxiliar                |
-| GET    | /api/auxiliares | /:uid           | Admin      | Consulta Auxiliar por id           |
-| GET    | /api/auxiliares | /desativar/:uid | Admin      | Desativa Auxiliar por id           |
-| GET    | /api/auxiliares | /ativar/:uid    | Admin      | Ativa Auxiliar por id              |
-| GET    | /api/auxiliares | /desativar/:uid | Admin      | Trasforma Auxiliar por id em Admin |
+| Metodo | Rota              | Sub-Rota        | Utilizador | Descrição                          |
+|--------|-------------------|-----------------|------------|------------------------------------|
+| POST   |                   | /login          | Todos      | Inicio de Sessão                   |
+| GET    |                   | /logout         | Todos      | Terminar Sessão                    |
+| GET    | /api/auxiliares   | /               | Admin      | Lista de Auxiliares                |
+| POST   | /api/auxiliares   | /               | Admin      | Criação de Auxiliar                |
+| GET    | /api/auxiliares   | /ativos         | Admin      | Lista de Auxiliares ativos         |
+| GET    | /api/auxiliares   | /inativos       | Admin      | Lista de Auxiliares inativos       |
+| GET    | /api/auxiliares   | /admins         | Admin      | Lista de Administradores           |
+| GET    | /api/auxiliares   | /:uid           | Admin      | Consulta Auxiliar por id           |
+| GET    | /api/auxiliares   | /desativar/:uid | Admin      | Desativa Auxiliar por id           |
+| GET    | /api/auxiliares   | /ativar/:uid    | Admin      | Ativa Auxiliar por id              |
+| GET    | /api/auxiliares   | /admin/:uid     | Admin      | Trasforma Auxiliar por id em Admin |
+| GET    | /api/utentes      | /               | Todos      | Lista de Utentes                   |
+| POST   | /api/utentes      | /               | Todos      | Criação de Utente                  |
+| GET    | /api/utentes      | /ativos         | Todos      | lista de Utentes Ativos            |
+| GET    | /api/utentes      | /inativos       | Todos      | Lista de Utentes Inativos          |
+| GET    | /api/utentes      | /desativar/:uid | Todos      | Desativar Utente por id            |
+| GET    | /api/utentes      | /ativar/:uid    | Todos      | Ativar Utente por id               |
+| GET    | /api/medicamentos | /               | Todos      | Lista de Medicamento               |
+| POST   | /api/medicamentos | /               | Todos      | Criação de Medicamento             |
+| GET    | /api/medicamentos | /:mid           | Todos      | Procura Medicamento por id         |
+| GET    | /api/horarios     | /               | Todos      | Lista de Horarios                  |
+
 
 
 

@@ -1,44 +1,29 @@
 var Utente = require('./ModelConnections').utente;
 
-module.exports.getAllUsers = async function(){
-    var result;
-
+module.exports.getAllUtentes = async function(){
+    var result = [];
     await Utente.findAll().then(values => {
-      result = values[0].dataValues;
+      for(i in values)  
+        result.push(values[i].dataValues);
     }).catch(err => {
-      result = null;
+      result = err;
     });
-    console.log(result)
     return result;
 };
 
-module.exports.getUsersAtivos = async function(){
+module.exports.getUtentesByEstado = async function(estado){
   var result;
   await Utente.findAll({
-      where: {estado: 1}})
+      where: {estado: estado}})
       .then(values => {
       result = values;
   }).catch(err => {
-    result = null;
+    result = err;
   });
-  console.log(result)
   return result;
 };
 
-module.exports.getUsersInativos = async function(){
-  var result;
-  await Utente.findAll({
-      where: {estado: 0}})
-      .then(values => {
-      result = values;
-  }).catch(err => {
-    result = null;
-  });
-  console.log(result)
-  return result;
-};
-
-module.exports.getUtenteById = async function(id){
+module.exports.getUtentesById = async function(id){
     var result;
     await Utente.findOne({
         where: {nr_processo: id}})
@@ -52,32 +37,42 @@ module.exports.getUtenteById = async function(id){
     return result;
 };
 
-module.exports.addUtente = function(np, nome,apelido, genero, data_nascimento, contacto, encarregado,
-  parentesco, contacto_enc, rua, localidade, codigo_postal, cidade){
-  Utente.create({nr_processo: np, nome: nome, apelido: apelido, genero: genero, data_nascimento: data_nascimento, contacto: contacto,
-                encarregado: encarregado,parentesco: parentesco, contacto_enc: contacto_enc, rua: rua, localidade: localidade,
-                codigo_postal: codigo_postal, cidade: cidade, estado: 1})
-  .then(() => Utente.findOrCreate({where: {nr_processo: np}, defaults: {estado: 1}}))
-  .then(([ut, created]) => {
-    console.log(ut.get({
-      plain: true
-    }))
-    console.log(created)
-
+module.exports.addUtente = async function(np, nome,apelido, genero, data_nascimento, contacto, encarregado,
+  parentesco, contacto_enc, rua, localidade, codigo_postal, cidade, estado){
+  var result;
+  await Utente.create({
+    nr_processo: np, 
+    nome: nome, 
+    apelido: apelido, 
+    genero: genero,
+    data_nascimento: data_nascimento, 
+    contacto: contacto,
+    encarregado: encarregado,
+    parentesco: parentesco, 
+    contacto_enc: contacto_enc, 
+    rua: rua, 
+    localidade: localidade,
+    codigo_postal: codigo_postal, 
+    cidade: cidade, 
+    estado: estado})
+  .then(() => Utente.findOrCreate({
+    where: {
+      nr_processo: np
+    }})).then(([ut, created]) => {
+          result = ut;
   }).catch(err => {
-    console.log("Erro a criar novo utente");
+    result = err;
   });
+  return result;
 }
 
-module.exports.desativarUtenteById = function(id){
-  Utente.update(
-    { estado: 0},
-    { where: { nr_processo: id } }
+module.exports.mudarEstadoUtenteById = async function(id, estado){
+  var result;
+  await Utente.update(
+    { estado: estado},
+    { where: { id: id } }
   )
-    .then(result =>
-      console.log(result)
-    )
-    .catch(err =>
-      console.log(err)
-    )
+    .then(()=> result = {message: "Utente "+id+" mudado para estado "+estado+"!"})
+    .catch(err=> result = err)
+  return result;
 }

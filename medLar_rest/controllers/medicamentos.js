@@ -26,13 +26,13 @@ module.exports.getMedicamentoById = async (id) => {
     return result
 };
 
-module.exports.addEstadoAuxiliarById = async function(id, estado){
+module.exports.updatePrecoById = async function(id, preco){
     var result;
-    await Auxiliar.update(
-      { estado: estado},
-      { where: { id: id } }
+    await Medicamento.update(
+      { preco: preco},
+      { where: { id_med: id } }
     )
-      .then(()=> result = {message: "Utilizador "+id+" mudado para estado "+estado+"!"})
+      .then(()=> result = {message: "Medicamento "+id+" com preço alterado para "+preco+"!"})
       .catch(err=> result = err)
     return result;
 }
@@ -60,7 +60,7 @@ formato,dosagem,quantidade){
     return result;
   }
 
-  module.exports.addQuantidade = async function(id,qt){
+  module.exports.addQuantidadeById = async function(id,qt){
     Medicamento.update(
       { quantidade: db.literal('quantidade +'+ qt)},
       { where: { id_med: id } }

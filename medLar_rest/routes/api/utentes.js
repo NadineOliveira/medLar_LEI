@@ -1,47 +1,52 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-
+var UtentesController = require('../../controllers/utentes')
 
 // Utentes Router
-// Lista de Utentes
-router.get('/',passport.authenticate('jwt',{session: false}), (req,res,next) => {
-    UtentesController.getAllUtentes()
-            .then(dados => res.jsonp(dados))
-            .catch(error => res.status(500).send('Erro na consulta de utentes!'))
+router.get('/',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
+    var uts = await UtentesController.getAllUtentes();
+    res.status(200).send(uts);
 })
 
-// Utente por ID
-router.get('/:uid',passport.authenticate('jwt',{session: false}), (req,res,next) => {
-    UtentesController.getUtenteById(req.params.uid)
-            .then(dados => res.jsonp(dados))
-            .catch(error => res.status(500).send('Erro na consulta de utentes!'))
+router.get('/ativos',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
+    var uts = await UtentesController.getUtentesByEstado(1);
+    res.status(200).send(uts);
 })
 
-// Adicionar Utente
-router.post('/', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-    var id = req.body.id
-    var nome = req.body.nome
-    var data_Nascimento = req.body.data_Nascimento
-    var genero = req.body.genero
-    var contacto = req.body.contacto
-    var nome_Encarregado = req.body.nome_Encarregado
-    var grau = req.body.grau
-    var contacto_Encarregado = req.body.contacto_Encarregado
-    var rua = req.body.rua
-    var localidade = req.body.localidade
-    var cod_Postal = req.body.cod_Postal
-    
-    UtentesController.addUtente({id,nome,data_Nascimento,genero,contacto,nome_Encarregado,grau,contacto_Encarregado,rua,localidade,cod_Postal})
-            .then(() => res.status(200).send('Utente adicionado com sucesso!'))
-            .catch(error => res.status(500).send('Erro na adição de utente!'))
+router.get('/inativos',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
+    var uts = await UtentesController.getUtentesByEstado(1);
+    res.status(200).send(uts);
 })
 
-// Desativar Utente
-router.get('/desativar/:uid',passport.authenticate('jwt',{session: false}), (req,res,next) => {
-    UtentesController.desativarUtenteById(req.params.uid)
-            .then(() => res.status(200).send('Utente desativado com sucesso!'))
-            .catch(error => res.status(500).send('Erro na desativação do utente!'))
+router.post('/',passport.authenticate('jwtAdmin',{session: false}), async (req,res,next) => {
+    var nr_processo = req.body.nr_processo;
+    var nome = req.body.nome;
+    var apelido = req.body.apelido;
+    var genero = req.body.genero;
+    var data_nascimento = req.body.data_nascimento;
+    var contacto = req.body.contacto;
+    var encarregado = req.body.encarregado;
+    var parentesco = req.body.parentesco;
+    var contacto_enc = req.body.contacto_enc;
+    var rua = req.body.rua;
+    var localidade = req.body.localidade;
+    var codigo_postal = req.body.codigo_postal;
+    var cidade = req.body.cidade;
+    var estado = 1;
+
+    var ut = await UtentesController.addAuxiliar(nr_processo,nome,apelido,genero,data_nascimento,contacto,encarregado,parentesco,contacto_enc,rua,localidade,codigo_postal,cidade,estado);
+    res.status(200).send(ut)
+})
+
+router.get('/desativar/:uid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
+    var uts = await UtentesController.mudarEstadoUtenteById(req.params.uid,0);
+    res.status(200).send(uts);
+})
+
+router.get('/ativar/:uid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
+    var uts = await UtentesController.mudarEstadoUtenteById(req.params.uid,0);;
+    res.status(200).send(uts);
 })
 
 
