@@ -67,7 +67,9 @@ module.exports.mudarEstadoUtenteById = async function(np, estado){
     { estado: estado},
     { where: { nr_processo: np } }
   )
-    .then(()=> result = {message: "Utente "+id+" mudado para estado "+estado+"!"})
+    .then(()=>{
+      result = Utente.findOne({where: {nr_processo: np}})
+    })
     .catch(err=> result = err)
   return result;
 }
@@ -91,7 +93,9 @@ module.exports.updateUtente = async function(np, nome,apelido, genero, data_nasc
     estado: estado},{
       where: {nr_processo: np}
     })
-    .then(()=> result = {message: "Utente "+id+" Alterado!"})
+    .then(()=> {
+      result = Utente.findOne({where: {nr_processo: np}})
+    })
     .catch(err=> result = err)
   return result;
 }

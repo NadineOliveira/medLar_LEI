@@ -25,7 +25,7 @@ router.get('/:uid',passport.authenticate('jwt',{session: false}), async (req,res
     res.status(200).send(ut);
 })
 
-router.post('/',passport.authenticate('jwtAdmin',{session: false}), async (req,res,next) => {
+router.post('/',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     var nome = req.body.nome;
     var apelido = req.body.apelido;
     var genero = req.body.genero;
@@ -44,7 +44,7 @@ router.post('/',passport.authenticate('jwtAdmin',{session: false}), async (req,r
     res.status(200).send(ut)
 })
 
-router.post('/update',passport.authenticate('jwtAdmin',{session: false}), async (req,res,next) => {
+router.post('/update',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     var nr_processo = req.body.nr_processo;
     var nome = req.body.nome;
     var apelido = req.body.apelido;
@@ -58,7 +58,7 @@ router.post('/update',passport.authenticate('jwtAdmin',{session: false}), async 
     var localidade = req.body.localidade;
     var codigo_postal = req.body.codigo_postal;
     var cidade = req.body.cidade;
-    var estado = 1;
+    var estado = req.body.estado;
 
     var ut = await UtentesController.updateUtente(nr_processo,nome,apelido,genero,data_nascimento,contacto,encarregado,parentesco,contacto_enc,rua,localidade,codigo_postal,cidade,estado);
     res.status(200).send(ut)
@@ -71,7 +71,7 @@ router.get('/desativar/:uid',passport.authenticate('jwt',{session: false}), asyn
 })
 
 router.get('/ativar/:uid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
-    var uts = await UtentesController.mudarEstadoUtenteById(req.params.uid,0);;
+    var uts = await UtentesController.mudarEstadoUtenteById(req.params.uid,1);;
     res.status(200).send(uts);
 })
 

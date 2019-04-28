@@ -37,11 +37,10 @@ module.exports.updatePrecoById = async function(id, preco){
     return result;
 }
 
-module.exports.addMedicamento = async function(id,nome,preco,lab,uni_emb,
+module.exports.addMedicamento = async function(nome,preco,lab,uni_emb,
 formato,dosagem,quantidade){
     var result;
     await Medicamento.create({
-        id_med: id,
         nome: nome,
         preco: preco,
         lab: lab, 
@@ -49,11 +48,8 @@ formato,dosagem,quantidade){
         formato: formato, 
         dosagem: dosagem,
         quantidade: quantidade
-    }).then(() => Medicamento.findOrCreate({
-            where: {
-            id_med: id
-            }})).then(([ax, created]) => {
-                result = ax;
+    }).then(med => {
+                result = med;
     }).catch(err => {
         result = err
     });

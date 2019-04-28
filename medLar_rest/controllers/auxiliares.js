@@ -62,7 +62,9 @@ module.exports.mudarEstadoAuxiliarById = async function(id, estado){
     { estado: estado},
     { where: { id: id } }
   )
-    .then(()=> result = {message: "Utilizador "+id+" mudado para estado "+estado+"!"})
+    .then(()=>{
+      result = Utente.findOne({where: {id: id}})
+    })
     .catch(err=> result = err)
   return result;
 }

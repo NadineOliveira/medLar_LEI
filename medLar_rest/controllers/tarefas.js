@@ -11,6 +11,18 @@ module.exports.getAllTarefas = async function(){
     return result;
 };
 
+module.exports.getAllTarefasByAuxiliar = async function(id){
+  var result = [];
+  await Tarefa.findAll({where: {auxiliar: id}}).then(values => {
+    for(i in values)  
+      result.push(values[i].dataValues);
+  }).catch(err => {
+    result = err;
+  });
+  return result;
+};
+
+
 module.exports.getTarefasById = async function(id){
     var result;
     await Tarefa.findOne({
@@ -24,24 +36,53 @@ module.exports.getTarefasById = async function(id){
     return result;
 };
 
-module.exports.addTarefa = async function(id, nome, descricao, data, estado, auxiliar){
+module.exports.getTarefasByEstado = async function(estado){
+  var result = [];
+  await Tarefa.findAll({where: {estado: estado}}).then(values => {
+    for(i in values)  
+      result.push(values[i].dataValues);
+  }).catch(err => {
+    result = err;
+  });
+  return result;
+};
+
+module.exports.getTarefasByAuxiliarAndEstado = async function(id,estado){
+  var result = [];
+  await Tarefa.findAll({where: {auxiliar: id, estado: estado}}).then(values => {
+    for(i in values)  
+      result.push(values[i].dataValues);
+  }).catch(err => {
+    result = err;
+  });
+  return result;
+};
+
+module.exports.addTarefa = async function(nome, descricao, data, estado, auxiliar){
     var result;
     await Tarefa.create({
-      id_Tarefa: id, 
       nome: nome, 
       descricao: descricao, 
-      genero: genero,
       data: data, 
       estado: estado,
       auxiliar: auxiliar
-    })
-    .then(() => Tarefa.findOrCreate({
-      where: {
-        id_Tarefa: id
-      }})).then(([tr, created]) => {
+    }).then(tr => {
             result = tr;
     }).catch(err => {
       result = err;
     });
     return result;
+}
+
+module.exports.concluirTarefa = async function(id) {
+  var result;
+  await Tarefa.update(
+    { estado: 1},
+    { where: { id_Tarefa: id } }
+  )
+    .then(()=>{
+      result = Tarefa.findOne({where: {id_Tarefa: id}})
+    })
+    .catch(err=> result = err)
+  return result;
 }

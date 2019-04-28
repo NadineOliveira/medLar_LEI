@@ -46,29 +46,35 @@ Utilizar o Postman e fazer
 ## Rotas par o servidor (http://localhost:8000)
 | Metodo | Rota              | Sub-Rota        | Utilizador | Descrição                          |  Test  |
 |--------|-------------------|-----------------|------------|------------------------------------|--------|
-| POST   |                   | /login          | Todos      | Inicio de Sessão                   |   [x]  |
-| GET    |                   | /logout         | Todos      | Terminar Sessão                    |   [x]  |
-| GET    | /api/auxiliares   | /               | Admin      | Lista de Auxiliares                |   [x]  |
-| POST   | /api/auxiliares   | /               | Admin      | Criação de Auxiliar                |   [x]  |
-| GET    | /api/auxiliares   | /:uid           | Admin      | Consulta Auxiliar por id           |   [x]  |
-| GET    | /api/auxiliares   | /ativos         | Admin      | Lista de Auxiliares ativos         |   [x]  |
-| GET    | /api/auxiliares   | /inativos       | Admin      | Lista de Auxiliares inativos       |   [x]  |
-| GET    | /api/auxiliares   | /admins         | Admin      | Lista de Administradores           |   [x]  |
-| GET    | /api/auxiliares   | /desativar/:uid | Admin      | Desativa Auxiliar por id           |   [x]  |
-| GET    | /api/auxiliares   | /ativar/:uid    | Admin      | Ativa Auxiliar por id              |   [x]  |
-| GET    | /api/auxiliares   | /admin/:uid     | Admin      | Trasforma Auxiliar por id em Admin |   [x]  |
-| GET    | /api/utentes      | /               | Todos      | Lista de Utentes                   |   [x]  |
-| POST   | /api/utentes      | /               | Todos      | Criação de Utente                  |   [x]  |
-| POST   | /api/utentes      | /update         | Todos      | Atualiza informação de Utente      |   [x]  |
-| GET    | /api/utentes      | /:uid           | Todos      | Consulta Utente por id             |   [x]  |
-| GET    | /api/utentes      | /ativos         | Todos      | lista de Utentes Ativos            |   [x]  |
-| GET    | /api/utentes      | /inativos       | Todos      | Lista de Utentes Inativos          |   [x]  |
-| GET    | /api/utentes      | /desativar/:uid | Todos      | Desativar Utente por id            |   [x]  |
-| GET    | /api/utentes      | /ativar/:uid    | Todos      | Ativar Utente por id               |   [x]  |
-| GET    | /api/medicamentos | /               | Todos      | Lista de Medicamento               |   [x]  |
-| POST   | /api/medicamentos | /               | Todos      | Criação de Medicamento             |   [x]  |
-| GET    | /api/medicamentos | /:mid           | Todos      | Procura Medicamento por id         |   [x]  |
-| GET    | /api/horarios     | /               | Todos      | Lista de Horarios                  |   [x]  |
+| POST   |                   | /login          | Todos      | Inicio de Sessão                   | :heavy_check_mark: |
+| GET    |                   | /logout         | Todos      | Terminar Sessão                    | :heavy_check_mark: |
+| GET    | /api/auxiliares   | /               | Admin      | Lista de Auxiliares                | :heavy_check_mark: |
+| POST   | /api/auxiliares   | /               | Admin      | Criação de Auxiliar                | :heavy_check_mark: |
+| GET    | /api/auxiliares   | /:uid           | Admin      | Consulta Auxiliar por id           | :heavy_check_mark: |
+| GET    | /api/auxiliares   | /ativos         | Admin      | Lista de Auxiliares ativos         | :heavy_check_mark: |
+| GET    | /api/auxiliares   | /inativos       | Admin      | Lista de Auxiliares inativos       | :heavy_check_mark: |
+| GET    | /api/auxiliares   | /admins         | Admin      | Lista de Administradores           | :heavy_check_mark: |
+| GET    | /api/auxiliares   | /desativar/:uid | Admin      | Desativa Auxiliar por id           | :heavy_check_mark: |
+| GET    | /api/auxiliares   | /ativar/:uid    | Admin      | Ativa Auxiliar por id              | :heavy_check_mark: |
+| GET    | /api/auxiliares   | /admin/:uid     | Admin      | Trasforma Auxiliar por id em Admin | :heavy_check_mark: |
+| GET    | /api/utentes      | /               | Todos      | Lista de Utentes                   | :heavy_check_mark: |
+| POST   | /api/utentes      | /               | Todos      | Criação de Utente                  | :heavy_check_mark: |
+| POST   | /api/utentes      | /update         | Todos      | Atualiza informação de Utente      | :heavy_check_mark: |
+| GET    | /api/utentes      | /:uid           | Todos      | Consulta Utente por id             | :heavy_check_mark: |
+| GET    | /api/utentes      | /ativos         | Todos      | lista de Utentes Ativos            | :heavy_check_mark: |
+| GET    | /api/utentes      | /inativos       | Todos      | Lista de Utentes Inativos          | :heavy_check_mark: |
+| GET    | /api/utentes      | /desativar/:uid | Todos      | Desativar Utente por id            | :heavy_check_mark: |
+| GET    | /api/utentes      | /ativar/:uid    | Todos      | Ativar Utente por id               | :heavy_check_mark: |
+| GET    | /api/medicamentos | /               | Todos      | Lista de Medicamento               | :heavy_check_mark: |
+| POST   | /api/medicamentos | /               | Todos      | Criação de Medicamento             | :heavy_check_mark: |
+| GET    | /api/medicamentos | /:mid           | Todos      | Procura Medicamento por id         | :heavy_check_mark: |
+| GET    | /api/horarios     | /               | Todos      | Lista de Horarios                  | :heavy_check_mark: |
+| GET    | /api/tarefas      | /               | Todos      | Lista de Tarefas                   | :heavy_check_mark: |
+| POST   | /api/tarefas      | /               | Todos      | Criação de Tarefas                 | :heavy_check_mark: |
+| GET    | /api/tarefas      | /:tid           | Todos      | Procura Tarefa por id              | :heavy_check_mark: |
+| GET    | /api/tarefas      | /concluidas     | Todos      | Lista de Tarefa concluidas         | :heavy_check_mark: |
+| GET    | /api/tarefas      | /inconcluidas   | Todos      | Lista de Tarefa inconcluidas       | :heavy_check_mark: |
+| GET    | /api/tarefas      | /concluir/:tid  | Todos      | Concluir Tarefa por id             | :heavy_check_mark: |
 
 
 

@@ -25,7 +25,6 @@ router.get('/:mid',passport.authenticate('jwt',{session: false}), async (req,res
 
 // Adicionar Medicamento
 router.post('/', passport.authenticate('jwt', {session: false}), async (req, res, next) => {
-    var id = req.body.id
     var nome = req.body.nome
     var preco = req.body.preco
     var lab = req.body.lab
@@ -34,7 +33,7 @@ router.post('/', passport.authenticate('jwt', {session: false}), async (req, res
     var dosagem = req.body.dosagem
     var quantidade = req.body.quantidade
     
-    var med = await MedicamentosController.addMedicamento({id,nome,preco,lab,uni_emb,formato,dosagem,quantidade})
+    var med = await MedicamentosController.addMedicamento(nome,preco,lab,uni_emb,formato,dosagem,quantidade)
     res.status(200).send(med)
 })
 
