@@ -53,11 +53,8 @@ module.exports.addUtente = async function(nome,apelido, genero, data_nascimento,
     codigo_postal: codigo_postal, 
     cidade: cidade, 
     estado: estado})
-  .then(() => Utente.findOrCreate({
-    where: {
-      nr_processo: np
-    }})).then(([ut, created]) => {
-          result = ut;
+  .then(user => {
+          result = user;
   }).catch(err => {
     result = err;
   });
