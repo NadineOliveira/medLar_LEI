@@ -16,12 +16,17 @@ router.get('/ativos',passport.authenticate('jwt',{session: false}), async (req,r
 })
 
 router.get('/inativos',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
-    var uts = await UtentesController.getUtentesByEstado(1);
+    var uts = await UtentesController.getUtentesByEstado(0);
     res.status(200).send(uts);
 })
 
 router.get('/:uid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     var ut = await UtentesController.getUtenteById(req.params.uid);
+    res.status(200).send(ut);
+})
+
+router.get('/medicamentos/:uid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
+    var ut = await UtentesController.getMedicamentoByUtente(req.params.uid);
     res.status(200).send(ut);
 })
 

@@ -1,4 +1,5 @@
 var Utente = require('./ModelConnections').utente;
+var Caixa = require('./ModelConnections').caixa;
 
 module.exports.getAllUtentes = async function(){
     var result = [];

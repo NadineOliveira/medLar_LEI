@@ -7,14 +7,14 @@ const Auxiliar = db.import('../models/auxiliar');
 var Utente = db.import('../models/Utente');
 
 Auxiliar.hasMany(Tarefa,{foreignKey: 'auxiliar'});
-Auxiliar.belongsToMany(Medicamento,{through: 'Gere', foreignKey: 'id'})
-Medicamento.belongsToMany(Auxiliar,{through: 'Gere', foreignKey: 'id'})
+Auxiliar.belongsToMany(Medicamento,{through: 'Gere', foreignKey: 'med'})
+Medicamento.belongsToMany(Auxiliar,{through: 'Gere', foreignKey: 'auxiliar'})
 
-Medicamento.belongsToMany(Utente,{through:'Caixa', foreignKey: 'id'})
-Utente.belongsToMany(Medicamento, {through:'Caixa', foreignKey:'id'})
+Medicamento.belongsToMany(Utente,{through:'Caixa', foreignKey: 'med'})
+Utente.belongsToMany(Medicamento, {through:'Caixa', foreignKey:'utente'})
 
-Caixa.belongsToMany(Horario,{through: 'Caixa_Horario', foreignKey:['med','utente']})
-Horario.belongsToMany(Caixa,{through: 'Caixa_Horario', foreignKey:'idHorario'})
+Caixa.belongsToMany(Horario,{through: 'Caixa_Horario', foreignKey:['Caixa_med','Caixa_utente']})
+Horario.belongsToMany(Caixa,{through: 'Caixa_Horario', foreignKey:'Horario_idHorario'})
 
 exports.medicamento = Medicamento;
 exports.utente = Utente;
