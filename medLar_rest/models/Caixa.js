@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id_med'
       }
     },
-    utente: {
+    nr_utente: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,

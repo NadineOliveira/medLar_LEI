@@ -2,7 +2,7 @@
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('gere', {
-    auxiliar: {
+    nr_auxiliar: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,

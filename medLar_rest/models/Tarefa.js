@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(4),
       allowNull: false
     },
-    auxiliar: {
+    nr_auxiliar: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
