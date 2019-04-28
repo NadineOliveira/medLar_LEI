@@ -59,6 +59,7 @@ Utilizar o Postman e fazer
 | GET    | /api/auxiliares   | /admin/:uid     | Admin      | Trasforma Auxiliar por id em Admin |
 | GET    | /api/utentes      | /               | Todos      | Lista de Utentes                   |
 | POST   | /api/utentes      | /               | Todos      | Criação de Utente                  |
+| POST   | /api/utentes      | /update         | Todos      | Atualiza informação de Utente      |
 | GET    | /api/utentes      | /:uid           | Todos      | Consulta Utente por id             |
 | GET    | /api/utentes      | /ativos         | Todos      | lista de Utentes Ativos            |
 | GET    | /api/utentes      | /inativos       | Todos      | Lista de Utentes Inativos          |
