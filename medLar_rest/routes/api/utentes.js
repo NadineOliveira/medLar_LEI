@@ -26,7 +26,6 @@ router.get('/:uid',passport.authenticate('jwt',{session: false}), async (req,res
 })
 
 router.post('/',passport.authenticate('jwtAdmin',{session: false}), async (req,res,next) => {
-    var nr_processo = req.body.nr_processo;
     var nome = req.body.nome;
     var apelido = req.body.apelido;
     var genero = req.body.genero;
@@ -41,7 +40,7 @@ router.post('/',passport.authenticate('jwtAdmin',{session: false}), async (req,r
     var cidade = req.body.cidade;
     var estado = 1;
 
-    var ut = await UtentesController.addUtente(nr_processo,nome,apelido,genero,data_nascimento,contacto,encarregado,parentesco,contacto_enc,rua,localidade,codigo_postal,cidade,estado);
+    var ut = await UtentesController.addUtente(nome,apelido,genero,data_nascimento,contacto,encarregado,parentesco,contacto_enc,rua,localidade,codigo_postal,cidade,estado);
     res.status(200).send(ut)
 })
 

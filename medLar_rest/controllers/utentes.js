@@ -36,11 +36,10 @@ module.exports.getUtenteById = async function(id){
     return result;
 };
 
-module.exports.addUtente = async function(np, nome,apelido, genero, data_nascimento, contacto, encarregado,
+module.exports.addUtente = async function(nome,apelido, genero, data_nascimento, contacto, encarregado,
   parentesco, contacto_enc, rua, localidade, codigo_postal, cidade, estado){
   var result;
   await Utente.create({
-    nr_processo: np, 
     nome: nome, 
     apelido: apelido, 
     genero: genero,
