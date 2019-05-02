@@ -42,6 +42,7 @@ var apiHorariosRouter = require('./routes/api/horarios');
 var apiUtentesRouter = require('./routes/api/utentes');
 var apiTarefasRouter = require('./routes/api/tarefas');
 var apiCaixasRouter = require('./routes/api/caixas');
+var apiGetaoRouter = require('./routes/api/gestao');
 
 app.use('/', indexRouter);
 app.use('/api/auxiliares', apiAuxiliaresRouter);
@@ -50,6 +51,7 @@ app.use('/api/horarios', apiHorariosRouter);
 app.use('/api/utentes',apiUtentesRouter);
 app.use('/api/tarefas',apiTarefasRouter);
 app.use('/api/caixas',apiCaixasRouter);
+app.use('/api/gestao',apiGetaoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

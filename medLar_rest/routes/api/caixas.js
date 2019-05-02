@@ -9,18 +9,18 @@ router.get('/',passport.authenticate('jwtAdmin',{session: false}), async (req,re
     res.status(200).send(caixas)
 })
 
-router.get('/medicamentos/:uid',passport.authenticate('jwtAdmin',{session: false}), async (req,res,next) => {
+router.get('/medicamentos/:uid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     var meds = await CaixasController.getMedicamentosByUtente(req.params.uid);
     res.status(200).send(meds)
 })
 
 
-router.get('/utentes/:mid',passport.authenticate('jwtAdmin',{session: false}), async (req,res,next) => {
+router.get('/utentes/:mid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     var utentes = await CaixasController.getUtentesByMedicamento(req.params.mid);
     res.status(200).send(utentes)
 })
 
-router.post('/',passport.authenticate('jwtAdmin',{session: false}), async (req,res,next) => {
+router.post('/',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     var med = req.body.med;
     var nr_utente = req.body.nr_utente;
     var data_inicio = req.body.data_inicio;

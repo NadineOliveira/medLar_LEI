@@ -77,6 +77,10 @@ Utilizar o Postman e fazer
 | GET    | /api/tarefas      | /concluir/:tid     | Todos      | Concluir Tarefa por id             | :heavy_check_mark: |
 | GET    | /api/caixas       | /                  | Admin      | Lista das Caixas                   | :heavy_check_mark: |
 | POST   | /api/caixas       | /                  | Todos      | Criação de Caixa                   | :heavy_check_mark: |
-| GET    | /api/tarefas      | /medicamentos/:uid | Todos      | Lista de Medicamntos por Cliente   | :heavy_check_mark: |
-| GET    | /api/tarefas      | /utentes/:mid      | Todos      | Lista de Clientes por Medicamento s | :heavy_check_mark: |
+| GET    | /api/caixas       | /medicamentos/:uid | Todos      | Lista de Medicamntos por Utente    | :heavy_check_mark: |
+| GET    | /api/caixas       | /utentes/:mid      | Todos      | Lista de Utentes por Medicamento   | :heavy_check_mark: |
+| GET    | /api/gestao       | /                  | Admin      | Lista das Caixas                   | :heavy_check_mark: |
+| POST   | /api/gestao       | /                  | Todos      | Criação de Caixa                   | :heavy_check_mark: |
+| GET    | /api/gestao       | /medicamentos/:uid | Admin      | Lista de Medicamntos p/ Auxiliar   | :heavy_check_mark: |
+| GET    | /api/gestao       | /auxiliares/:mid   | Admin      | Lista de Auxiliares p/ Medicamento | :heavy_check_mark: |
 
