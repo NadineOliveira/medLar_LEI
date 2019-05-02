@@ -79,8 +79,8 @@ Utilizar o Postman e fazer
 | POST   | /api/caixas       | /                  | Todos      | Criação de Caixa                   | :heavy_check_mark: |
 | GET    | /api/caixas       | /medicamentos/:uid | Todos      | Lista de Medicamntos por Utente    | :heavy_check_mark: |
 | GET    | /api/caixas       | /utentes/:mid      | Todos      | Lista de Utentes por Medicamento   | :heavy_check_mark: |
-| GET    | /api/gestao       | /                  | Admin      | Lista das Caixas                   | :heavy_check_mark: |
-| POST   | /api/gestao       | /                  | Todos      | Criação de Caixa                   | :heavy_check_mark: |
+| GET    | /api/gestao       | /                  | Admin      | Lista das Gestões                  | :heavy_check_mark: |
+| POST   | /api/gestao       | /                  | Todos      | Criação de Gestão                  | :heavy_check_mark: |
 | GET    | /api/gestao       | /medicamentos/:uid | Admin      | Lista de Medicamntos p/ Auxiliar   | :heavy_check_mark: |
 | GET    | /api/gestao       | /auxiliares/:mid   | Admin      | Lista de Auxiliares p/ Medicamento | :heavy_check_mark: |
 
