@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var UtentesController = require('../../controllers/utentes')
-var CaixaController = require('../../controllers/caixa')
 
 // Utentes Router
 router.get('/',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
@@ -23,11 +22,6 @@ router.get('/inativos',passport.authenticate('jwt',{session: false}), async (req
 
 router.get('/:uid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     var ut = await UtentesController.getUtenteById(req.params.uid);
-    res.status(200).send(ut);
-})
-
-router.get('/medicamentos/:uid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
-    var ut = await CaixaController.getMedicamentoByUtente(req.params.uid);
     res.status(200).send(ut);
 })
 
