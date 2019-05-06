@@ -1,30 +1,30 @@
-import React, {Component} from 'react';
-import{
-    ScrollView,
-    Text,
-    TextInput,
-    View,
-    Button
-} from 'react-native';
+import React, { Component } from "react";
+import { ScrollView, Text, TextInput, View, Button } from "react-native";
+import { connect } from "react-redux";
 
-export default class Login extends Component{
+class Login extends Component {
+  render() {
+    return (
+      <ScrollView style={{ padding: 20 }}>
+        <Text style={{ fontSize: 27 }}>Login</Text>
+        <TextInput placeholder="Username" />
+        <TextInput placeholder="Password" secureTextEntry={true} />
+        <View style={{ margin: 7 }} />
 
-    render(){
-        return(
-            <ScrollView style ={{padding:20}}>
-                <Text
-                    style={{fontSize: 27}}>
-                    Login
-                </Text>
-                <TextInput placeholder='Username'/>
-                <TextInput placeholder='Password'/>
-                <View style={{margin:7}}/>
-
-                <Button
-                    onPress={() => this.props.onLoginPress}
-                    title="Submit"
-                />
-            </ScrollView>
-        )
-    }
+        <Button
+          onPress={() => this.props.navigation.navigate("Home")}
+          title="SignIn"
+        />
+        <View style={{ margin: 10 }} />
+        <Button onPress={() => this.props.onSignOutPress} title="SignOut" />
+      </ScrollView>
+    );
+  }
 }
+
+const mapStateToProps = state => {
+  const { login } = state;
+  return { login };
+};
+
+export default connect(mapStateToProps)(Login);
