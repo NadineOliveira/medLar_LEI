@@ -41,7 +41,7 @@ var apiMedicamentosRouter = require('./routes/api/medicamentos');
 var apiHorariosRouter = require('./routes/api/horarios');
 var apiUtentesRouter = require('./routes/api/utentes');
 var apiTarefasRouter = require('./routes/api/tarefas');
-var apiCaixasRouter = require('./routes/api/caixas');
+var apiSlotsRouter = require('./routes/api/slots');
 var apiGetaoRouter = require('./routes/api/gestao');
 
 app.use('/', indexRouter);
@@ -50,7 +50,7 @@ app.use('/api/medicamentos', apiMedicamentosRouter);
 app.use('/api/horarios', apiHorariosRouter);
 app.use('/api/utentes',apiUtentesRouter);
 app.use('/api/tarefas',apiTarefasRouter);
-app.use('/api/caixas',apiCaixasRouter);
+app.use('/api/slots',apiSlotsRouter);
 app.use('/api/gestao',apiGetaoRouter);
 
 // catch 404 and forward to error handler

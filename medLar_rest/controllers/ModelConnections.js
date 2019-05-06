@@ -1,11 +1,11 @@
 var db = require('../config/database');
-const Caixa = db.import('../models/Caixa');
+const Slot = db.import('../models/Slot');
 const Horario = db.import('../models/horario');
 const Medicamento = db.import('../models/Medicamento');
 const Tarefa = db.import('../models/Tarefa');
 const Auxiliar = db.import('../models/auxiliar');
 const Utente = db.import('../models/Utente');
-const Caixa_Horario = db.import('../models/caixa_horario');
+const Slot_Horario = db.import('../models/Slot_horario');
 const Gere = db.import('../models/Gere');
 
 /*Associações:
@@ -30,46 +30,46 @@ Auxiliar.belongsToMany(Medicamento,{through: 'Gere', foreignKey: 'med'})
 Medicamento.belongsToMany(Auxiliar,{through: 'Gere', foreignKey: 'nr_auxiliar'})
 
 /*Associações:
-    Medicamento 1-N Caixa
-    Caixa 1-1 Medicamento
-    Utente 1-N Caixa
-    Caixa 1-1 Utente
+    Medicamento 1-N Slot
+    Slot 1-1 Medicamento
+    Utente 1-N Slot
+    Slot 1-1 Utente
     Utente N-N Medicamento
     Medicamento N-N Utente
 */
-Medicamento.hasMany(Caixa,{foreignKey: 'med'});
-Caixa.belongsTo(Medicamento,{foreignKey: 'med'});
+Medicamento.hasMany(Slot,{foreignKey: 'med'});
+Slot.belongsTo(Medicamento,{foreignKey: 'med'});
 
-Utente.hasMany(Caixa,{foreignKey: 'nr_utente'});
-Caixa.belongsTo(Utente,{foreignKey: 'nr_utente'});
+Utente.hasMany(Slot,{foreignKey: 'nr_utente'});
+Slot.belongsTo(Utente,{foreignKey: 'nr_utente'});
 
-Medicamento.belongsToMany(Utente,{through:'Caixa', foreignKey: 'med'})
-Utente.belongsToMany(Medicamento, {through:'Caixa', foreignKey:'nr_utente'})
+Medicamento.belongsToMany(Utente,{through:'Slot', foreignKey: 'med'})
+Utente.belongsToMany(Medicamento, {through:'Slot', foreignKey:'nr_utente'})
 
 /*Associações:
-    Caixa_Horario 1-1 Horario
-    Horario 1-N Caixa_Horario
-    Caixa_Horario 1-1 Caixa
-    Caixa 1-N Caixa_Horario
-    Caixa N-N Horario
-    Horario N-N Caixa
+    Slot_Horario 1-1 Horario
+    Horario 1-N Slot_Horario
+    Slot_Horario 1-1 Slot
+    Slot 1-N Slot_Horario
+    Slot N-N Horario
+    Horario N-N Slot
 */
-Caixa_Horario.belongsTo(Horario,{foreignKey: ['Caixa_med','Caixa_utente']});
-Horario.hasMany(Caixa_Horario,{foreignKey: 'Horario_idHorario'});
+Slot_Horario.belongsTo(Horario,{foreignKey: ['Slot_med','Slot_utente']});
+Horario.hasMany(Slot_Horario,{foreignKey: 'Horario_idHorario'});
 
-Caixa_Horario.belongsTo(Caixa,{foreignKey: ['Caixa_med','Caixa_utente']});
-Caixa.hasMany(Caixa_Horario,{foreignKey: ['Caixa_med','Caixa_utente']});
+Slot_Horario.belongsTo(Slot,{foreignKey: ['Slot_med','Slot_utente']});
+Slot.hasMany(Slot_Horario,{foreignKey: ['Slot_med','Slot_utente']});
 
-Caixa.belongsToMany(Horario,{through: 'Caixa_Horario', foreignKey:['Caixa_med','Caixa_utente']})
-Horario.belongsToMany(Caixa,{through: 'Caixa_Horario', foreignKey:'Horario_idHorario'})
+Slot.belongsToMany(Horario,{through: 'Slot_Horario', foreignKey:['Slot_med','Slot_utente']})
+Horario.belongsToMany(Slot,{through: 'Slot_Horario', foreignKey:'Horario_idHorario'})
 
 exports.medicamento = Medicamento;
 exports.utente = Utente;
 exports.auxiliar = Auxiliar;
 exports.horario = Horario;
 exports.tarefa = Tarefa;
-exports.caixa = Caixa;
-exports.caixa_horario = Caixa_Horario;
+exports.Slot = Slot;
+exports.Slot_horario = Slot_Horario;
 exports.gere = Gere;
 exports.db = db;
 

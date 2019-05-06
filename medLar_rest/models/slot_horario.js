@@ -1,12 +1,12 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('caixa_horario', {
+  return sequelize.define('slot_horario', {
     quantidade: {
       type: DataTypes.INTEGER(11),
       allowNull: false
     },
-    Caixa_med: {
+    Slot_med: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
         key: 'med'
       }
     },
-    Caixa_utente: {
+    Slot_utente: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
@@ -34,6 +34,6 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    tableName: 'caixa_horario'
+    tableName: 'slot_horario'
   });
 };

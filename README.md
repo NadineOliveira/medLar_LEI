@@ -75,12 +75,15 @@ Utilizar o Postman e fazer
 | GET    | /api/tarefas      | /concluidas        | Todos      | Lista de Tarefa concluidas         | :heavy_check_mark: |
 | GET    | /api/tarefas      | /inconcluidas      | Todos      | Lista de Tarefa inconcluidas       | :heavy_check_mark: |
 | GET    | /api/tarefas      | /concluir/:tid     | Todos      | Concluir Tarefa por id             | :heavy_check_mark: |
-| GET    | /api/caixas       | /                  | Admin      | Lista das Caixas                   | :heavy_check_mark: |
-| POST   | /api/caixas       | /                  | Todos      | Criação de Caixa                   | :heavy_check_mark: |
-| GET    | /api/caixas       | /medicamentos/:uid | Todos      | Lista de Medicamntos por Utente    | :heavy_check_mark: |
-| GET    | /api/caixas       | /utentes/:mid      | Todos      | Lista de Utentes por Medicamento   | :heavy_check_mark: |
+| GET    | /api/slots        | /                  | Admin      | Lista das slots                    | :heavy_check_mark: |
+| POST   | /api/slots        | /                  | Todos      | Criação de Slot                    | :heavy_check_mark: |
+| GET    | /api/slots        | /medicamentos/:uid | Todos      | Lista de Medicamentos por Utente   | :heavy_check_mark: |
+| GET    | /api/slots        | /utentes/:mid      | Todos      | Lista de Utentes por Medicamento   | :heavy_check_mark: |
 | GET    | /api/gestao       | /                  | Admin      | Lista das Gestões                  | :heavy_check_mark: |
 | POST   | /api/gestao       | /                  | Todos      | Criação de Gestão                  | :heavy_check_mark: |
-| GET    | /api/gestao       | /medicamentos/:uid | Admin      | Lista de Medicamntos p/ Auxiliar   | :heavy_check_mark: |
+| GET    | /api/gestao       | /medicamentos/:uid | Admin      | Lista de Medicamentos p/ Auxiliar  | :heavy_check_mark: |
 | GET    | /api/gestao       | /auxiliares/:mid   | Admin      | Lista de Auxiliares p/ Medicamento | :heavy_check_mark: |
 
+Sync Storage
+
+Redux

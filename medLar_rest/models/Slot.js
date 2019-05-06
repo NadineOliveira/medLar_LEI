@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('caixa', {
+  return sequelize.define('slot', {
     med: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -27,12 +27,8 @@ module.exports = function(sequelize, DataTypes) {
     data_fim: {
       type: DataTypes.STRING(45),
       allowNull: true
-    },
-    quantidade: {
-      type: DataTypes.STRING(45),
-      allowNull: false
     }
   }, {
-    tableName: 'caixa'
+    tableName: 'slot'
   });
 };

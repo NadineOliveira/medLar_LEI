@@ -1,22 +1,22 @@
 var express = require('express');
 var router = express.Router();
 var passport = require("passport")
-var CaixasController = require('../../controllers/caixas')
+var SlotsController = require('../../controllers/slots')
 
-// Caixas Route
+// Slots Route
 router.get('/',passport.authenticate('jwtAdmin',{session: false}), async (req,res,next) => {
-    var caixas = await CaixasController.getAllCaixas()
-    res.status(200).send(caixas)
+    var slots = await SlotsController.getAllSlots()
+    res.status(200).send(slots)
 })
 
 router.get('/medicamentos/:uid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
-    var meds = await CaixasController.getMedicamentosByUtente(req.params.uid);
+    var meds = await SlotsController.getMedicamentosByUtente(req.params.uid);
     res.status(200).send(meds)
 })
 
 
 router.get('/utentes/:mid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
-    var utentes = await CaixasController.getUtentesByMedicamento(req.params.mid);
+    var utentes = await SlotsController.getUtentesByMedicamento(req.params.mid);
     res.status(200).send(utentes)
 })
 
@@ -25,13 +25,18 @@ router.post('/',passport.authenticate('jwt',{session: false}), async (req,res,ne
     var nr_utente = req.body.nr_utente;
     var data_inicio = req.body.data_inicio;
     var data_fim = req.body.data_fim;
-    var quantidade = req.body.quantidade;
 
     if(!data_fim)
         data_fim = "Indeterminado"
 
-    var caixa = await CaixasController.addCaixa(med, nr_utente, data_inicio, data_fim, quantidade);
-    res.status(200).send(caixa)
+    var slot = await SlotsController.addSlot(med, nr_utente, data_inicio, data_fim);
+    res.status(200).send(slot)
 })
+
+router.get('/:mid/horarios/:uid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
+    var horarios = await SlotsController.getHorarioByUtenteMedicamento(req.params.mid,req.params.uid);
+    res.status(200).send(horarios)
+})
+
 
 module.exports = router;
