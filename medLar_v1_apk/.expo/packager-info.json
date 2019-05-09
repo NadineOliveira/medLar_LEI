@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 19977,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
   "expoServerNgrokUrl": "https://pc-du5.anonymous.medlar-v1-apk.exp.direct",
   "packagerNgrokUrl": "https://packager.pc-du5.anonymous.medlar-v1-apk.exp.direct",
-  "ngrokPid": 19999,
+  "ngrokPid": 3315,
   "webpackServerPort": null
 }
