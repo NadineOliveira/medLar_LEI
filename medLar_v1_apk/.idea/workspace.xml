@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1fa34cc7-ae47-4fe3-8f8f-d16fc9c80e51" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../medLar_rest/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../medLar_rest/routes/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.expo/packager-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/packager-info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.expo/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/navigation/MainTabNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/MainTabNavigator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/HomeScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,13 +15,63 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1040455008">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="js" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JavaScript" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="js" value="563" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JavaScript" value="563" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/navigation/AppNavigator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+            <state relative-caret-position="120">
+              <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/components/login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="29" column="10" lean-forward="true" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/navigation/MainTabNavigator.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" column="28" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -37,22 +86,42 @@
       <list>
         <option value="$PROJECT_DIR$/navigation/MainTabNavigator.js" />
         <option value="$PROJECT_DIR$/screens/Home.js" />
+        <option value="$PROJECT_DIR$/components/login.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="y" value="23" />
+    <option name="width" value="1680" />
+    <option name="height" value="1027" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="medLar_v1_apk" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="medLar_v1_apk" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="medLar_v1_apk" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="navigation" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -64,13 +133,14 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="av&#9;ACTION&#9;WelcomeScreen.RunAndroidAvdManager" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
     <property name="settings.editor.splitter.proportion" value="0.23442137" />
   </component>
   <component name="RunDashboard">
@@ -99,10 +169,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.16083151" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.16033755" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -112,7 +182,7 @@
       <window_info id="Build Variants" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="TODO" order="1" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="2" sideWeight="0.4989339" visible="true" weight="0.3380744" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="2" sideWeight="0.4989339" visible="true" weight="0.3379679" />
       <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.5010661" side_tool="true" weight="0.1744312" />
       <window_info anchor="bottom" id="CheckStyle" order="4" />
       <window_info anchor="bottom" id="Logcat" order="5" />
@@ -127,6 +197,9 @@
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
   </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -137,13 +210,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/screens/SettingsScreen.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/screens/Home.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -166,17 +232,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/navigation/MainTabNavigator.js">
+    <entry file="file://$PROJECT_DIR$/navigation/AppNavigator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="120">
+          <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/navigation/AppNavigator.js">
+    <entry file="file://$PROJECT_DIR$/navigation/MainTabNavigator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+        <state relative-caret-position="360">
+          <caret line="24" column="28" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="29" column="10" lean-forward="true" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
         </state>
       </provider>
     </entry>

@@ -18,7 +18,7 @@ router.post('/login', async (req,res,next) => {
                 req.user.token = token
                 req.session.token = token
 
-                res.status(200).send('Login Efetuado com sucesso')
+                res.status(200).send(req.user)
 
             })
         } catch (err) {
