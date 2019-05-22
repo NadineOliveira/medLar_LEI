@@ -26,8 +26,10 @@ class Login extends Component {
 
   async storeItem(key, item) {
     try {
-      let json = await AsyncStorage.setItem(key, JSON.stringify(item));
-      return json;
+      await AsyncStorage.setItem(key, JSON.stringify(item));
+      let value = await AsyncStorage.getItem('token');
+      //console.warn("ITEM: "+value)
+      return value;
     } catch (error) {
       console.log(error.message);
     }
@@ -48,7 +50,12 @@ class Login extends Component {
     });
 
     if (res.data.token != undefined) {
+      this.setState({
+        token: res.data.token
+      })
+      await this.storeItem('token',res.data.token);
       console.warn("Token:" + res.data.token);
+      console.warn("inToken:" + this.state.token);
       this.props.navigation.navigate("UtentesScreen");
     }
   }
@@ -81,5 +88,3 @@ class Login extends Component {
 }
 
 export default connect()(Login);
-//navigatorRef => {
-//NavigationService.setTopLevelNavigator(navigatorRef);
