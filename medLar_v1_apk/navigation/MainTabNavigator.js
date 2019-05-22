@@ -9,15 +9,16 @@ import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
 import SettingsScreen from "../screens/SettingsScreen";
-import Login from "../components/login";
+import Login from "../screens/login";
+import Utentes from "../screens/Utentes";
 
 const HomeStack = createStackNavigator({
   Login: { screen: Login },
-  Home: { screen: HomeScreen }
+  UtentesScreen: { screen: Utentes }
 });
 
 HomeStack.navigationOptions = {
-  tabBarLabel: "Home",
+  tabBarLabel: "Login",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
