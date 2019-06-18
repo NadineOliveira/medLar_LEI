@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import {
+  StyleSheet,
   AsyncStorage,
   ScrollView,
   Text,
   TextInput,
   View,
-  Button
+  Button,
+  Dimensions 
 } from "react-native";
 import { connect } from "react-redux";
 import axios from "axios";
@@ -44,7 +46,7 @@ class Login extends Component {
   }
 
   async login() {
-    var res = await axios.post("http://192.168.56.1:8000/login", {
+    var res = await axios.post("http://192.168.1.7:8000/login", {
       id: this.state.username,
       password: this.state.password
     });
@@ -60,9 +62,10 @@ class Login extends Component {
     }
   }
 
+
   render() {
     return (
-      <ScrollView style={{ padding: 20 }}>
+      <ScrollView>
         <Text style={{ fontSize: 27 }}>Login</Text>
         <TextInput
           id="username"
@@ -81,10 +84,19 @@ class Login extends Component {
         />
         <View style={{ margin: 7 }} />
 
-        <Button onPress={this.login} title="SignIn" />
+        <Button style={style.button} onPress={this.login} title="SignIn" />
       </ScrollView>
     );
   }
 }
+
+
+var style = StyleSheet.create({
+  button: {
+    
+  }
+});
+
+var {height, width} = Dimensions.get('window');
 
 export default connect()(Login);

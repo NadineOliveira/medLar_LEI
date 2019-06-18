@@ -35,7 +35,7 @@ class UtentesScreen extends Component {
   async getUtentes() {
     console.warn(this.state);
     var utentesLista;
-    var res = await axios.get("http://192.168.56.1:8000/api/utentes/ativos", {
+    var res = await axios.get("http://192.168.1.7:8000/api/utentes/ativos", {
       /*nr_processo: this.nr_processo,
       nome: this.nome,
       apelido: this.apelido*/
