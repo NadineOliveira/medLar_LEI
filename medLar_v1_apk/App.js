@@ -7,24 +7,18 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import reducer from "./reducers/reducer";
 
-import { createStackNavigator, createAppContainer, createDrawerNavigator } from 'react-navigation'
-
 const store = createStore(reducer);
 
-class App extends React.Component {
-    render() {
-      return (
-            <AppContainer />
-      );
-    }
-}
-
-class Home extends React.Component {
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   state = {
     isLoadingComplete: false
   };
 
   render() {
+    alert(JSON.stringify(this.props.navigation))
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
@@ -71,41 +65,6 @@ class Home extends React.Component {
     this.setState({ isLoadingComplete: true });
   };
 }
-
-class Dashs extends React.Component {
-  render() {
-    return(
-      <View>
-        <Text>TESTE</Text>
-      </View>
-    )
-  }
-}
-
-const AppStackNavigator = createStackNavigator({
-  Home: Home
-},{
-  defaultNavigationOptions: {
-    headerStyle:{
-      backgroundColor: 'orange'
-    }
-  }
-})
-
-const AppDrawerNavigator  = createDrawerNavigator({
-  Home: Home,
-  Dashboard: Dashs
-},{
-  defaultNavigationOptions: {
-    headerStyle:{
-      backgroundColor: 'orange'
-    }
-  }
-})
-
-const AppContainer = createAppContainer(AppDrawerNavigator)
-
-export default createAppContainer(AppStackNavigator);
 
 const styles = StyleSheet.create({
   container: {
