@@ -26,19 +26,6 @@ const styles = StyleSheet.create({
   }
 });
 
-const list = [
-  {
-    name: 'Amy Farha',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-    subtitle: 'Vice President'
-  },
-  {
-    name: 'Chris Jackson',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-    subtitle: 'Vice Chairman'
-  }
-]
-
 class UtentesScreen extends Component {
   constructor(props) {
     super(props);
@@ -63,7 +50,7 @@ class UtentesScreen extends Component {
   };
 
   getUsers = () =>{
-    axios.get("http://192.168.2.94:8000/api/utentes/")
+    axios.get("http://192.168.1.7:8000/api/utentes/")
       .then(res => {
         this.setState({utentes: res.data, utentesOriginal: res.data})
       })
@@ -107,6 +94,7 @@ class UtentesScreen extends Component {
         onChangeText={e => this.updateSearch(e)} 
         value={this.state.search}
         lightTheme
+        round
       />
       <FlatList
         keyExtractor={this.keyExtractor}

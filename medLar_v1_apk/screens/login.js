@@ -46,7 +46,7 @@ class Login extends Component {
   }
 
   async login() {
-    var res = await axios.post("http://192.168.2.94:8000/login", {	
+    var res = await axios.post("http://192.168.1.7:8000/login", {	
       id: this.state.username,
       password: this.state.password
     }).catch(err=> alert(err));

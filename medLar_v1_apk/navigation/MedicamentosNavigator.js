@@ -4,18 +4,18 @@ import {
     createStackNavigator,
 } from "react-navigation";
 
-import Utentes from "../screens/Utentes";
+import Medicamentos from "../screens/Medicamentos";
 
 import Icon from '@expo/vector-icons/Ionicons';
   
 
 
-const UtentesStack = createStackNavigator({
-    UtentesDashNavigator: Utentes
+const MedicamentosStack = createStackNavigator({
+    UtentesDashNavigator: Medicamentos
 }, {
     defaultNavigationOptions: ({ navigation }) => {
         return {
-          title: 'Utentes',
+          title: 'Medicamentos',
           headerLeft: ( <
             Icon style = {
                 { paddingLeft: 10 }
@@ -33,7 +33,7 @@ const UtentesStack = createStackNavigator({
 
 
 
-export default UtentesStack;
+export default MedicamentosStack;
 /*
 export default createBottomTabNavigator({
     HomeStack,
