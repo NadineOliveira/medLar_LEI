@@ -11,8 +11,9 @@ import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
 import SettingsScreen from "../screens/SettingsScreen";
-import Login from "../screens/login";
+import Login from "../screens/Login";
 import Utentes from "../screens/Utentes";
+import Utente from "../screens/Utente";
 import Medicamentos from "../screens/Medicamentos";
 
 import Icon from '@expo/vector-icons/Ionicons';
@@ -45,7 +46,7 @@ const DashboardStack = createStackNavigator({
 const AppDrawnNavigator = createDrawerNavigator({
     //Dashboard: { screen: DashboardStack },
     Utentes: {screen: UtentesStack},
-    Medicamentos: {screen: MedicamentosStack}
+    Medicamentos: {screen: MedicamentosStack},
 });
 
 

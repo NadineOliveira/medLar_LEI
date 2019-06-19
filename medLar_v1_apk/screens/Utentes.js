@@ -58,7 +58,9 @@ class UtentesScreen extends Component {
   }
   
   goToMedicamentosUtente = (nr) =>{
-    console.warn('NR--> '+nr)
+    this.props.navigation.push('UtenteDashNavigator', {
+      nr_processo: nr
+    });
   }
 
   keyExtractor = (item, index) => index.toString()

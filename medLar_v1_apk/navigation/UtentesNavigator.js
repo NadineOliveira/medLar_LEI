@@ -5,14 +5,15 @@ import {
 } from "react-navigation";
 
 import Utentes from "../screens/Utentes";
+import Utente from "../screens/Utente";
 
 import Icon from '@expo/vector-icons/Ionicons';
-  
-
 
 const UtentesStack = createStackNavigator({
-    UtentesDashNavigator: Utentes
+    UtentesDashNavigator: Utentes,
+    UtenteDashNavigator: Utente,
 }, {
+    initialRouteName: 'UtentesDashNavigator',
     defaultNavigationOptions: ({ navigation }) => {
         return {
           title: 'Utentes',

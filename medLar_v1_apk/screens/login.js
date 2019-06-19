@@ -7,7 +7,8 @@ import {
   TextInput,
   View,
   Button,
-  Dimensions 
+  Dimensions,
+  ImageBackground
 } from "react-native";
 import { connect } from "react-redux";
 import axios from "axios";
@@ -64,7 +65,11 @@ class Login extends Component {
 
   render() {
     return (
-      <ScrollView>
+      <ImageBackground 
+        style={{width: '100%', height: '100%'}} 
+        source={require('../assets/images/loginImg.jpg')}
+      >
+        <View style={{flex:1,justifyContent: "center",alignItems: "center"}}>
         <Text style={{ fontSize: 27 }}>Login</Text>
         <TextInput
           id="username"
@@ -84,7 +89,8 @@ class Login extends Component {
         <View style={{ margin: 7 }} />
 
         <Button style={style.button} onPress={this.login} title="SignIn" />
-      </ScrollView>
+        </View>
+      </ImageBackground>
     );
   }
 }
@@ -92,7 +98,7 @@ class Login extends Component {
 
 var style = StyleSheet.create({
   button: {
-    
+    color: 'orange'
   }
 });
 
