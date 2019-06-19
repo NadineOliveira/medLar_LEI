@@ -5,9 +5,13 @@ import {
   TouchableOpacity,
   StyleSheet,
   ListView,
-  FlatList
+  FlatList,
+  ActivityIndicator
 } from "react-native";
+import { SearchBar , ListItem } from 'react-native-elements'
 import axios from "axios";
+import { Item } from "native-base";
+import { ScrollView } from "react-native-gesture-handler";
 
 const styles = StyleSheet.create({
   container: {
@@ -15,67 +19,102 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F5FCFF"
+  },
+  scene:{
+    flex: 1,
+    paddingTop: 25,
   }
 });
+
+const list = [
+  {
+    name: 'Amy Farha',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+    subtitle: 'Vice President'
+  },
+  {
+    name: 'Chris Jackson',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: 'Vice Chairman'
+  }
+]
 
 class UtentesScreen extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      ds: new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1 !== r2
-      }),
-      utentesLista: [],
-      text: "",
-      loading: true
-    };
+      search: '',
+      utentes: [],
+      utentesOriginal: [],
+      error: null
+    }
+    this.getUsers = this.getUsers.bind(this);
   }
 
-  async getUtentes() {
-    console.warn(this.state);
-    var utentesLista;
-    var res = await axios.get("http://172.26.88.94:8000/api/utentes/ativos", {
-      /*nr_processo: this.nr_processo,
-      nome: this.nome,
-      apelido: this.apelido*/
+  updateSearch = (e) => {
+    if(e==='') 
+      this.setState({utentes: this.state.utentesOriginal,search: ''})
+    else {const newData = this.state.utentesOriginal.filter(o => {
+      return Object.keys(o).some(k => JSON.stringify(o[k]).toLowerCase().includes(e.toLowerCase()));
     });
-    utentesLista = res.data.map(ut => {
-      return { nr_processo: ut.nr_processo, nome: ut.nome };
-    });
-    const ds = new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1 !== row2
-    });
-    this.setState({
-      loading: false,
-      ds: ds.cloneWithRows(utentesLista),
-      utentesLista: utentesLista
-    });
-    console.log("RESSSS:" + JSON.stringify(this.state.utentesLista));
-    return utentesLista;
+    this.setState({utentes: newData, search: e});
+    }
+  };
+
+  getUsers = () =>{
+    axios.get("http://192.168.2.94:8000/api/utentes/")
+      .then(res => {
+        this.setState({utentes: res.data, utentesOriginal: res.data})
+      })
+      .catch(error => this.setState({error: error}))
+  }
+  
+  goToMedicamentosUtente = (nr) =>{
+    console.warn('NR--> '+nr)
   }
 
+  keyExtractor = (item, index) => index.toString()
+  
+  renderItem = ({ item }) => {
+    if(item.genero === 'M') 
+     return <ListItem
+              title={`Sr. ${item.nome} ${item.apelido}`}
+              subtitle={item.contacto}
+              leftAvatar={{source: require("../assets/images/maleIcon.png")}}
+              rightIcon={<Text style={{color: 'orange'}}>Ver</Text>} 
+              button
+              onPress={() => {this.goToMedicamentosUtente(item.nr_processo)}}
+            />
+    else  
+     return <ListItem
+             title={`D. ${item.nome} ${item.apelido}`}
+             subtitle={item.contacto}
+             leftAvatar={{source: require("../assets/images/femaleIcon.png")}}
+             rightIcon={<Text style={{color: 'orange'}}>Ver</Text>} 
+             button
+             onPress={() => {this.goToMedicamentosUtente(item.nr_processo)}}
+            />
+  }
   componentDidMount() {
-    console.warn(this.state);
-    this.getUtentes();
+    this.getUsers()
   }
-  _renderRowData(data) {
-    return <Text>{JSON.stringify(data)}</Text>;
-  }
-  render() {
-    //console.log(this.state.utentesLista);
-    console.log("render");
-    const dataSource = this.state.ds.cloneWithRows(this.state.utentesLista);
+  render () {
     return (
-      //var utentes = this.getUtentes();
-      <View style={styles.container}>
-        <ListView
-          dataSource={dataSource}
-          enableEmptySections={true}
-          renderRow={rowData => this._renderRowData(rowData)}
-        />
-      </View>
-    );
+    <ScrollView>
+      <SearchBar  //NAO FUNCIONA ???
+        placeholder="Escreva aqui..."
+        onChangeText={e => this.updateSearch(e)} 
+        value={this.state.search}
+        lightTheme
+      />
+      <FlatList
+        keyExtractor={this.keyExtractor}
+        data={this.state.utentes}
+        renderItem={this.renderItem}
+      />
+      </ScrollView> 
+    )
   }
 }
 export default UtentesScreen;
