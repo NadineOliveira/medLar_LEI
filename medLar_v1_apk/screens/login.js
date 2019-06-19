@@ -46,11 +46,10 @@ class Login extends Component {
   }
 
   async login() {
-    var res = await axios.post("http://192.168.1.17:8000/login", {	
+    var res = await axios.post("http://172.26.88.94:8000/login", {	
       id: this.state.username,
       password: this.state.password
     }).catch(err=> alert(err));
-    alert("res: "+res)
     if (res.data.token != undefined) {
       this.setState({
         token: res.data.token
@@ -58,13 +57,12 @@ class Login extends Component {
       await this.storeItem('token',res.data.token);
       console.warn("Token:" + res.data.token);
       console.warn("inToken:" + this.state.token);
-      this.props.navigation.navigate("Dashboard");
+      this.props.navigation.navigate("UtentesDashNavigator");
     }
   }
 
 
   render() {
-    alert(JSON.stringify(this.props))
     return (
       <ScrollView>
         <Text style={{ fontSize: 27 }}>Login</Text>

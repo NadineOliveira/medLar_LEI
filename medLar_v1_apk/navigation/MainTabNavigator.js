@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform } from "react-native";
+import { Platform, View, Text, StyleSheet, Button } from "react-native";
 import {
     createStackNavigator,
     createBottomTabNavigator,
@@ -13,64 +13,17 @@ import LinksScreen from "../screens/LinksScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import Login from "../screens/login";
 import Utentes from "../screens/Utentes";
-/*
-const HomeStack = createStackNavigator({
-    Login: { screen: Login },
-    UtentesScreen: { screen: AppDrawnNavigator /*Utentes }
-});*/
 
-class Feed extends Component {
-    render() {
-      return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text>Feed</Text>
-        </View>
-      );
-    }
-  }
-  
-  class Settings extends Component {
-    render() {
-      return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text>Settings</Text>
-        </View>
-      );
-    }
-  }
-  
-  class Profile extends Component {
-    render() {
-      return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text>Profile</Text>
-        </View>
-      );
-    }
-  }
-  
-  const DashboardTabNavigator = createBottomTabNavigator(
-    {
-      Feed,
-      Profile,
-      Settings
-    },
-    {
-      navigationOptions: ({ navigation }) => {
-        const { routeName } = navigation.state.routes[navigation.state.index];
-        return {
-          headerTitle: routeName
-        };
-      }
-    }
-  );
+import Icon from '@expo/vector-icons/Ionicons';
 
+import UtentesStack from './UtentesNavigator';
 
 const DashboardStack = createStackNavigator({
-    DashboardTabNavigator: DashboardTabNavigator
+    DashboardTabNavigator: Utentes,
 }, {
     defaultNavigationOptions: ({ navigation }) => {
         return {
+          headerTitle: 'Utentes',
             headerLeft: ( <
                 Icon style = {
                     { paddingLeft: 10 }
@@ -88,17 +41,16 @@ const DashboardStack = createStackNavigator({
 
 
 const AppDrawnNavigator = createDrawerNavigator({
-    Dashboard: { screen: DashboardStack }
+    //Dashboard: { screen: DashboardStack },
+    Utentes: {screen: UtentesStack}
 });
 
 
 const HomeStack = createSwitchNavigator({
     Login: { screen: Login },
     UtentesScreen: { screen: AppDrawnNavigator },
-    Utentes: {screen: Utentes},
 });
 
-export default HomeStack;
 
 HomeStack.navigationOptions = {
     tabBarLabel: "Login",
@@ -112,37 +64,8 @@ HomeStack.navigationOptions = {
     )
 };
 
-const LinksStack = createStackNavigator({
-    Links: LinksScreen
-});
 
-LinksStack.navigationOptions = {
-    tabBarLabel: "Links",
-    tabBarIcon: ({ focused }) => ( <
-        TabBarIcon focused = { focused }
-        name = { Platform.OS === "ios" ? "ios-link" : "md-link" }
-        />
-    )
-};
-
-const SettingsStack = createStackNavigator({
-    Settings: SettingsScreen
-});
-
-SettingsStack.navigationOptions = {
-    tabBarLabel: "Settings",
-    tabBarIcon: ({ focused }) => ( <
-        TabBarIcon focused = { focused }
-        name = { Platform.OS === "ios" ? "ios-options" : "md-options" }
-        />
-    )
-};
-
-const AppBottomNavigator = createBottomTabNavigator({
-    HomeStack,
-    LinksStack,
-    SettingsStack
-});
+export default HomeStack;
 /*
 export default createBottomTabNavigator({
     HomeStack,

@@ -18,7 +18,6 @@ export default class App extends React.Component {
   };
 
   render() {
-    alert(JSON.stringify(this.props.navigation))
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
