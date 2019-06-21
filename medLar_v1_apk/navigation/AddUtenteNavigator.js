@@ -4,18 +4,18 @@ import {
     createStackNavigator,
 } from "react-navigation";
 
-import Medicamentos from "../screens/Medicamentos";
+import UtenteAdd from "../screens/UtenteAdd";
 
 import Icon from '@expo/vector-icons/Ionicons';
   
 
 
-const MedicamentosStack = createStackNavigator({
-    MedicamentosDashNavigator: Medicamentos
+const AddUtenteStack = createStackNavigator({
+    UtenteAddDashNavigator: UtenteAdd
 }, {
     defaultNavigationOptions: ({ navigation }) => {
         return {
-          title: 'Lista de Medicamentos',
+          title: 'Adicionar Utente',
           headerLeft: ( <
             Icon style = {
                 { paddingLeft: 10 }
@@ -33,7 +33,7 @@ const MedicamentosStack = createStackNavigator({
 
 
 
-export default MedicamentosStack;
+export default AddUtenteStack;
 /*
 export default createBottomTabNavigator({
     HomeStack,

@@ -28,22 +28,14 @@ const styles = StyleSheet.create({
 });
 const guardar = [
   {
-    text: "Guardar",
-    name: "save",
-    icon: require("../assets/images/save.png"),
-    position: 1
-  }
-];
-const remover = [
-  {
-    text: "Remover",
-    name: "delete",
-    icon: require("../assets/images/delete.png"),
+    text: "Adicionar",
+    name: "add",
+    icon: require("../assets/images/add.png"),
     position: 1
   }
 ];
 
-class UtenteEditScreen extends Component {
+class UtenteAddScreen extends Component {
   static navigationOptions = {
     title: 'Info. Utente',
   };
@@ -51,7 +43,6 @@ class UtenteEditScreen extends Component {
     super(props);
     this.state = {
       search: '',
-      nr_processo: this.props.navigation.state.params.nr_processo,
       nome: '',
       apelido: '',
       genero: '',
@@ -67,9 +58,8 @@ class UtenteEditScreen extends Component {
       estado: '',
       error: null,
       checked: false,
-      date:"2016-05-15"
+      date:"1940-01-01"
     }
-    this.getUtente = this.getUtente.bind(this);
   }
 
   updateSearch = (e) => {
@@ -82,9 +72,8 @@ class UtenteEditScreen extends Component {
     }
   };
 
-  updateUtente = () => {
-    axios.post("http://192.168.1.7:8000/api/utentes/update",{
-      nr_processo: this.state.nr_processo,
+  addUtente = () => {
+    axios.post("http://192.168.1.7:8000/api/utentes/",{
       nome: this.state.nome,
       apelido: this.state.apelido,
       genero: this.state.genero,
@@ -96,57 +85,15 @@ class UtenteEditScreen extends Component {
       rua: this.state.rua,
       localidade: this.state.localidade,
       codigo_postal: this.state.codigo_postal,
-      cidade: this.state.cidade,
-      estado: this.state.estado
+      cidade: this.state.cidade
     })
       .then(() =>{
-                    alert("Utente alterado com sucesso")
+                    alert("Utente adicionado com sucesso")
                     this.props.navigation.push("UtentesDashNavigator")
                   })
-      .catch(() => alert("Erro na alteração de Utente"))
+      .catch(() => alert("Erro na adição de Utente"))
   }
 
-  getUtente = (nr) =>{
-    axios.get("http://192.168.1.7:8000/api/utentes/"+nr)
-      .then(res => {
-        if(res.data.genero==='M')
-          this.setState({checked: true})
-        
-        this.setState({
-            nome: res.data.nome,
-            apelido: res.data.apelido,
-            genero: res.data.genero,
-            data_nascimento: res.data.data_nascimento,
-            contacto: res.data.contacto,
-            encarregado: res.data.encarregado,
-            parentesco: res.data.parentesco,
-            contacto_enc: res.data.contacto_enc,
-            rua: res.data.rua,
-            localidade: res.data.localidade,
-            codigo_postal: res.data.codigo_postal,
-            cidade: res.data.cidade,
-            estado: res.data.estado
-        })
-      })
-      .catch(error => this.setState({error: error}))
-  }
-
-  closeUtente = () => {
-    axios.get("http://192.168.1.7:8000/api/utentes/desativar/"+this.state.nr_processo)
-        .then(() => {
-          alert("Utente desativado")
-          this.props.navigation.push("UtentesDashNavigator")
-        })
-        .catch(() => alert("Erro na destivação de Utente"))
-  }
-
-  changeName = (e) => {
-    this.setState({nome: e})
-  }
-
-  componentDidMount() {
-    this.getUtente(this.state.nr_processo)
-  }
   render () {
     
     return (
@@ -309,22 +256,12 @@ class UtenteEditScreen extends Component {
           color='orange'
           overrideWithAction
           onPressItem={name => {
-            if(name==="save")
-              this.updateUtente()
-          }}
-        />
-        <FloatingAction
-          position="left"
-          actions={remover}
-          color='red'
-          overrideWithAction
-          onPressItem={name => {
-            if(name==="delete")
-              this.closeUtente()
+            if(name==="add")
+              this.addUtente()
           }}
         />
       </View>
     )
   }
 }
-export default UtenteEditScreen;
+export default UtenteAddScreen;

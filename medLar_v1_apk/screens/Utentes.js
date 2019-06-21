@@ -6,7 +6,7 @@ import {
   StyleSheet,
   ListView,
   FlatList,
-  ActivityIndicator, ScrollView
+  ActivityIndicator, ScrollView, Image
 } from "react-native";
 import { SearchBar , ListItem } from 'react-native-elements'
 import axios from "axios";

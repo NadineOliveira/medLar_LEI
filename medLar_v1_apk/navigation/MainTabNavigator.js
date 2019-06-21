@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Platform, View, Text, StyleSheet, Button } from "react-native";
+import { Platform, View, Text, StyleSheet, Button, Image } from "react-native";
 import {
+    DrawerNavigator,
+    DrawerItems,
     createStackNavigator,
     createBottomTabNavigator,
     createDrawerNavigator,
     createSwitchNavigator
 } from "react-navigation";
-
+import {Container, Content, Header, Body, Icon } from 'native-base'
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
@@ -16,10 +18,12 @@ import Utentes from "../screens/Utentes";
 import Utente from "../screens/Utente";
 import Medicamentos from "../screens/Medicamentos";
 
-import Icon from '@expo/vector-icons/Ionicons';
 
 import UtentesStack from './UtentesNavigator';
 import MedicamentosStack from './MedicamentosNavigator';
+import AddUtenteStack from './AddUtenteNavigator';
+import UtenteAddScreen from '../screens/UtenteAdd';
+import { requireNativeViewManager } from 'expo-core';
 
 const DashboardStack = createStackNavigator({
     DashboardTabNavigator: Utentes,
@@ -42,11 +46,35 @@ const DashboardStack = createStackNavigator({
     }
 });
 
+const CustomDrawerContentComponent = (props) => (
+    <Container>
+        <Header style={{height: 250, backgroundColor: 'white'}}>
+            <Body>
+                <Image 
+                    style={{height: 150, width: 150, borderRadius: 75}}
+                    source={require('../assets/images/maleIcon.png')}
+                />
+            </Body>
+        </Header>
+        <Content>
+            <DrawerItems {...props}/>
+        </Content>
+    </Container>
+)
 
 const AppDrawnNavigator = createDrawerNavigator({
     //Dashboard: { screen: DashboardStack },
     'Lista de Utentes': {screen: UtentesStack},
     'Lista de Medicamentos': {screen: MedicamentosStack},
+    'Adicionar Utente': {screen: AddUtenteStack}
+    //'Adicionar Medicamento': {screen: AddMedicamentoStack}
+}, {
+    initialRouteName: 'Lista de Utentes',
+    drawerPosition: 'left',
+    contentComponent: CustomDrawerContentComponent,
+    drawerOpenRoute: 'DrawerOpen',
+    drawerCloseRoute: 'DrawerClose',
+    drawerToggleRoute: 'DrawerToggle'
 });
 
 
