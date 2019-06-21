@@ -74,7 +74,9 @@ class UtenteScreen extends Component {
     console.warn("Need to add meds "+med+" to "+nr);
   }
   goToUtente = (nr) => {
-    console.warn("Need to edit Utente " + nr)
+    this.props.navigation.navigate('UtenteEditNavigator', {
+      nr_processo: nr
+    });
   }
 
   keyExtractor = (item, index) => index.toString()

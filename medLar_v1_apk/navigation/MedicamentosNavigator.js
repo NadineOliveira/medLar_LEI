@@ -15,7 +15,7 @@ const MedicamentosStack = createStackNavigator({
 }, {
     defaultNavigationOptions: ({ navigation }) => {
         return {
-          title: 'Medicamentos',
+          title: 'Lista de Medicamentos',
           headerLeft: ( <
             Icon style = {
                 { paddingLeft: 10 }

@@ -6,12 +6,10 @@ import {
   StyleSheet,
   ListView,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator, ScrollView
 } from "react-native";
 import { SearchBar , ListItem } from 'react-native-elements'
 import axios from "axios";
-import { Item } from "native-base";
-import { ScrollView } from "react-native-gesture-handler";
 
 const styles = StyleSheet.create({
   container: {
@@ -50,7 +48,7 @@ class UtentesScreen extends Component {
   };
 
   getUsers = () =>{
-    axios.get("http://192.168.1.7:8000/api/utentes/")
+    axios.get("http://192.168.1.7:8000/api/utentes/ativos")
       .then(res => {
         this.setState({utentes: res.data, utentesOriginal: res.data})
       })

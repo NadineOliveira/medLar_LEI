@@ -6,17 +6,19 @@ import {
 
 import Utentes from "../screens/Utentes";
 import Utente from "../screens/Utente";
+import UtenteEdit from "../screens/UtenteEdit";
 
 import Icon from '@expo/vector-icons/Ionicons';
 
 const UtentesStack = createStackNavigator({
     UtentesDashNavigator: Utentes,
     UtenteDashNavigator: Utente,
+    UtenteEditNavigator: UtenteEdit,
 }, {
     initialRouteName: 'UtentesDashNavigator',
     defaultNavigationOptions: ({ navigation }) => {
         return {
-          title: 'Utentes',
+          title: 'Lista de Utentes',
           headerLeft: ( <
             Icon style = {
                 { paddingLeft: 10 }

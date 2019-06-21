@@ -45,8 +45,8 @@ const DashboardStack = createStackNavigator({
 
 const AppDrawnNavigator = createDrawerNavigator({
     //Dashboard: { screen: DashboardStack },
-    Utentes: {screen: UtentesStack},
-    Medicamentos: {screen: MedicamentosStack},
+    'Lista de Utentes': {screen: UtentesStack},
+    'Lista de Medicamentos': {screen: MedicamentosStack},
 });
 
 
