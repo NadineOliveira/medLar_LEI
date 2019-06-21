@@ -13,7 +13,7 @@ import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
 import SettingsScreen from "../screens/SettingsScreen";
-import Login from "../screens/Login";
+import Login from "../screens/login";
 import Utentes from "../screens/Utentes";
 import Utente from "../screens/Utente";
 import Medicamentos from "../screens/Medicamentos";
@@ -54,6 +54,7 @@ const CustomDrawerContentComponent = (props) => (
                     style={{height: 150, width: 150, borderRadius: 75}}
                     source={require('../assets/images/maleIcon.png')}
                 />
+                <Text>...@mail.com</Text>
             </Body>
         </Header>
         <Content>

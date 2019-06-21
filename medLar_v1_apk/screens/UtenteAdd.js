@@ -7,7 +7,8 @@ import {
   FlatList,
   ActivityIndicator, 
   ScrollView,
-  Image
+  Image,
+  TextInput
 } from "react-native";
 import { Text, Divider,CheckBox, SearchBar, Input , ListItem } from 'react-native-elements'
 import axios from "axios";
@@ -24,7 +25,16 @@ const styles = StyleSheet.create({
   scene:{
     flex: 1,
     paddingTop: 25,
-  }
+  },
+  input: {
+    margin: 15,
+    height: 40,
+    borderColor: '#808080',
+    width:300,
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderRadius: 20
+ },
 });
 const guardar = [
   {
@@ -73,7 +83,7 @@ class UtenteAddScreen extends Component {
   };
 
   addUtente = () => {
-    axios.post("http://192.168.1.7:8000/api/utentes/",{
+    axios.post("http://192.168.1.25:8000/api/utentes/",{
       nome: this.state.nome,
       apelido: this.state.apelido,
       genero: this.state.genero,
@@ -119,8 +129,8 @@ class UtenteAddScreen extends Component {
           <View style={{flexDirection: 'column', display: 'flex'}}>
             <View style={{flexDirection: 'row', display: 'flex'}}>
               <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>Nome: </Text>
-              <Input
-                style={{marginRight: 20}}
+              <TextInput
+                style={styles.input}
                 placeholder="Escreva aqui ..."
                 value={this.state.nome}
                 onChangeText={(val) => {this.setState({nome: val})}}

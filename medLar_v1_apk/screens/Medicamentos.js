@@ -6,7 +6,7 @@ import {
   StyleSheet,
   ListView,
   FlatList,
-  ActivityIndicator
+  Button
 } from "react-native";
 import { SearchBar , ListItem } from 'react-native-elements'
 import axios from "axios";
@@ -90,6 +90,13 @@ class MedicamentosScreen extends Component {
         keyExtractor={this.keyExtractor}
         data={this.state.medicamentos}
         renderItem={this.renderItem}
+      />
+      <Button
+        color='grey'
+        title='Adicionar'
+        onPress={()=>
+        this.props.navigation.navigate("MedicamentoAdd")
+        }
       />
       </ScrollView> 
     )

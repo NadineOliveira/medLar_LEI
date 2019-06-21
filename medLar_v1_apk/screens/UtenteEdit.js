@@ -7,9 +7,10 @@ import {
   FlatList,
   ActivityIndicator, 
   ScrollView,
-  Image
+  Image,
+  KeyboardAvoidingView
 } from "react-native";
-import { Text, Divider,CheckBox, SearchBar, Input , ListItem } from 'react-native-elements'
+import { Text, Divider,CheckBox, SearchBar, Input , ListItem, Button } from 'react-native-elements'
 import axios from "axios";
 import DatePicker from 'react-native-datepicker'
 import { FloatingAction } from "react-native-floating-action";
@@ -107,7 +108,7 @@ class UtenteEditScreen extends Component {
   }
 
   getUtente = (nr) =>{
-    axios.get("http://192.168.1.7:8000/api/utentes/"+nr)
+    axios.get("http://192.168.1.25:8000/api/utentes/"+nr)
       .then(res => {
         if(res.data.genero==='M')
           this.setState({checked: true})
@@ -132,7 +133,7 @@ class UtenteEditScreen extends Component {
   }
 
   closeUtente = () => {
-    axios.get("http://192.168.1.7:8000/api/utentes/desativar/"+this.state.nr_processo)
+    axios.get("http://192.168.1.25:8000/api/utentes/desativar/"+this.state.nr_processo)
         .then(() => {
           alert("Utente desativado")
           this.props.navigation.push("UtentesDashNavigator")
@@ -150,12 +151,12 @@ class UtenteEditScreen extends Component {
   render () {
     
     return (
-      <View style={{
+      <ScrollView style={{
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'flex-start',
         margin: 10,
       }}>
+      <KeyboardAvoidingView behavior="padding" enabled>
         <Text h3>Utente</Text>
         <View style={{flexDirection: 'row'}}>
           {
@@ -304,26 +305,26 @@ class UtenteEditScreen extends Component {
             onChangeText={(val) => {this.setState({cidade: val})}}
           />
         </View>
-        <FloatingAction
-          actions={guardar}
-          color='orange'
-          overrideWithAction
-          onPressItem={name => {
-            if(name==="save")
-              this.updateUtente()
-          }}
-        />
-        <FloatingAction
-          position="left"
-          actions={remover}
-          color='red'
-          overrideWithAction
-          onPressItem={name => {
-            if(name==="delete")
-              this.closeUtente()
-          }}
-        />
-      </View>
+        <View style={{flexDirection: 'row', display: 'flex',justifyContent: 'space-between', margin: 5}}>
+          <Button
+            color='red'
+            title='Desativar'
+            onPressItem={name => {
+              if(name==="delete")
+                this.closeUtente()
+            }}
+          />
+          <Button
+            color='orange'
+            title="Guardar"
+            onPressItem={name => {
+              if(name==="save")
+                this.updateUtente()
+            }}
+          />
+        </View>
+      </KeyboardAvoidingView>
+      </ScrollView>
     )
   }
 }

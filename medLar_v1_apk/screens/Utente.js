@@ -54,7 +54,7 @@ class UtenteScreen extends Component {
   };
 
   getUtente = (nr) =>{
-    axios.get("http://192.168.1.7:8000/api/utentes/"+nr)
+    axios.get("http://192.168.1.25:8000/api/utentes/"+nr)
       .then(res => {
         this.setState({utente: res.data})
       })
@@ -62,7 +62,7 @@ class UtenteScreen extends Component {
   }
   
   getMedUtente = (nr) =>{
-    axios.get("http://192.168.1.7:8000/api/slots/medicamentos/"+nr)
+    axios.get("http://192.168.1.25:8000/api/slots/medicamentos/"+nr)
       .then(res => {
         this.setState({medsUtente: res.data})
       })

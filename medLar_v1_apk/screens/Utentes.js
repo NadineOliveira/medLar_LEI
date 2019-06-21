@@ -48,7 +48,7 @@ class UtentesScreen extends Component {
   };
 
   getUsers = () =>{
-    axios.get("http://192.168.1.7:8000/api/utentes/ativos")
+    axios.get("http://192.168.1.25:8000/api/utentes/ativos")
       .then(res => {
         this.setState({utentes: res.data, utentesOriginal: res.data})
       })

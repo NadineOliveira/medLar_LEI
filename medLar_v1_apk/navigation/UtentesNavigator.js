@@ -16,15 +16,17 @@ const UtentesStack = createStackNavigator({
     UtenteEditNavigator: UtenteEdit,
 }, {
     initialRouteName: 'UtentesDashNavigator',
+    navigationOptions: {
+        drawerIcon: (
+            <Image 
+                source={require('../assets/images/utentes.png')}
+                style={{ height: 24, width: 24, marginLeft: 25}}
+            />
+      )},
     defaultNavigationOptions: ({ navigation }) => {
         return {
           title: 'Lista de Utentes',
-          drawerIcon: (
-            <Image 
-              source={require('../assets/images/utentes.png')}
-              style={{ height: 24, width: 24}}
-            />
-          ),
+    
           headerLeft: ( <
             Icon style = {
                 { paddingLeft: 10 }
