@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
 },
 })
 
-const data = [{title: 'Pequeno Almoço', items: [{title: 'Almoço'}, {title: 'Jantar'}]}]
+const data = [{title: 'Pequeno Almoço'},{title: 'Almoço'}, {title: 'Jantar',items: [{title: 'Almoço'}, {title: 'Jantar'}]}]
 
 
 class MedicamentoAddUtenteScreen extends Component {
@@ -189,7 +189,7 @@ class MedicamentoAddUtenteScreen extends Component {
           <NestedListview
             data={data}
             getChildrenName={(node) => 'items'}
-            onNodePressed={(node) => alert('Selected node')}
+            onNodePressed={(node) => alert('Secalhar é fazer um form com as checkbox')}
             renderNode={(node, level) => (
               <NestedRow
                 level={level}
