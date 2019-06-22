@@ -22,6 +22,8 @@ import Medicamentos from "../screens/Medicamentos";
 import UtentesStack from './UtentesNavigator';
 import MedicamentosStack from './MedicamentosNavigator';
 import AddUtenteStack from './AddUtenteNavigator';
+import TarefasStack from './TarefasNavigator';
+
 import UtenteAddScreen from '../screens/UtenteAdd';
 import { requireNativeViewManager } from 'expo-core';
 
@@ -67,7 +69,8 @@ const AppDrawnNavigator = createDrawerNavigator({
     //Dashboard: { screen: DashboardStack },
     'Lista de Utentes': {screen: UtentesStack},
     'Lista de Medicamentos': {screen: MedicamentosStack},
-    'Adicionar Utente': {screen: AddUtenteStack}
+    'Adicionar Utente': {screen: AddUtenteStack},
+    'Lista de tarefas': {screen: TarefasStack}
     //'Adicionar Medicamento': {screen: AddMedicamentoStack}
 }, {
     initialRouteName: 'Lista de Utentes',

@@ -54,7 +54,7 @@ class UtenteScreen extends Component {
   };
 
   getUtente = (nr) =>{
-    axios.get("http://192.168.1.25:8000/api/utentes/"+nr)
+    axios.get("http://192.168.1.67:8000/api/utentes/"+nr)
       .then(res => {
         this.setState({utente: res.data})
       })
@@ -62,7 +62,7 @@ class UtenteScreen extends Component {
   }
   
   getMedUtente = (nr) =>{
-    axios.get("http://192.168.1.25:8000/api/slots/medicamentos/"+nr)
+    axios.get("http://192.168.1.67:8000/api/slots/medicamentos/"+nr)
       .then(res => {
         this.setState({medsUtente: res.data})
       })
@@ -119,7 +119,7 @@ class UtenteScreen extends Component {
           leftAvatar={{source: require("../assets/images/femaleIcon.png")}}
           rightIcon={<Text style={{color: 'green'}}>Editar</Text>} 
           button
-          onPress={() => {this.goToUtente(this.state.utente.nr_processo)}}
+      onPress={() => this.props.navigation.navigate('MedicamentoAddUtenteNav')/*{this.goToUtente(this.state.utente.nr_processo)}*/}
         />
       )}
       <FlatList

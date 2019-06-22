@@ -7,12 +7,14 @@ import {
 import Utentes from "../screens/Utentes";
 import Utente from "../screens/Utente";
 import UtenteEdit from "../screens/UtenteEdit";
+import MedicamentoAddUtente from "../screens/MedicamentoAddUtente"
 
 import Icon from '@expo/vector-icons/Ionicons';
 
 const UtentesStack = createStackNavigator({
     UtentesDashNavigator: Utentes,
     UtenteDashNavigator: Utente,
+    MedicamentoAddUtenteNav: MedicamentoAddUtente,
     UtenteEditNavigator: UtenteEdit,
 }, {
     initialRouteName: 'UtentesDashNavigator',

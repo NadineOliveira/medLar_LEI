@@ -6,7 +6,8 @@ import {
   StyleSheet,
   ListView,
   FlatList,
-  Button
+  Button,
+  Image
 } from "react-native";
 import { SearchBar , ListItem } from 'react-native-elements'
 import axios from "axios";
@@ -23,7 +24,23 @@ const styles = StyleSheet.create({
   scene:{
     flex: 1,
     paddingTop: 25,
-  }
+  },
+  TouchableOpacityStyle: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 30,
+    bottom: 30,
+  },
+
+  FloatingButtonStyle: {
+    resizeMode: 'contain',
+    width: 50,
+    height: 50,
+    //backgroundColor:'black'
+  },
 });
 
 class MedicamentosScreen extends Component {
@@ -50,7 +67,7 @@ class MedicamentosScreen extends Component {
   };
 
   getUsers = () =>{
-    axios.get("http://192.168.1.7:8000/api/medicamentos/")
+    axios.get("http://192.168.1.67:8000/api/medicamentos/")
       .then(res => {
         this.setState({medicamentos: res.data, medicamentosOriginal: res.data})
       })
@@ -77,28 +94,38 @@ class MedicamentosScreen extends Component {
   }
   render () {
     return (
-    <ScrollView>
-      <SearchBar 
-        placeholder="Escreva aqui..."
-        onChangeText={e => this.updateSearch(e)} 
-        value={this.state.search}
-        containerStyle={{borderColor: "white"}}
-        lightTheme
-        round
-      />
-      <FlatList
-        keyExtractor={this.keyExtractor}
-        data={this.state.medicamentos}
-        renderItem={this.renderItem}
-      />
-      <Button
-        color='grey'
-        title='Adicionar'
-        onPress={()=>
-        this.props.navigation.navigate("MedicamentoAdd")
-        }
-      />
+    <View>
+      <ScrollView>
+        <SearchBar 
+          placeholder="Escreva aqui..."
+          onChangeText={e => this.updateSearch(e)} 
+          value={this.state.search}
+          containerStyle={{borderColor: "white"}}
+          lightTheme
+          round
+        />
+        <FlatList
+          keyExtractor={this.keyExtractor}
+          data={this.state.medicamentos}
+          renderItem={this.renderItem}
+        />
       </ScrollView> 
+
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={()=>this.props.navigation.navigate("MedicamentoAdd")}
+        style={styles.TouchableOpacityStyle}>
+        <Image
+          source={{
+            uri:'http://aboutreact.com/wp-content/uploads/2018/08/bc72de57b000a7037294b53d34c2cbd1.png',
+          }}
+          //You can use you project image Example below
+          //source={require('./images/float-add-icon.png')}
+          style={styles.FloatingButtonStyle}
+        />
+      </TouchableOpacity>
+      
+    </View>
     )
   }
 }

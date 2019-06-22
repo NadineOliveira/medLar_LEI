@@ -3,12 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="1fa34cc7-ae47-4fe3-8f8f-d16fc9c80e51" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.expo/packager-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/packager-info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.expo/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/MainTabNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/MainTabNavigator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/navigation/MedicamentosNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/MedicamentosNavigator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/UtentesNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/UtentesNavigator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/MedicamentoAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/MedicamentoAdd.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/Medicamentos.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Medicamentos.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/Utente.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Utente.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/UtenteAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/UtenteAdd.js" afterDir="false" />
@@ -27,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
-              <caret line="59" column="24" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
+            <state relative-caret-position="270">
+              <caret line="70" column="27" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -57,8 +57,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="95" />
-    <option name="y" value="5" />
+    <option name="x" value="12" />
+    <option name="y" value="8" />
     <option name="width" value="1234" />
     <option name="height" value="1027" />
   </component>
@@ -69,18 +69,6 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="medLar_v1_apk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="medLar_v1_apk" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -102,6 +90,18 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="medLar_v1_apk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="medLar_v1_apk" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -137,7 +137,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="95" y="5" width="1234" height="1027" extended-state="0" />
+    <frame x="12" y="8" width="1234" height="1027" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.09284498" />
@@ -223,8 +223,8 @@
     <entry file="file://$PROJECT_DIR$/components/login.js" />
     <entry file="file://$PROJECT_DIR$/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="59" column="24" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
+        <state relative-caret-position="270">
+          <caret line="70" column="27" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
         </state>
       </provider>
     </entry>

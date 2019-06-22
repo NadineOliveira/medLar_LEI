@@ -71,32 +71,35 @@ class MedicamentoAddScreen extends Component {
       lab:'',
       uni:'',
       dosagem:'',
-      qt:''
+      qt:'',
+      formato: ''
     }
+    this.addMedicamento = this.addMedicamento.bind(this);
   }
 
   addMedicamento = () => {
-    axios.post("http://192.168.1.25:8000/api/medicamentos/",{
+    axios.post("http://192.168.1.67:8000/api/medicamentos/",{
       nome: this.state.nome,
-      preco = this.state.preco,
-      lab = this.state.lab,
-      uni_emb = this.state.uni,
-      formato = this.state.dosagem,
-      dosagem = req.body.dosagem,
-      quantidade = this.state.qt,
-      
+      preco: this.state.preco,
+      lab: this.state.lab,
+      uni_emb: this.state.uni,
+      formato: this.state.formato,
+      dosagem: this.state.dosagem + this.state.formato,
+      quantidade: this.state.qt
     })
       .then(() =>{
-                    alert("Utente adicionado com sucesso")
-                    this.props.navigation.push("UtentesDashNavigator")
+                    alert("Medicamento Adicionado com sucesso")
+                    this.props.navigation.push("Lista de Medicamentos")
                   })
-      .catch(() => alert("Erro na adição de Utente"))
+      .catch(() => alert("Erro na adição de medicamento"))
+    //falta rota
   }
 
   render () {
     
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
+          <KeyboardAvoidingView behavior="padding" enabled>
           <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>
             Nome do medicamento: 
           </Text>
@@ -109,7 +112,7 @@ class MedicamentoAddScreen extends Component {
 
           <View style={styles.item}>
             <Text style={styles.text}>
-              Quantidade: 
+              Dosagem: 
             </Text>
             <Text style={styles.text}>
               Forma: 
@@ -120,21 +123,31 @@ class MedicamentoAddScreen extends Component {
             <TextInput
                   style={styles.input}
                   placeholder="Escreva aqui ..."
-                  value={this.state.qt}
-                  onChangeText={(val) => {this.setState({qt: val})}}
+                  value={this.state.dosagem}
+                  onChangeText={(val) => {this.setState({dosagem: val})}}
                 />
             <Picker
-              selectedValue={this.state.forma}
+              selectedValue={this.state.formato}
               style={styles.input}
               onValueChange={(itemValue, itemIndex) =>
-                this.setState({dosagem: itemValue})
+                this.setState({formato: itemValue})
               }>
-              <Picker.Item label="Quantidade" value="qt" />
               <Picker.Item label="miligramas" value="mg" />
               <Picker.Item label="mililitros" value="ml" />
               <Picker.Item label="Gotas" value="gotas" />
             </Picker>
           </View>
+
+            <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>
+              Quantidade: 
+            </Text>
+            <TextInput
+                  style={styles.input}
+                  placeholder="Escreva aqui ..."
+                  value={this.state.qt}
+                  onChangeText={(val) => {this.setState({qt: val})}}
+            />
+
             <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>
             Laboratório: 
             </Text>
@@ -170,26 +183,15 @@ class MedicamentoAddScreen extends Component {
 
           </View>
 
-          <View style={{flexDirection: 'row', display: 'flex',justifyContent: 'space-between', margin: 5}}>
-            <Button
-              color='red'
-              title='Desativar'
-              onPressItem={name => {
-                if(name==="delete")
-                  this.closeUtente()
-              }}
-              />
             <Button
               color='orange'
               title="Guardar"
-              onPressItem={name => {
-                if(name==="save")
-                  this.updateUtente()
+              onPress={()=> {
+                  this.addMedicamento();
               }}
             />
-            </View>
-
-          </View>
+          </KeyboardAvoidingView>
+          </ScrollView>
         
     )
   }

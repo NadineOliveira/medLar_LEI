@@ -83,7 +83,7 @@ class UtenteAddScreen extends Component {
   };
 
   addUtente = () => {
-    axios.post("http://192.168.1.25:8000/api/utentes/",{
+    axios.post("http://192.168.1.67:8000/api/utentes/",{
       nome: this.state.nome,
       apelido: this.state.apelido,
       genero: this.state.genero,

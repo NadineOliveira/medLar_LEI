@@ -13,7 +13,6 @@ import {
 import { Text, Divider,CheckBox, SearchBar, Input , ListItem, Button } from 'react-native-elements'
 import axios from "axios";
 import DatePicker from 'react-native-datepicker'
-import { FloatingAction } from "react-native-floating-action";
 
 const styles = StyleSheet.create({
   container: {
@@ -84,7 +83,7 @@ class UtenteEditScreen extends Component {
   };
 
   updateUtente = () => {
-    axios.post("http://192.168.1.7:8000/api/utentes/update",{
+    axios.post("http://192.168.1.67:8000/api/utentes/update",{
       nr_processo: this.state.nr_processo,
       nome: this.state.nome,
       apelido: this.state.apelido,
@@ -108,7 +107,7 @@ class UtenteEditScreen extends Component {
   }
 
   getUtente = (nr) =>{
-    axios.get("http://192.168.1.25:8000/api/utentes/"+nr)
+    axios.get("http://192.168.1.67:8000/api/utentes/"+nr)
       .then(res => {
         if(res.data.genero==='M')
           this.setState({checked: true})
@@ -133,7 +132,7 @@ class UtenteEditScreen extends Component {
   }
 
   closeUtente = () => {
-    axios.get("http://192.168.1.25:8000/api/utentes/desativar/"+this.state.nr_processo)
+    axios.get("http://192.168.1.67:8000/api/utentes/desativar/"+this.state.nr_processo)
         .then(() => {
           alert("Utente desativado")
           this.props.navigation.push("UtentesDashNavigator")
