@@ -70,23 +70,35 @@ class MedicamentoAddUtenteScreen extends Component {
       uni:'',
       dosagem:'',
       qt:'',
-      show: false,
-      segunda:false,
-      terca:false,
-      quarta:false,
-      quinta:false,
-      sexta:false,
-      sabado:false,
-      domingo:false
+      showP: false,
+      segunda:false, terca:false,quarta:false,quinta:false,sexta:false,sabado:false,domingo:false,
+      showA: false,
+      segundaA:false, tercaA:false,quartaA:false,quintaA:false,sextaA:false,sabadoA:false,domingoA:false,
+      showJ: false,
+      segundaJ:false, tercaJ:false,quartaJ:false,quintaJ:false,sextaJ:false,sabadoJ:false,domingoJ:false
 
     }
   }
 
   ShowHideComponent = () => {
-    if (this.state.show == true) {
-      this.setState({ show: false });
+    if (this.state.showP == true) {
+      this.setState({ showP: false });
     } else {
-      this.setState({ show: true });
+      this.setState({ showP: true });
+    }
+  };
+  ShowHideComponentA = () => {
+    if (this.state.showA == true) {
+      this.setState({ showA: false });
+    } else {
+      this.setState({ showA: true });
+    }
+  };
+  ShowHideComponentJ = () => {
+    if (this.state.showJ == true) {
+      this.setState({ showJ: false });
+    } else {
+      this.setState({ showJ: true });
     }
   };
 
@@ -173,7 +185,7 @@ class MedicamentoAddUtenteScreen extends Component {
            {/*Here we will return the view when state is true 
            and will return false if state is false*/}
            <Button title="Pequeno Almoço" onPress={this.ShowHideComponent} />
-           {this.state.show ? (
+           {this.state.showP ? (
              <View>
              <CheckBox
               round
@@ -223,6 +235,124 @@ class MedicamentoAddUtenteScreen extends Component {
               checked={this.state.domingo}
               checkedColor='orange'
               onPress={() => this.setState({domingo: !this.state.domingo})}
+           />
+           </View>
+           ) : null}
+          </View>
+
+          <View style={styles.container}>
+           {/*Here we will return the view when state is true 
+           and will return false if state is false*/}
+           <Button title="Almoço" onPress={this.ShowHideComponent} />
+           {this.state.showP ? (
+             <View>
+             <CheckBox
+              round
+              title='Segunda'
+              checked={this.state.segundaA}
+              checkedColor='orange'
+              onPress={() => this.setState({segundaA: !this.state.segundaA})}
+           />
+           <CheckBox
+              round
+              title='Terca'
+              checked={this.state.tercaA}
+              checkedColor='orange'
+              onPress={() => this.setState({tercaA: !this.state.tercaA})}
+           />
+           <CheckBox
+              round
+              title='Quarta'
+              checked={this.state.quartaA}
+              checkedColor='orange'
+              onPress={() => this.setState({quartaA: !this.state.quartaA})}
+           />
+           <CheckBox
+              round
+              title='Quinta'
+              checked={this.state.quintaA}
+              checkedColor='orange'
+              onPress={() => this.setState({quintaA: !this.state.quintaA})}
+           />
+           <CheckBox
+              round
+              title='Sexta'
+              checked={this.state.sextaA}
+              checkedColor='orange'
+              onPress={() => this.setState({sextaA: !this.state.sextaA})}
+           />
+           <CheckBox
+              round
+              title='Sabado'
+              checked={this.state.sabadoA}
+              checkedColor='orange'
+              onPress={() => this.setState({sabadoA: !this.state.sabadoA})}
+           />
+           <CheckBox
+              round
+              title='Domingo'
+              checked={this.state.domingoA}
+              checkedColor='orange'
+              onPress={() => this.setState({domingoA: !this.state.domingoA})}
+           />
+           </View>
+           ) : null}
+          </View>
+
+          <View style={styles.container}>
+           {/*Here we will return the view when state is true 
+           and will return false if state is false*/}
+           <Button title="Jantar" onPress={this.ShowHideComponent} />
+           {this.state.showP ? (
+             <View>
+             <CheckBox
+              round
+              title='Segunda'
+              checked={this.state.segundaJ}
+              checkedColor='orange'
+              onPress={() => this.setState({segundaJ: !this.state.segundaJ})}
+           />
+           <CheckBox
+              round
+              title='Terca'
+              checked={this.state.tercaJ}
+              checkedColor='orange'
+              onPress={() => this.setState({tercaJ: !this.state.tercaJ})}
+           />
+           <CheckBox
+              round
+              title='Quarta'
+              checked={this.state.quartaJ}
+              checkedColor='orange'
+              onPress={() => this.setState({quartaJ: !this.state.quartaJ})}
+           />
+           <CheckBox
+              round
+              title='Quinta'
+              checked={this.state.quintaJ}
+              checkedColor='orange'
+              onPress={() => this.setState({quintaJ: !this.state.quintaJ})}
+           />
+           <CheckBox
+              round
+              title='Sexta'
+              checked={this.state.sextaJ}
+              checkedColor='orange'
+              onPress={() => this.setState({sextaJ: !this.state.sextaJ})}
+           />
+           <CheckBox
+              round
+              title='Sabado'
+              checked={this.state.sabadoJ}
+              checkedColor='orange'
+              onPress={() => this.setState({sabadoJ: !this.state.sabadoJ})}
+           />
+           <CheckBox
+              round
+              title='Domingo'
+              checked={this.state.domingoJ}
+              checkedColor='orange'
+              onPress={() => this.setState({domingoJ: !this.state.domingoJ})}
            />
            </View>
            ) : null}

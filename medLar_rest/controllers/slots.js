@@ -3,6 +3,7 @@ var Utente = require('./ModelConnections').utente;
 var Medicamento = require('./ModelConnections').medicamento;
 var SlotHorario = require('./ModelConnections').Slot_horario;
 var Horario = require('./ModelConnections').horario;
+var db = require('./ModelConnections').db;
 
 module.exports.getAllSlots = async function() {
         var result = [];
@@ -67,22 +68,17 @@ module.exports.addSlot = async function(med, nr_utente, data_inicio, data_fim, q
     return result;
 }
 
-module.exports.getHorarioByUtenteMedicamento = async function(idMed, idUtente) {
+module.exports.getHorarioByUtenteMedicamento = async function(idUtente, idMed) {
     var result = [];
-    await SlotHorario.findAll(
-        {where: {Slot_med: idMed, Slot_utente: idUtente}, 
-        include: [
-            {model: Slot, include: [
-                {model: Medicamento, attributes: ['nome']},
-                {model: Utente, attributes: ['nome','apelido','contacto','contacto_enc']}]
-            },
-            {model: Horario, attributes: ['dia','periodo']}
-        ]}
-    ).then(values => {
-        for(i in values)
-          result.push(values[i].dataValues);
-    }).catch(err => {
-        result = err;
-    });
+    await db.query('select horario.* from horario '+
+                'join slot_horario '+
+                'on horario.idHorario = slot_horario.Horario_idHorario '+
+                'where slot_horario.Slot_med = :med AND Slot_utente = :utente',
+    { replacements: {med: idMed, utente: idUtente}, type: db.QueryTypes.SELECT }
+    ).then(projects => {
+        result = projects;
+    }).catch( err => result=err)
     return result;
 }
+
+

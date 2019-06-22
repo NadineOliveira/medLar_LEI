@@ -12,7 +12,7 @@ const Gere = db.import('../models/Gere');
     Auxiliar 1-N Tarefa
     Tarefa 1-1 Auxiliar */
 Auxiliar.hasMany(Tarefa,{foreignKey: 'nr_auxiliar'});
-Tarefa.belongsTo(Auxiliar,{foreignKey: 'nr_auxliar'});
+Tarefa.belongsTo(Auxiliar,{foreignKey: 'nr_auxiliar'});
 
 /*Associações:
     Auxiliar 1-N Gere
@@ -54,7 +54,7 @@ Utente.belongsToMany(Medicamento, {through:'Slot', foreignKey:'nr_utente'})
     Slot N-N Horario
     Horario N-N Slot
 */
-Slot_Horario.belongsTo(Horario,{foreignKey: ['Slot_med','Slot_utente']});
+Slot_Horario.belongsTo(Horario,{foreignKey: 'Horario_idHorario'});
 Horario.hasMany(Slot_Horario,{foreignKey: 'Horario_idHorario'});
 
 Slot_Horario.belongsTo(Slot,{foreignKey: ['Slot_med','Slot_utente']});

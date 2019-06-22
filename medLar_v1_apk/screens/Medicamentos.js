@@ -6,10 +6,10 @@ import {
   StyleSheet,
   ListView,
   FlatList,
-  Button,
+  
   Image
 } from "react-native";
-import { SearchBar , ListItem } from 'react-native-elements'
+import { SearchBar , ListItem, Icon, Button } from 'react-native-elements'
 import axios from "axios";
 import { Item } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
@@ -33,14 +33,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     right: 30,
     bottom: 30,
+    elevation: 3,
+    backgroundColor: 'orange',
+    borderRadius: 25
   },
 
-  FloatingButtonStyle: {
-    resizeMode: 'contain',
-    width: 50,
-    height: 50,
-    //backgroundColor:'black'
-  },
 });
 
 class MedicamentosScreen extends Component {
@@ -115,14 +112,20 @@ class MedicamentosScreen extends Component {
         activeOpacity={0.7}
         onPress={()=>this.props.navigation.navigate("MedicamentoAdd")}
         style={styles.TouchableOpacityStyle}>
-        <Image
-          source={{
-            uri:'http://aboutreact.com/wp-content/uploads/2018/08/bc72de57b000a7037294b53d34c2cbd1.png',
-          }}
-          //You can use you project image Example below
-          //source={require('./images/float-add-icon.png')}
-          style={styles.FloatingButtonStyle}
-        />
+         <Image
+            source={
+              require('../assets/images/addSimple.png')
+            }
+            resizeMode='contain'
+            style={{
+              flex: 1,
+              height: 40,
+              width: 40
+            }}
+            //You can use you project image Example below
+            //source={require('./images/float-add-icon.png')}
+            //style={styles.FloatingButtonStyle}
+          />
       </TouchableOpacity>
       
     </View>

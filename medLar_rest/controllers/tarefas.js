@@ -13,7 +13,7 @@ module.exports.getAllTarefas = async function(){
 
 module.exports.getAllTarefasByAuxiliar = async function(id){
   var result = [];
-  await Tarefa.findAll({where: {auxiliar: id}}).then(values => {
+  await Tarefa.findAll({where: {nr_auxiliar: id}}).then(values => {
     for(i in values)  
       result.push(values[i].dataValues);
   }).catch(err => {

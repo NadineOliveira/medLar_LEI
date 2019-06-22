@@ -6,7 +6,8 @@ import {
   StyleSheet,
   ListView,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
+  Image
 } from "react-native";
 import { SearchBar , ListItem } from 'react-native-elements'
 import axios from "axios";
@@ -23,7 +24,18 @@ const styles = StyleSheet.create({
   scene:{
     flex: 1,
     paddingTop: 25,
-  }
+  },
+  TouchableOpacityStyle: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    left: 30,
+    elevation: 3,
+    backgroundColor: 'orange',
+    borderRadius: 25
+  },
 });
 
 class UtenteScreen extends Component {
@@ -78,17 +90,19 @@ class UtenteScreen extends Component {
       nr_processo: nr
     });
   }
-
+  printHorarios = (horarios) => {
+    var ret = []
+    for(i in horarios)
+      ret.push(<Text>{horarios[i].dia+' - '+horarios[i].periodo}</Text>)
+    return ret
+  }
   keyExtractor = (item, index) => index.toString()
   
   renderItem = ({ item }) => {
      return <ListItem
              title={item.medicamento.nome}
              subtitle={<View>
-                        <Text>Horario 1</Text>
-                        <Text>Horario 2</Text>
-                        <Text>Horario ...</Text>
-                        <Text>{JSON.stringify(item)}</Text>
+                        {this.printHorarios(item.horarios)}
                        </View>} 
              button
              onPress={() => {this.checkMedicamentoUtente(item.med,item.nr_utente)}}
@@ -102,7 +116,7 @@ class UtenteScreen extends Component {
     
     const { utente } = this.props
     return (
-    <ScrollView>
+    <View>
       {this.state.utente.genero === "M" ? (
         <ListItem
           title={`Sr. ${this.state.utente.nome} ${this.state.utente.apelido}`}
@@ -119,15 +133,38 @@ class UtenteScreen extends Component {
           leftAvatar={{source: require("../assets/images/femaleIcon.png")}}
           rightIcon={<Text style={{color: 'green'}}>Editar</Text>} 
           button
-      onPress={() => this.props.navigation.navigate('MedicamentoAddUtenteNav')/*{this.goToUtente(this.state.utente.nr_processo)}*/}
+          onPress={() => {this.goToUtente(this.state.utente.nr_processo)}}
         />
       )}
+      <ScrollView>
       <FlatList
         keyExtractor={this.keyExtractor}
         data={this.state.medsUtente}
         renderItem={this.renderItem}
       />
-      </ScrollView> 
+      </ScrollView>
+      <View>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={()=>this.props.navigation.navigate("MedicamentoAddUtenteNav")}
+        style={styles.TouchableOpacityStyle}>
+         <Image
+            source={
+              require('../assets/images/addSimple.png')
+            }
+            resizeMode='contain'
+            style={{
+              flex: 1,
+              height: 40,
+              width: 40
+            }}
+            //You can use you project image Example below
+            //source={require('./images/float-add-icon.png')}
+            //style={styles.FloatingButtonStyle}
+          />
+      </TouchableOpacity>
+      </View>
+      </View> 
     )
   }
 }

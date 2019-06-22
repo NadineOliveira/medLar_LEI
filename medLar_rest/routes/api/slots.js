@@ -11,6 +11,10 @@ router.get('/',passport.authenticate('jwtAdmin',{session: false}), async (req,re
 
 router.get('/medicamentos/:uid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     var meds = await SlotsController.getMedicamentosByUtente(req.params.uid);
+    for(i in meds){
+        var horarios = await SlotsController.getHorarioByUtenteMedicamento(req.params.uid, meds[i].med)
+        meds[i].horarios = horarios
+    }
     res.status(200).send(meds)
 })
 

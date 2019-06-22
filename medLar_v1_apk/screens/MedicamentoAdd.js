@@ -72,7 +72,7 @@ class MedicamentoAddScreen extends Component {
       uni:'',
       dosagem:'',
       qt:'',
-      formato: ''
+      formato: 'comp'
     }
     this.addMedicamento = this.addMedicamento.bind(this);
   }
@@ -132,6 +132,7 @@ class MedicamentoAddScreen extends Component {
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({formato: itemValue})
               }>
+              <Picker.Item label="comprimidos" value="comp" />
               <Picker.Item label="miligramas" value="mg" />
               <Picker.Item label="mililitros" value="ml" />
               <Picker.Item label="Gotas" value="gotas" />
@@ -182,7 +183,7 @@ class MedicamentoAddScreen extends Component {
               />
 
           </View>
-
+          <View>
             <Button
               color='orange'
               title="Guardar"
@@ -190,6 +191,8 @@ class MedicamentoAddScreen extends Component {
                   this.addMedicamento();
               }}
             />
+          </View>
+          <View style={{height: 75}}/>
           </KeyboardAvoidingView>
           </ScrollView>
         
