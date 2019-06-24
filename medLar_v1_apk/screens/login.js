@@ -12,6 +12,8 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import axios from "axios";
+const host = require("../serverAddress")
+const localhost = host.host
 
 class Login extends Component {
   constructor(props) {
@@ -47,7 +49,7 @@ class Login extends Component {
   }
 
   async login() {
-    var res = await axios.post("http://192.168.1.67:8000/login", {	
+    var res = await axios.post(localhost+"/login", {	
       id: this.state.username,
       password: this.state.password
     }).catch(err=> alert(err));

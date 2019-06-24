@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  Text,
   View,
   TouchableOpacity,
   StyleSheet,
@@ -9,11 +8,14 @@ import {
   ActivityIndicator,
   Image
 } from "react-native";
-import { SearchBar , ListItem } from 'react-native-elements'
+import { SearchBar , ListItem, Text} from 'react-native-elements'
 import axios from "axios";
 import { Item } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
+import NestedListView, {NestedRow} from 'react-native-nested-listview'
 
+const host = require("../serverAddress")
+const localhost = host.host
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -25,6 +27,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 25,
   },
+
   TouchableOpacityStyle: {
     position: 'absolute',
     width: 50,
@@ -36,6 +39,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'orange',
     borderRadius: 25
   },
+
 });
 
 class UtenteScreen extends Component {
@@ -66,7 +70,7 @@ class UtenteScreen extends Component {
   };
 
   getUtente = (nr) =>{
-    axios.get("http://192.168.1.67:8000/api/utentes/"+nr)
+    axios.get(localhost+"/api/utentes/"+nr)
       .then(res => {
         this.setState({utente: res.data})
       })
@@ -74,16 +78,24 @@ class UtenteScreen extends Component {
   }
   
   getMedUtente = (nr) =>{
-    axios.get("http://192.168.1.67:8000/api/slots/medicamentos/"+nr)
+    axios.get(localhost+"/api/slots/medicamentos/"+nr)
       .then(res => {
         this.setState({medsUtente: res.data})
       })
       .catch(error => this.setState({error: error}))
   }
 
-  checkMedicamentoUtente = (med,nr) =>{
-    
-    console.warn("Need to add meds "+med+" to "+nr);
+  checkMedicamentoUtente = (node) =>{
+    if(!node.horarios){
+      if(node.estado === 0)
+        axios.post(localhost+'/api/slots/repor',{med: node.Slot_med, utente: node.Slot_utente, horario: node.idHorario})
+          .then(()=> {alert("Medicamento adicionado à caixa"); this.componentDidMount()})
+          .catch(() => alert("Erro na adição de medicamento, tente novamente"))
+      else
+        axios.post(localhost+'/api/slots/esvaziar',{med: node.Slot_med, utente: node.Slot_utente, horario: node.idHorario})
+          .then(()=> {alert("Medicamento retirado da caixa");this.componentDidMount()})
+          .catch(() => alert("Erro na remoção de medicamento, tente novamente"))
+    }
   }
   goToUtente = (nr) => {
     this.props.navigation.navigate('UtenteEditNavigator', {
@@ -137,32 +149,83 @@ class UtenteScreen extends Component {
         />
       )}
       <ScrollView>
-      <FlatList
-        keyExtractor={this.keyExtractor}
+      <NestedListView
         data={this.state.medsUtente}
-        renderItem={this.renderItem}
+        getChildrenName={(node) => 'horarios'}
+        onNodePressed={(node) => this.checkMedicamentoUtente(node)}
+        renderNode={(node, level) => (
+          <NestedRow
+            level={level}
+          >
+            {node.medicamento 
+            ? (
+                <View style={{ marginRight: 5, marginLeft: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <View style={{flexDirection: 'column'}}>
+                    <Text style={{fontSize: 16, fontWeight: '200', textAlignVertical: 'center'}}>{node.medicamento.nome}</Text>
+                    <Text style={{fontSize: 12, fontWeight: '100', textAlignVertical: 'center'}}>{'Data de Inicio: '+node.data_inicio}</Text>
+                    <Text style={{fontSize: 12, fontWeight: '100', textAlignVertical: 'center'}}>{node.data_fim ? ('Data de Fim: '+ node.data_fim) : ('Data de Fim: Indeterminado')}</Text>
+                  </View>
+                  <View style={{alignVertical: 'center'}}>
+                    {node.opened === true ? (
+                        <Image 
+                          source={require('../assets/images/upArrow.png')}
+                          style={{ height: 24, width: 24, marginLeft: 25}}
+                        />
+                        ) : (
+                        <Image 
+                          source={require('../assets/images/downArrow.png')}
+                          style={{ height: 24, width: 24, marginLeft: 25}}
+                        />)
+                    }
+                  </View>
+                </View>
+              ) 
+            : (
+                <View style={{marginLeft: 20, marginRight: 15, flexDirection: "row", justifyContent: 'space-between'}}>
+                  <View style={{flexDirection: 'column'}}>
+                    <Text>{'Dia: '+node.dia}</Text>
+                    <Text>{'Periodo: '+node.periodo}</Text>
+                  </View>
+                  <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                    <Text>{node.quantidade+' qt.'}</Text>
+                    {node.estado === 0 ? (
+                          <Image 
+                            source={require('../assets/images/radio.png')}
+                            style={{ height: 24, width: 24, marginLeft: 25}}
+                          />
+                          ) : (
+                          <Image 
+                            source={require('../assets/images/check.png')}
+                            style={{ height: 24, width: 24, marginLeft: 25}}
+                          />)
+                      }
+                  </View>
+                </View>
+              ) }
+          </NestedRow>
+        )}
       />
       </ScrollView>
       <View>
-      <TouchableOpacity
-        activeOpacity={0.7}
-        onPress={()=>this.props.navigation.navigate("MedicamentoAddUtenteNav")}
-        style={styles.TouchableOpacityStyle}>
-         <Image
-            source={
-              require('../assets/images/addSimple.png')
-            }
-            resizeMode='contain'
-            style={{
-              flex: 1,
-              height: 40,
-              width: 40
-            }}
-            //You can use you project image Example below
-            //source={require('./images/float-add-icon.png')}
-            //style={styles.FloatingButtonStyle}
-          />
-      </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={()=>this.props.navigation.navigate("MedicamentoAddUtenteNav")}
+          style={styles.TouchableOpacityStyle}>
+          <Image
+              source={
+                require('../assets/images/addSimple.png')
+              }
+              resizeMode='contain'
+              style={{
+                flex: 1,
+                height: 40,
+                width: 40
+              }}
+              //You can use you project image Example below
+              //source={require('./images/float-add-icon.png')}
+              //style={styles.FloatingButtonStyle}
+            />
+        </TouchableOpacity>
       </View>
       </View> 
     )

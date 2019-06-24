@@ -14,6 +14,8 @@ import { Text, Divider,CheckBox, SearchBar, Input , ListItem, Button } from 'rea
 import axios from "axios";
 import DatePicker from 'react-native-datepicker'
 
+const host = require("../serverAddress")
+const localhost = host.host
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -24,24 +26,28 @@ const styles = StyleSheet.create({
   scene:{
     flex: 1,
     paddingTop: 25,
-  }
+  },TouchableOpacityStyleLeft: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    left: 30,
+    elevation: 3,
+    backgroundColor: 'red',
+    borderRadius: 25
+  },TouchableOpacityStyleRight: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 30,
+    elevation: 3,
+    backgroundColor: 'orange',
+    borderRadius: 25
+  },
 });
-const guardar = [
-  {
-    text: "Guardar",
-    name: "save",
-    icon: require("../assets/images/save.png"),
-    position: 1
-  }
-];
-const remover = [
-  {
-    text: "Remover",
-    name: "delete",
-    icon: require("../assets/images/delete.png"),
-    position: 1
-  }
-];
 
 class UtenteEditScreen extends Component {
   static navigationOptions = {
@@ -83,7 +89,7 @@ class UtenteEditScreen extends Component {
   };
 
   updateUtente = () => {
-    axios.post("http://192.168.1.67:8000/api/utentes/update",{
+    axios.post(localhost+"/api/utentes/update",{
       nr_processo: this.state.nr_processo,
       nome: this.state.nome,
       apelido: this.state.apelido,
@@ -107,7 +113,7 @@ class UtenteEditScreen extends Component {
   }
 
   getUtente = (nr) =>{
-    axios.get("http://192.168.1.67:8000/api/utentes/"+nr)
+    axios.get(localhost+"/api/utentes/"+nr)
       .then(res => {
         if(res.data.genero==='M')
           this.setState({checked: true})
@@ -132,7 +138,7 @@ class UtenteEditScreen extends Component {
   }
 
   closeUtente = () => {
-    axios.get("http://192.168.1.67:8000/api/utentes/desativar/"+this.state.nr_processo)
+    axios.get(localhost+"/api/utentes/desativar/"+this.state.nr_processo)
         .then(() => {
           alert("Utente desativado")
           this.props.navigation.push("UtentesDashNavigator")
@@ -150,12 +156,13 @@ class UtenteEditScreen extends Component {
   render () {
     
     return (
-      <ScrollView style={{
+      <View style={{
         flex: 1,
         flexDirection: 'column',
         margin: 10,
       }}>
-      <KeyboardAvoidingView behavior="padding" enabled>
+        <ScrollView>
+        <KeyboardAvoidingView behavior="padding" enabled>
         <Text h3>Utente</Text>
         <View style={{flexDirection: 'row'}}>
           {
@@ -304,26 +311,46 @@ class UtenteEditScreen extends Component {
             onChangeText={(val) => {this.setState({cidade: val})}}
           />
         </View>
-        <View style={{flexDirection: 'row', display: 'flex',justifyContent: 'space-between', margin: 5}}>
-          <Button
-            color='red'
-            title='Desativar'
-            onPressItem={name => {
-              if(name==="delete")
-                this.closeUtente()
-            }}
-          />
-          <Button
-            color='orange'
-            title="Guardar"
-            onPressItem={name => {
-              if(name==="save")
-                this.updateUtente()
-            }}
-          />
-        </View>
-      </KeyboardAvoidingView>
-      </ScrollView>
+        </KeyboardAvoidingView>
+        </ScrollView>
+         <View> 
+           <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={()=>this.closeUtente()}
+            style={styles.TouchableOpacityStyleLeft}>
+            <Image
+                source={
+                  require('../assets/images/save.png')
+                }
+                resizeMode='contain'
+                style={{
+                  flex: 1,
+                  height: 40,
+                  width: 40
+                }}
+              />
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={()=>this.updateUtente()}
+            style={styles.TouchableOpacityStyleRight}>
+            <Image
+                source={
+                  require('../assets/images/save.png')
+                }
+                resizeMode='contain'
+                style={{
+                  flex: 1,
+                  height: 40,
+                  width: 40
+                }}
+                //You can use you project image Example below
+                //source={require('./images/float-add-icon.png')}
+                //style={styles.FloatingButtonStyle}
+              />
+          </TouchableOpacity>
+          </View>
+      </View>
     )
   }
 }

@@ -43,4 +43,14 @@ router.get('/:mid/horarios/:uid',passport.authenticate('jwt',{session: false}), 
 })
 
 
+router.post('/repor',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
+    var horarios = await SlotsController.updateSlotHorario(req.body.med,req.body.utente,req.body.horario,1);
+    res.status(200).send(horarios)
+})
+
+router.post('/esvaziar',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
+    var horarios = await SlotsController.updateSlotHorario(req.body.med,req.body.utente,req.body.horario,0);
+    res.status(200).send(horarios)
+})
+
 module.exports = router;

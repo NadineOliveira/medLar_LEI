@@ -70,7 +70,7 @@ module.exports.addSlot = async function(med, nr_utente, data_inicio, data_fim, q
 
 module.exports.getHorarioByUtenteMedicamento = async function(idUtente, idMed) {
     var result = [];
-    await db.query('select horario.* from horario '+
+    await db.query('select slot_horario.Slot_med, slot_horario.Slot_utente, slot_horario.quantidade, slot_horario.estado, horario.* from horario '+
                 'join slot_horario '+
                 'on horario.idHorario = slot_horario.Horario_idHorario '+
                 'where slot_horario.Slot_med = :med AND Slot_utente = :utente',
@@ -82,3 +82,13 @@ module.exports.getHorarioByUtenteMedicamento = async function(idUtente, idMed) {
 }
 
 
+module.exports.updateSlotHorario = async function(med, utente, horario, estado){
+    var result;
+    await SlotHorario.update(
+      { estado: estado},
+      { where: { Slot_med: med, Slot_utente: utente, Horario_idHorario: horario } }
+    )
+      .then(()=> result = {message: "Alterado com sucesso!"})
+      .catch(err=> result = err)
+    return result;
+}

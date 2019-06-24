@@ -15,6 +15,8 @@ import axios from "axios";
 import DatePicker from 'react-native-datepicker'
 import { FloatingAction } from "react-native-floating-action";
 
+const host = require("../serverAddress")
+const localhost = host.host
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -34,7 +36,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: "solid",
     borderRadius: 20
- },
+ },TouchableOpacityStyle: {
+  position: 'absolute',
+  width: 50,
+  height: 50,
+  alignItems: 'center',
+  justifyContent: 'center',
+  right: 30,
+  elevation: 3,
+  backgroundColor: 'orange',
+  borderRadius: 25
+},
 });
 const guardar = [
   {
@@ -83,7 +95,7 @@ class UtenteAddScreen extends Component {
   };
 
   addUtente = () => {
-    axios.post("http://192.168.1.67:8000/api/utentes/",{
+    axios.post(localhost+"/api/utentes/",{
       nome: this.state.nome,
       apelido: this.state.apelido,
       genero: this.state.genero,
@@ -261,15 +273,27 @@ class UtenteAddScreen extends Component {
             onChangeText={(val) => {this.setState({cidade: val})}}
           />
         </View>
-        <FloatingAction
-          actions={guardar}
-          color='orange'
-          overrideWithAction
-          onPressItem={name => {
-            if(name==="add")
-              this.addUtente()
-          }}
-        />
+        <View>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={()=>this.addUtente()}
+            style={styles.TouchableOpacityStyle}>
+            <Image
+                source={
+                  require('../assets/images/addSimple.png')
+                }
+                resizeMode='contain'
+                style={{
+                  flex: 1,
+                  height: 40,
+                  width: 40
+                }}
+                //You can use you project image Example below
+                //source={require('./images/float-add-icon.png')}
+                //style={styles.FloatingButtonStyle}
+              />
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }

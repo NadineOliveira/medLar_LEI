@@ -17,6 +17,8 @@ import { TextInput } from "react-native-gesture-handler";
 import NestedListview, {NestedRow} from 'react-native-nested-listview'
 
 
+const host = require("../serverAddress")
+const localhost = host.host
 const styles = StyleSheet.create({
   container: {
     flex: 1,

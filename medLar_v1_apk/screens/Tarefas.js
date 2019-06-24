@@ -11,6 +11,8 @@ import {
 import { SearchBar , ListItem } from 'react-native-elements'
 import axios from "axios";
 
+const host = require("../serverAddress")
+const localhost = host.host
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -48,20 +50,42 @@ class TarefasScreen extends Component {
   };
 
   getTarefas = () =>{
-    axios.get("http://192.168.1.67:8000/api/tarefas/",)
+    axios.get(localhost+"/api/tarefas/",)
       .then(res => {
-          alert(JSON.stringify(res.data))
-        this.setState({tarefas: res.data, tarefasOriginal: res.data})
+          this.setState({tarefas: res.data, tarefasOriginal: res.data})
       })
       .catch(error => this.setState({error: error}))
   }
 
+  concluirTarefa = (id) => {
+    axios.get(localhost+'/api/tarefas/concluir/'+id)
+    .then(res => {
+      alert("Tarefa concluida")
+      this.componentDidMount()
+    })
+  }
 
   keyExtractor = (item, index) => index.toString()
   
   renderItem = ({ item }) => {
      return <ListItem
               title={`${item.nome}`}
+              subtitle={<View>
+                <Text>{item.descricao}</Text>
+                <Text>{'Data para Execução: '+item.data}</Text>
+              </View>}
+              rightIcon={item.estado === 1 ? (
+                <Image 
+                  source={require('../assets/images/check.png')}
+                  style={{ height: 24, width: 24, marginLeft: 25}}
+                />
+                ) : (
+                <Image 
+                  source={require('../assets/images/radio.png')}
+                  style={{ height: 24, width: 24, marginLeft: 25}}
+                />)}
+              button
+              onPress={() => {if(item.estado===0) this.concluirTarefa(item.id_Tarefa)}}
             />
   }
   componentDidMount() {

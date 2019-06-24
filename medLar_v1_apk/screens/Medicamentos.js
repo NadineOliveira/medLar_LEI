@@ -14,6 +14,8 @@ import axios from "axios";
 import { Item } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 
+const host = require("../serverAddress")
+const localhost = host.host
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -64,7 +66,7 @@ class MedicamentosScreen extends Component {
   };
 
   getUsers = () =>{
-    axios.get("http://192.168.1.67:8000/api/medicamentos/")
+    axios.get(localhost+"/api/medicamentos/")
       .then(res => {
         this.setState({medicamentos: res.data, medicamentosOriginal: res.data})
       })

@@ -11,6 +11,8 @@ import {
 import { SearchBar , ListItem } from 'react-native-elements'
 import axios from "axios";
 
+const host = require("../serverAddress")
+const localhost = host.host
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -48,7 +50,7 @@ class UtentesScreen extends Component {
   };
 
   getUsers = () =>{
-    axios.get("http://192.168.1.67:8000/api/utentes/ativos")
+    axios.get(localhost+"/api/utentes/ativos")
       .then(res => {
         this.setState({utentes: res.data, utentesOriginal: res.data})
       })
@@ -89,7 +91,7 @@ class UtentesScreen extends Component {
   render () {
     return (
     <ScrollView>
-      <SearchBar  //NAO FUNCIONA ???
+      <SearchBar
         placeholder="Escreva aqui..."
         onChangeText={e => this.updateSearch(e)} 
         value={this.state.search}

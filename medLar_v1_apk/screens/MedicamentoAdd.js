@@ -17,6 +17,8 @@ import DatePicker from 'react-native-datepicker'
 import { FloatingAction } from "react-native-floating-action";
 import { TextInput } from "react-native-gesture-handler";
 
+const host = require("../serverAddress")
+const localhost = host.host
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -78,7 +80,7 @@ class MedicamentoAddScreen extends Component {
   }
 
   addMedicamento = () => {
-    axios.post("http://192.168.1.67:8000/api/medicamentos/",{
+    axios.post(localhost+"/api/medicamentos/",{
       nome: this.state.nome,
       preco: this.state.preco,
       lab: this.state.lab,
