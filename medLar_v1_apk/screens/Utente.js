@@ -6,7 +6,8 @@ import {
   ListView,
   FlatList,
   ActivityIndicator,
-  Image
+  Image,
+  BackHandler
 } from "react-native";
 import { SearchBar , ListItem, Text} from 'react-native-elements'
 import axios from "axios";
@@ -122,8 +123,16 @@ class UtenteScreen extends Component {
             />
   }
   componentWillMount() {
+    this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      this.props.navigation.push('UtentesDashNavigator'); // works best when the goBack is async
+      return true;
+    });
     this.getUtente(this.state.nr_processo)
     this.getMedUtente(this.state.nr_processo)
+  }
+
+  componentWillUnmount() {
+    this.backHandler.remove();
   }
 
   render () {
@@ -209,7 +218,9 @@ class UtenteScreen extends Component {
       <View>
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={()=>this.props.navigation.navigate("MedicamentoAddUtenteNav")}
+          onPress={()=>this.props.navigation.navigate("MedicamentoAddUtenteNav", {
+            nr_processo: this.state.nr_processo
+          })}
           style={styles.TouchableOpacityStyle}>
           <Image
               source={

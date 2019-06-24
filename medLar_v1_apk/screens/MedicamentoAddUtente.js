@@ -17,8 +17,6 @@ import NestedListview, {NestedRow} from 'react-native-nested-listview'
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 const icon = require('../assets/images/add.png');
 
-
-
 const host = require("../serverAddress")
 const localhost = host.host
 const styles = StyleSheet.create({
@@ -71,6 +69,114 @@ const items = [
     children: [
       {
         name: 'Pequeno Almoço',
+        id: 1,
+      },
+      {
+        name: 'Almoço',
+        id: 2,
+      },
+      {
+        name: 'Lanche',
+        id: 3,
+      },
+      {
+        name: 'Jantar',
+        id: 4,
+      },
+      {
+        name: 'Ceia',
+        id: 5,
+      },
+    ],
+  },
+  {
+    name: 'Terça-Feira',
+    id: 3,
+    icon: icon, // Make sure the icon const is set, or you can remove this
+    children: [
+      {
+        name: 'Pequeno Almoço',
+        id: 6,
+      },
+      {
+        name: 'Almoço',
+        id: 7,
+      },
+      {
+        name: 'Lanche',
+        id: 8,
+      },
+      {
+        name: 'Jantar',
+        id: 9,
+      },
+      {
+        name: 'Ceia',
+        id: 10,
+      },
+    ],
+  },
+  {
+    name: 'Quarta-Feira',
+    id: 4,
+    icon: icon, // Make sure the icon const is set, or you can remove this
+    children: [
+      {
+        name: 'Pequeno Almoço',
+        id: 11,
+      },
+      {
+        name: 'Almoço',
+        id: 12,
+      },
+      {
+        name: 'Lanche',
+        id: 13,
+      },
+      {
+        name: 'Jantar',
+        id: 14,
+      },
+      {
+        name: 'Ceia',
+        id: 15,
+      },
+    ],
+  },
+  {
+    name: 'Quinta-Feira',
+    id: 5,
+    icon: icon, // Make sure the icon const is set, or you can remove this
+    children: [
+      {
+        name: 'Pequeno Almoço',
+        id: 16,
+      },
+      {
+        name: 'Almoço',
+        id: 17,
+      },
+      {
+        name: 'Lanche',
+        id: 18,
+      },
+      {
+        name: 'Jantar',
+        id: 19,
+      },
+      {
+        name: 'Ceia',
+        id: 20,
+      },
+    ],
+  },
+  {
+    name: 'Sexta-Feira',
+    id: 6,
+    icon: icon, // Make sure the icon const is set, or you can remove this
+    children: [
+      {
+        name: 'Pequeno Almoço',
         id: 21,
       },
       {
@@ -85,11 +191,42 @@ const items = [
         name: 'Jantar',
         id: 24,
       },
+      {
+        name: 'Ceia',
+        id: 25,
+      },
     ],
   },
   {
-    name: 'Terça-Feira',
-    id: 3,
+    name: 'Sabado',
+    id: 7,
+    icon: icon, // Make sure the icon const is set, or you can remove this
+    children: [
+      {
+        name: 'Pequeno Almoço',
+        id: 26,
+      },
+      {
+        name: 'Almoço',
+        id: 27,
+      },
+      {
+        name: 'Lanche',
+        id: 28,
+      },
+      {
+        name: 'Jantar',
+        id: 29,
+      },
+      {
+        name: 'Ceia',
+        id: 30,
+      },
+    ],
+  },
+  {
+    name: 'Domingo',
+    id: 8,
     icon: icon, // Make sure the icon const is set, or you can remove this
     children: [
       {
@@ -108,120 +245,9 @@ const items = [
         name: 'Jantar',
         id: 34,
       },
-    ],
-  },
-  {
-    name: 'Quarta-Feira',
-    id: 4,
-    icon: icon, // Make sure the icon const is set, or you can remove this
-    children: [
       {
-        name: 'Pequeno Almoço',
-        id: 41,
-      },
-      {
-        name: 'Almoço',
-        id: 42,
-      },
-      {
-        name: 'Lanche',
-        id: 43,
-      },
-      {
-        name: 'Jantar',
-        id: 44,
-      },
-    ],
-  },
-  {
-    name: 'Quinta-Feira',
-    id: 5,
-    icon: icon, // Make sure the icon const is set, or you can remove this
-    children: [
-      {
-        name: 'Pequeno Almoço',
-        id: 51,
-      },
-      {
-        name: 'Almoço',
-        id: 52,
-      },
-      {
-        name: 'Lanche',
-        id: 53,
-      },
-      {
-        name: 'Jantar',
-        id: 54,
-      },
-    ],
-  },
-  {
-    name: 'Sexta-Feira',
-    id: 6,
-    icon: icon, // Make sure the icon const is set, or you can remove this
-    children: [
-      {
-        name: 'Pequeno Almoço',
-        id: 61,
-      },
-      {
-        name: 'Almoço',
-        id: 62,
-      },
-      {
-        name: 'Lanche',
-        id: 63,
-      },
-      {
-        name: 'Jantar',
-        id: 64,
-      },
-    ],
-  },
-  {
-    name: 'Sabado',
-    id: 7,
-    icon: icon, // Make sure the icon const is set, or you can remove this
-    children: [
-      {
-        name: 'Pequeno Almoço',
-        id: 71,
-      },
-      {
-        name: 'Almoço',
-        id: 72,
-      },
-      {
-        name: 'Lanche',
-        id: 73,
-      },
-      {
-        name: 'Jantar',
-        id: 74,
-      },
-    ],
-  },
-  {
-    name: 'Domingo',
-    id: 8,
-    icon: icon, // Make sure the icon const is set, or you can remove this
-    children: [
-      {
-        name: 'Pequeno Almoço',
-        id: 81,
-      },
-      {
-        name: 'Almoço',
-        id: 82,
-      },
-      {
-        name: 'Lanche',
-        id: 83,
-      },
-      {
-        name: 'Jantar',
-        id: 84,
+        name: 'Ceia',
+        id: 35,
       },
     ],
   },
@@ -234,15 +260,16 @@ class MedicamentoAddUtenteScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      nr_processo: this.props.navigation.state.params.nr_processo,
       nome:'',
-      preco:'',
-      lab:'',
-      uni:'',
       dosagem:'',
       qt:'',
+      data_inicio:'',
+      data_fim:'',
       selectedItems: [],
       medicamentos: [],
-      medicamentoSel:''
+      medicamentoSel:'',
+      medicamentoID: ''
     }
   }
 
@@ -252,6 +279,30 @@ class MedicamentoAddUtenteScreen extends Component {
 
   editMedicamento = () => {
     //falta rota
+  }
+
+  handleSubmit= () => {
+    axios.post(localhost+"/api/slots/slot",{
+      med: this.state.medicamentoID,
+      nr_utente: this.state.nr_processo,
+      data_inicio: this.state.data_inicio,
+      data_fim: this.state.data_fim,
+    })
+      .then(() =>{
+                this.props.navigation.push("Lista de Medicamentos")
+      })
+      .catch(() => alert("Erro na adição de medicamento"))
+
+    axios.post(localhost+"/api/slots/horario",{
+      qt: this.state.qt,
+      med: this.state.medicamentoID,
+      nr_utente: this.state.nr_processo,
+      idHorario: this.state.selectedItems //array ids
+    })
+      .then(() =>{
+                this.props.navigation.push("Lista de Medicamentos")
+      })
+      .catch(() => alert("Erro na adição de medicamento"))
   }
 
   getMedicamentos= () =>{
@@ -300,23 +351,23 @@ class MedicamentoAddUtenteScreen extends Component {
           <View style={styles.item}>
             <DatePicker
                 style={{width: 200}}
-                date={this.state.data_nascimento}
+                date={this.state.data_inicio}
                 mode="date"
                 format="YYYY-MM-DD"
                 confirmBtnText="Confirmar"
                 cancelBtnText="Cancelar"
                 onPressDate
-                onDateChange={(date) => {this.setState({data_nascimento: date})}}
+                onDateChange={(date) => {this.setState({data_inicio: date})}}
             />
             <DatePicker
                 style={{width: 200}}
-                date={this.state.data_nascimento}
+                date={this.state.data_fim}
                 mode="date"
                 format="YYYY-MM-DD"
                 confirmBtnText="Confirmar"
                 cancelBtnText="Cancelar"
                 onPressDate
-                onDateChange={(date) => {this.setState({data_nascimento: date})}}
+                onDateChange={(date) => {this.setState({data_fim: date})}}
             />
           </View>
 
@@ -360,9 +411,11 @@ class MedicamentoAddUtenteScreen extends Component {
             onSelectedItemsChange={this.onSelectedItemsChange}
             selectedItems={this.state.selectedItems}
           />
-      </View>
+        </View>
 
-          </View>
+        <Button onPress={this.handleSubmit} title="Adicionar" />
+
+      </View>
            
         
     )
