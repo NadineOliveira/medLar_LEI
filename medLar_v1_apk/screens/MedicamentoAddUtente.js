@@ -8,7 +8,7 @@ import {
   TouchableHighlight,
   Alert
 } from "react-native";
-import { Text, Divider,CheckBox, SearchBar, Input , ListItem, Button } from 'react-native-elements'
+import { Text, Divider,CheckBox, SearchBar, Input , ListItem, Button, Overlay } from 'react-native-elements'
 import axios from "axios";
 import DatePicker from 'react-native-datepicker'
 import { FloatingAction } from "react-native-floating-action";
@@ -259,29 +259,43 @@ class MedicamentoAddUtenteScreen extends Component {
   };
   constructor(props) {
     super(props);
+
     this.state = {
       nr_processo: this.props.navigation.state.params.nr_processo,
       nome:'',
       dosagem:'',
-      qt:'',
-      data_inicio:'',
-      data_fim:'',
+      selected: '',
+      quant: '',
+      lenghtSelectedItems: 0,
+      qt: [],
+      data_inicio: '',
+      data_fim: '',
       selectedItems: [],
       medicamentos: [],
       medicamentoSel:'',
-      medicamentoID: ''
+      medicamentoID: '',
+      isVisible: false
     }
   }
 
   componentWillMount(){
     this.getMedicamentos();
-  }
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
 
-  editMedicamento = () => {
-    //falta rota
+    today =  yyyy+ '-' + mm + '-' + dd;
+    this.setState({data_fim: today, data_inicio:today})
   }
 
   handleSubmit= () => {
+    var quantidades = []
+    for(i in this.state.qt) {
+      var id = this.state.qt[i].id
+      if(this.state.selectedItems.includes(id))
+        quantidades.push(this.state.qt[i])
+    }
     axios.post(localhost+"/api/slots/slot",{
       med: this.state.medicamentoID,
       nr_utente: this.state.nr_processo,
@@ -294,10 +308,9 @@ class MedicamentoAddUtenteScreen extends Component {
       .catch(() => alert("Erro na adição de medicamento"))
 
     axios.post(localhost+"/api/slots/horario",{
-      qt: this.state.qt,
+      qt: quantidades,
       med: this.state.medicamentoID,
       nr_utente: this.state.nr_processo,
-      idHorario: this.state.selectedItems //array ids
     })
       .then(() =>{
                 this.props.navigation.push("Lista de Medicamentos")
@@ -312,15 +325,29 @@ class MedicamentoAddUtenteScreen extends Component {
           return <Picker.Item key={med.id_med} value={med.nome} label={med.nome} />
         });
         this.setState({medicamentos: medicamentos })
-        this.setState({medicamentoSel: this.state.medicamentos[0].key })
+        this.setState({medicamentoID: this.state.medicamentos[0].key })
+        this.setState({medicamentoSel: this.state.medicamentos[0].value })
       })
       .catch(error => this.setState({error: error}))
   }
 
-  onSelectedItemsChange = selectedItems => {
-    alert(JSON.stringify(selectedItems))
+  onSelectedItemsChange = (selectedItems,index) => {
+    var lengthOld = this.state.lenghtSelectedItems
+    this.setState({lastIndex: selectedItems[selectedItems.length-1]}) 
+    
+    if(lengthOld < selectedItems.length)
+      this.setState({isVisible: true, lenghtSelectedItems: selectedItems.length})
+    else
+      this.setState({lenghtSelectedItems: this.state.lenghtSelectedItems-1})
+
     this.setState({ selectedItems: selectedItems });
   };
+
+  setQuantidades = () => {
+    var qts = this.state.qt
+    qts.push({'id': this.state.lastIndex,'val': this.state.quant})
+    this.setState({qt: qts, quant: '', isVisible: false})
+  }
 
   render () {
     
@@ -371,28 +398,17 @@ class MedicamentoAddUtenteScreen extends Component {
             />
           </View>
 
-          <View style={styles.item}>
-            <Text style={styles.text}>
-              Quantidade: 
-            </Text>
+          <View >
             <Text style={styles.text}>
               Forma: 
             </Text>
-          </View>
-
-          <View style={styles.item}>
-            <TextInput
-                  style={styles.input}
-                  placeholder="Escreva aqui ..."
-                  value={this.state.qt}
-                  onChangeText={(val) => {this.setState({qt: val})}}
-                />
             <Picker
               selectedValue={this.state.forma}
               style={styles.input}
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({dosagem: itemValue})
               }>
+              <Picker.Item label="comprimidos" value="comp" />
               <Picker.Item label="miligramas" value="mg" />
               <Picker.Item label="mililitros" value="ml" />
               <Picker.Item label="Gotas" value="gotas" />
@@ -408,12 +424,29 @@ class MedicamentoAddUtenteScreen extends Component {
             selectText="Periodicidade"
             showDropDowns={true}
             readOnlyHeadings={true}
-            onSelectedItemsChange={this.onSelectedItemsChange}
+            onSelectedItemsChange={(val,index) => this.onSelectedItemsChange(val,index)}
             selectedItems={this.state.selectedItems}
           />
         </View>
 
         <Button onPress={this.handleSubmit} title="Adicionar" />
+        
+        <Overlay
+          isVisible={this.state.isVisible}
+          height={150}
+          width={250}
+        >
+          <View>
+            <Text style={styles.text}>Quantidade</Text>
+            <TextInput
+                  style={styles.input}
+                  placeholder="Escreva aqui ..."
+                  value={this.state.quant}
+                  onChangeText={(val) => this.setState({quant: val})}//guardaqt(val,uniquekey)
+                />
+            <Button title="Confirmar" onPress={() => this.setQuantidades()} />
+          </View>
+        </Overlay>
 
       </View>
            

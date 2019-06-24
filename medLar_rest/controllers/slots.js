@@ -53,13 +53,28 @@ module.exports.getUtentesByMedicamento = async function(idMed){
     return result;
 }
 
-module.exports.addSlot = async function(med, nr_utente, data_inicio, data_fim, quantidade) {
+module.exports.addSlot = async function(med, nr_utente, data_inicio, data_fim) {
     var result;
     await Slot.create({
         med: med,
         nr_utente: nr_utente,
         data_inicio: data_inicio,
         data_fim: data_fim
+    }).then( value => {
+                result = value;
+    }).catch(err => {
+        result = err
+    });
+    return result;
+}
+module.exports.addSlot_Horario = async function(qt,med, nr_utente, idHorario) {
+    var result;
+    await SlotHorario.create({
+        quantidade: qt,
+        Slot_med: med,
+        Slot_utente: nr_utente,
+        Horario_idHorario: idHorario,
+        estado: 0
     }).then( value => {
                 result = value;
     }).catch(err => {

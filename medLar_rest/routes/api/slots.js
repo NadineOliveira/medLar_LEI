@@ -53,4 +53,19 @@ router.post('/esvaziar',passport.authenticate('jwt',{session: false}), async (re
     res.status(200).send(horarios)
 })
 
+router.post('/slot',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
+    var add1 = await SlotsController.addSlot(req.body.med, req.body.nr_utente, req.body.data_inicio, req.body.data_fim);
+    res.status(200).send(add1);
+})
+
+router.post('/horario',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
+    var add2 = "Erro";
+    for(i in req.body.qt){
+        console.log(JSON.stringify(req.body.qt[i]))
+        add2 = await SlotsController.addSlot_Horario(req.body.qt[i].val,req.body.med, req.body.nr_utente, req.body.qt[i].id);
+    }
+    res.status(200).send(add2);
+})
+
+
 module.exports = router;

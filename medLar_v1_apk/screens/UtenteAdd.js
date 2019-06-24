@@ -30,14 +30,15 @@ const styles = StyleSheet.create({
     paddingTop: 25,
   },
   input: {
-    margin: 15,
+    margin: 5,
     height: 40,
     borderColor: '#808080',
-    width:300,
+    width:200,
     borderWidth: 1,
     borderStyle: "solid",
-    borderRadius: 20
- },TouchableOpacityStyle: {
+    borderRadius: 15
+ },
+ TouchableOpacityStyle: {
   position: 'absolute',
   marginTop: 15,
   width: 50,
@@ -142,19 +143,35 @@ class UtenteAddScreen extends Component {
                   />
           }
           <View style={{flexDirection: 'column', display: 'flex'}}>
-            <View style={{flexDirection: 'row', display: 'flex'}}>
+            <View style={{flexDirection: 'row', display: 'flex', justifyContent: 'space-between'}}>
               <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>Nome: </Text>
               <TextInput
-                style={styles.input}
+                style={{
+                  marginTop: 5,
+                  marginHorizontal: 15,
+                  height: 30,
+                  borderColor: '#808080',
+                  width:200,
+                  borderWidth: 1,
+                  borderStyle: "solid",
+                  borderRadius: 15}}
                 placeholder="Escreva aqui ..."
                 value={this.state.nome}
                 onChangeText={(val) => {this.setState({nome: val})}}
               />
             </View>
-            <View style={{flexDirection: 'row', display: 'flex'}}>
+            <View style={{flexDirection: 'row', display: 'flex', justifyContent: 'space-between'}}>
               <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>Apelido: </Text>
-              <Input
-                style={{marginRight: 20}}
+              <TextInput
+                style={{
+                  marginTop: 5,
+                  marginHorizontal: 15,
+                  height: 30,
+                  borderColor: '#808080',
+                  width:200,
+                  borderWidth: 1,
+                  borderStyle: "solid",
+                  borderRadius: 15}}
                 placeholder="Escreva aqui ..."
                 value={this.state.apelido}
                 onChangeText={(val) => {this.setState({apelido: val})}}
@@ -163,7 +180,7 @@ class UtenteAddScreen extends Component {
           </View>
         </View>
         
-        <View style={{flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 10 }}>
+        <View style={{flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 5 }}>
           <Text style={{fontSize: 20,fontWeight: '300'}}>Género</Text>
           <Text style={{fontSize: 20,fontWeight: '300'}}>Data Nascimento</Text>
         </View>
@@ -196,81 +213,152 @@ class UtenteAddScreen extends Component {
           /></View>
         </View>
         <Text h4>Contacto</Text>
-        <View style={{flexDirection: 'row', display: 'flex'}}>
+        <View style={{flexDirection: 'row', display: 'flex', justifyContent: 'space-between'}}>
           <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>
             Nº de Telemovel: 
           </Text>
-          <Input
+          <TextInput
+            style={{marginTop: 5,
+              marginHorizontal: 15,
+              height: 30,
+              borderColor: '#808080',
+              width:200,
+              borderWidth: 1,
+              borderStyle: "solid",
+              borderRadius: 15}}
             placeholder="Escreva aqui ..."
             value={this.state.contacto}
             onChangeText={(val) => {this.setState({contacto: val})}}
           />
         </View>
-        <View style={{flexDirection: 'row', display: 'flex'}}>
+        <View style={{flexDirection: 'row', display: 'flex', justifyContent: 'space-between'}}>
           <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>
             Encarregado: 
           </Text>
-          <Input
+          <TextInput
+            style={{
+              marginTop: 5,
+              marginHorizontal: 15,
+              height: 30,
+              borderColor: '#808080',
+              width:200,
+              borderWidth: 1,
+              borderStyle: "solid",
+              borderRadius: 15}}
             placeholder="Escreva aqui ..."
             value={this.state.encarregado}
             onChangeText={(val) => {this.setState({encarregado: val})}}
           />
         </View>
-        <View style={{flexDirection: 'row', display: 'flex'}}>
+        <View style={{flexDirection: 'row', display: 'flex', justifyContent: 'space-between'}}>
           <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>
             Parentesco: 
           </Text>
-          <Input
+          <TextInput
+            style={{
+              marginTop: 5,
+              marginHorizontal: 15,
+              height: 30,
+              borderColor: '#808080',
+              width:200,
+              borderWidth: 1,
+              borderStyle: "solid",
+              borderRadius: 15}}
             placeholder="Escreva aqui ..."
             value={this.state.parentesco}
             onChangeText={(val) => {this.setState({parentesco: val})}}
           />
         </View>
-        <View style={{flexDirection: 'row', display: 'flex'}}>
+        <View style={{flexDirection: 'row', display: 'flex', justifyContent: 'space-between'}}>
           <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>
             Telemovel Enc.: 
           </Text>
-          <Input
+          <TextInput
+            style={{
+              marginTop: 5,
+              marginHorizontal: 15,
+              height: 30,
+              borderColor: '#808080',
+              width:200,
+              borderWidth: 1,
+              borderStyle: "solid",
+              borderRadius: 15}}
             placeholder="Escreva aqui ..."
             value={this.state.contacto_enc}
             onChangeText={(val) => {this.setState({contacto_enc: val})}}
           />
         </View>
-        <View style={{flexDirection: 'row', display: 'flex'}}>
+        <View style={{flexDirection: 'row', display: 'flex', justifyContent: 'space-between'}}>
           <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>
             Rua: 
           </Text>
-          <Input
+          <TextInput
+            style={{
+              marginTop: 5,
+              marginHorizontal: 15,
+              height: 30,
+              borderColor: '#808080',
+              width:200,
+              borderWidth: 1,
+              borderStyle: "solid",
+              borderRadius: 15}}
             placeholder="Escreva aqui ..."
             value={this.state.rua}
             onChangeText={(val) => {this.setState({rua: val})}}
           />
         </View>
-        <View style={{flexDirection: 'row', display: 'flex'}}>
+        <View style={{flexDirection: 'row', display: 'flex', justifyContent: 'space-between'}}>
           <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>
             Localidade: 
           </Text>
-          <Input
+          <TextInput
+            style={{
+              marginTop: 5,
+              marginHorizontal: 15,
+              height: 30,
+              borderColor: '#808080',
+              width:200,
+              borderWidth: 1,
+              borderStyle: "solid",
+              borderRadius: 15}}
             placeholder="Escreva aqui ..."
             value={this.state.localidade}
             onChangeText={(val) => {this.setState({localidade: val})}}
           />
         </View>
-        <View style={{flexDirection: 'row', display: 'flex'}}>
+        <View style={{flexDirection: 'row', display: 'flex', justifyContent: 'space-between'}}>
           <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>
             Código Postal: 
           </Text>
-          <Input
+          <TextInput
+            style={{
+              marginTop: 5,
+              marginHorizontal: 15,
+              height: 30,
+              borderColor: '#808080',
+              width:200,
+              borderWidth: 1,
+              borderStyle: "solid",
+              borderRadius: 15}}
             placeholder="Escreva aqui ..."
             value={this.state.codigo_postal}
             onChangeText={(val) => {this.setState({codigo_postal: val})}}
           />
         </View>
-        <View style={{flexDirection: 'row', display: 'flex'}}>
+        <View style={{flexDirection: 'row', display: 'flex', justifyContent: 'space-between'}}>
           <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>
             Cidade: 
           </Text>
-          <Input
+          <TextInput
+            style={{
+              marginTop: 5,
+              marginHorizontal: 15,
+              height: 30,
+              borderColor: '#808080',
+              width:200,
+              borderWidth: 1,
+              borderStyle: "solid",
+              borderRadius: 15}}
             placeholder="Escreva aqui ..."
             value={this.state.cidade}
             onChangeText={(val) => {this.setState({cidade: val})}}

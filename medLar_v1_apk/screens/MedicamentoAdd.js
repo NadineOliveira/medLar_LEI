@@ -200,7 +200,7 @@ class MedicamentoAddScreen extends Component {
           <View>
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={()=>this.addUtente()}
+            onPress={()=>this.addMedicamento()}
             style={styles.TouchableOpacityStyle}>
             <Image
                 source={
