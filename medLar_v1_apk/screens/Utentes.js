@@ -34,7 +34,8 @@ class UtentesScreen extends Component {
       search: '',
       utentes: [],
       utentesOriginal: [],
-      error: null
+      error: null,
+      update: false
     }
     this.getUsers = this.getUsers.bind(this);
   }
