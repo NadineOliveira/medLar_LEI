@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import {
   View,
   TouchableOpacity,
+  Modal,
   StyleSheet,
-  ActivityIndicator, 
-  ScrollView,
-  Image,
-  KeyboardAvoidingView,
-  Picker
+  Picker,
+  TouchableHighlight,
+  Alert
 } from "react-native";
 import { Text, Divider,CheckBox, SearchBar, Input , ListItem, Button } from 'react-native-elements'
 import axios from "axios";
@@ -15,6 +14,9 @@ import DatePicker from 'react-native-datepicker'
 import { FloatingAction } from "react-native-floating-action";
 import { TextInput } from "react-native-gesture-handler";
 import NestedListview, {NestedRow} from 'react-native-nested-listview'
+import SectionedMultiSelect from 'react-native-sectioned-multi-select';
+const icon = require('../assets/images/add.png');
+
 
 
 const host = require("../serverAddress")
@@ -61,8 +63,169 @@ const styles = StyleSheet.create({
 },
 })
 
-const data = [{title: 'Pequeno Almoço'},{title: 'Almoço'}, {title: 'Jantar',items: [{title: 'Almoço'}, {title: 'Jantar'}]}]
-
+const items = [
+  {
+    name: 'Segunda-Feira',
+    id: 2,
+    icon: icon, // Make sure the icon const is set, or you can remove this
+    children: [
+      {
+        name: 'Pequeno Almoço',
+        id: 21,
+      },
+      {
+        name: 'Almoço',
+        id: 22,
+      },
+      {
+        name: 'Lanche',
+        id: 23,
+      },
+      {
+        name: 'Jantar',
+        id: 24,
+      },
+    ],
+  },
+  {
+    name: 'Terça-Feira',
+    id: 3,
+    icon: icon, // Make sure the icon const is set, or you can remove this
+    children: [
+      {
+        name: 'Pequeno Almoço',
+        id: 31,
+      },
+      {
+        name: 'Almoço',
+        id: 32,
+      },
+      {
+        name: 'Lanche',
+        id: 33,
+      },
+      {
+        name: 'Jantar',
+        id: 34,
+      },
+    ],
+  },
+  {
+    name: 'Quarta-Feira',
+    id: 4,
+    icon: icon, // Make sure the icon const is set, or you can remove this
+    children: [
+      {
+        name: 'Pequeno Almoço',
+        id: 41,
+      },
+      {
+        name: 'Almoço',
+        id: 42,
+      },
+      {
+        name: 'Lanche',
+        id: 43,
+      },
+      {
+        name: 'Jantar',
+        id: 44,
+      },
+    ],
+  },
+  {
+    name: 'Quinta-Feira',
+    id: 5,
+    icon: icon, // Make sure the icon const is set, or you can remove this
+    children: [
+      {
+        name: 'Pequeno Almoço',
+        id: 51,
+      },
+      {
+        name: 'Almoço',
+        id: 52,
+      },
+      {
+        name: 'Lanche',
+        id: 53,
+      },
+      {
+        name: 'Jantar',
+        id: 54,
+      },
+    ],
+  },
+  {
+    name: 'Sexta-Feira',
+    id: 6,
+    icon: icon, // Make sure the icon const is set, or you can remove this
+    children: [
+      {
+        name: 'Pequeno Almoço',
+        id: 61,
+      },
+      {
+        name: 'Almoço',
+        id: 62,
+      },
+      {
+        name: 'Lanche',
+        id: 63,
+      },
+      {
+        name: 'Jantar',
+        id: 64,
+      },
+    ],
+  },
+  {
+    name: 'Sabado',
+    id: 7,
+    icon: icon, // Make sure the icon const is set, or you can remove this
+    children: [
+      {
+        name: 'Pequeno Almoço',
+        id: 71,
+      },
+      {
+        name: 'Almoço',
+        id: 72,
+      },
+      {
+        name: 'Lanche',
+        id: 73,
+      },
+      {
+        name: 'Jantar',
+        id: 74,
+      },
+    ],
+  },
+  {
+    name: 'Domingo',
+    id: 8,
+    icon: icon, // Make sure the icon const is set, or you can remove this
+    children: [
+      {
+        name: 'Pequeno Almoço',
+        id: 81,
+      },
+      {
+        name: 'Almoço',
+        id: 82,
+      },
+      {
+        name: 'Lanche',
+        id: 83,
+      },
+      {
+        name: 'Jantar',
+        id: 84,
+      },
+    ],
+  },
+];
 
 class MedicamentoAddUtenteScreen extends Component {
   static navigationOptions = {
@@ -77,42 +240,36 @@ class MedicamentoAddUtenteScreen extends Component {
       uni:'',
       dosagem:'',
       qt:'',
-      showP: false,
-      segunda:false, terca:false,quarta:false,quinta:false,sexta:false,sabado:false,domingo:false,
-      showA: false,
-      segundaA:false, tercaA:false,quartaA:false,quintaA:false,sextaA:false,sabadoA:false,domingoA:false,
-      showJ: false,
-      segundaJ:false, tercaJ:false,quartaJ:false,quintaJ:false,sextaJ:false,sabadoJ:false,domingoJ:false
-
+      selectedItems: [],
+      medicamentos: [],
+      medicamentoSel:''
     }
   }
 
-  ShowHideComponent = () => {
-    if (this.state.showP == true) {
-      this.setState({ showP: false });
-    } else {
-      this.setState({ showP: true });
-    }
-  };
-  ShowHideComponentA = () => {
-    if (this.state.showA == true) {
-      this.setState({ showA: false });
-    } else {
-      this.setState({ showA: true });
-    }
-  };
-  ShowHideComponentJ = () => {
-    if (this.state.showJ == true) {
-      this.setState({ showJ: false });
-    } else {
-      this.setState({ showJ: true });
-    }
-  };
+  componentWillMount(){
+    this.getMedicamentos();
+  }
 
   editMedicamento = () => {
-      
     //falta rota
   }
+
+  getMedicamentos= () =>{
+    axios.get(localhost+"/api/medicamentos/")
+      .then(res => {
+        const medicamentos = res.data.map( med => {
+          return <Picker.Item key={med.id_med} value={med.nome} label={med.nome} />
+        });
+        this.setState({medicamentos: medicamentos })
+        this.setState({medicamentoSel: this.state.medicamentos[0].key })
+      })
+      .catch(error => this.setState({error: error}))
+  }
+
+  onSelectedItemsChange = selectedItems => {
+    alert(JSON.stringify(selectedItems))
+    this.setState({ selectedItems: selectedItems });
+  };
 
   render () {
     
@@ -121,12 +278,15 @@ class MedicamentoAddUtenteScreen extends Component {
           <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>
             Nome do medicamento: 
           </Text>
-          <TextInput
-                style={styles.inputBig}
-                placeholder="Escreva aqui ..."
-                value={this.state.nome}
-                onChangeText={(val) => {this.setState({nome: val})}}
-          />
+          <Picker
+              selectedValue={this.state.medicamentoSel}
+              style={styles.input}
+              onValueChange={(itemValue, itemIndex) =>
+                this.setState({medicamentoSel: itemValue,
+                              medicamentoID: this.state.medicamentos[itemIndex].key})
+              }>
+              {this.state.medicamentos}
+            </Picker>
 
           <View style={styles.item}>
             <Text style={styles.text}>
@@ -187,20 +347,21 @@ class MedicamentoAddUtenteScreen extends Component {
               <Picker.Item label="Gotas" value="gotas" />
             </Picker>
           </View>
-              
-          <NestedListview
-            data={data}
-            getChildrenName={(node) => 'items'}
-            onNodePressed={(node) => alert('Secalhar é fazer um form com as checkbox')}
-            renderNode={(node, level) => (
-              <NestedRow
-                level={level}
-                style={styles.row}
-              >
-                <Text>{node.title}</Text>
-              </NestedRow>
-            )}
+
+        <View>
+          <SectionedMultiSelect
+            items={items}
+            uniqueKey="id"
+            subKey="children"
+            iconKey="icon"
+            selectText="Periodicidade"
+            showDropDowns={true}
+            readOnlyHeadings={true}
+            onSelectedItemsChange={this.onSelectedItemsChange}
+            selectedItems={this.state.selectedItems}
           />
+      </View>
+
           </View>
            
         
