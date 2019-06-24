@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require("passport")
 var SlotsController = require('../../controllers/slots')
+var MedicamentosController = require('../../controllers/medicamentos')
 
 // Slots Route
 router.get('/',passport.authenticate('jwtAdmin',{session: false}), async (req,res,next) => {
@@ -44,8 +45,11 @@ router.get('/:mid/horarios/:uid',passport.authenticate('jwt',{session: false}), 
 
 
 router.post('/repor',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
-    var horarios = await SlotsController.updateSlotHorario(req.body.med,req.body.utente,req.body.horario,1);
-    res.status(200).send(horarios)
+    var medicamento = await MedicamentosController.getMedicamentoById(req.body.med)
+    if(medicamento.quantidade >= req.body.quantidade) {
+        var horarios = await SlotsController.updateSlotHorario(req.body.med,req.body.utente,req.body.horario,1);
+        res.status(200).send(horarios)
+    } else res.status(500).send({Message: 'Quantidade indisponivel'})
 })
 
 router.post('/esvaziar',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
