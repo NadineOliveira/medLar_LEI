@@ -148,13 +148,14 @@ class UtenteAddScreen extends Component {
               <TextInput
                 style={{
                   marginTop: 5,
-                  marginHorizontal: 15,
+                  marginHorizontal: 5,
                   height: 30,
                   borderColor: '#808080',
                   width:200,
                   borderWidth: 1,
                   borderStyle: "solid",
-                  borderRadius: 15}}
+                  borderRadius: 15,
+                  paddingHorizontal: 10,}}
                 placeholder="Escreva aqui ..."
                 value={this.state.nome}
                 onChangeText={(val) => {this.setState({nome: val})}}
@@ -165,13 +166,14 @@ class UtenteAddScreen extends Component {
               <TextInput
                 style={{
                   marginTop: 5,
-                  marginHorizontal: 15,
+                  marginHorizontal: 5,
                   height: 30,
                   borderColor: '#808080',
                   width:200,
                   borderWidth: 1,
                   borderStyle: "solid",
-                  borderRadius: 15}}
+                  borderRadius: 15,
+                  paddingHorizontal: 10,}}
                 placeholder="Escreva aqui ..."
                 value={this.state.apelido}
                 onChangeText={(val) => {this.setState({apelido: val})}}
@@ -225,7 +227,8 @@ class UtenteAddScreen extends Component {
               width:200,
               borderWidth: 1,
               borderStyle: "solid",
-              borderRadius: 15}}
+              borderRadius: 15,
+              paddingHorizontal: 10,}}
             placeholder="Escreva aqui ..."
             value={this.state.contacto}
             onChangeText={(val) => {this.setState({contacto: val})}}
@@ -244,7 +247,8 @@ class UtenteAddScreen extends Component {
               width:200,
               borderWidth: 1,
               borderStyle: "solid",
-              borderRadius: 15}}
+              borderRadius: 15,
+              paddingHorizontal: 10,}}
             placeholder="Escreva aqui ..."
             value={this.state.encarregado}
             onChangeText={(val) => {this.setState({encarregado: val})}}
@@ -263,7 +267,8 @@ class UtenteAddScreen extends Component {
               width:200,
               borderWidth: 1,
               borderStyle: "solid",
-              borderRadius: 15}}
+              borderRadius: 15,
+              paddingHorizontal: 10,}}
             placeholder="Escreva aqui ..."
             value={this.state.parentesco}
             onChangeText={(val) => {this.setState({parentesco: val})}}
@@ -282,7 +287,8 @@ class UtenteAddScreen extends Component {
               width:200,
               borderWidth: 1,
               borderStyle: "solid",
-              borderRadius: 15}}
+              borderRadius: 15,
+              paddingHorizontal: 10,}}
             placeholder="Escreva aqui ..."
             value={this.state.contacto_enc}
             onChangeText={(val) => {this.setState({contacto_enc: val})}}
@@ -301,7 +307,8 @@ class UtenteAddScreen extends Component {
               width:200,
               borderWidth: 1,
               borderStyle: "solid",
-              borderRadius: 15}}
+              borderRadius: 15,
+              paddingHorizontal: 10,}}
             placeholder="Escreva aqui ..."
             value={this.state.rua}
             onChangeText={(val) => {this.setState({rua: val})}}
@@ -320,7 +327,8 @@ class UtenteAddScreen extends Component {
               width:200,
               borderWidth: 1,
               borderStyle: "solid",
-              borderRadius: 15}}
+              borderRadius: 15,
+              paddingHorizontal: 10,}}
             placeholder="Escreva aqui ..."
             value={this.state.localidade}
             onChangeText={(val) => {this.setState({localidade: val})}}
@@ -339,7 +347,8 @@ class UtenteAddScreen extends Component {
               width:200,
               borderWidth: 1,
               borderStyle: "solid",
-              borderRadius: 15}}
+              borderRadius: 15,
+              paddingHorizontal: 10,}}
             placeholder="Escreva aqui ..."
             value={this.state.codigo_postal}
             onChangeText={(val) => {this.setState({codigo_postal: val})}}
@@ -358,7 +367,8 @@ class UtenteAddScreen extends Component {
               width:200,
               borderWidth: 1,
               borderStyle: "solid",
-              borderRadius: 15}}
+              borderRadius: 15,
+              paddingHorizontal: 10,}}
             placeholder="Escreva aqui ..."
             value={this.state.cidade}
             onChangeText={(val) => {this.setState({cidade: val})}}

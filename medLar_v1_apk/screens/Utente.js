@@ -90,7 +90,7 @@ class UtenteScreen extends Component {
   checkMedicamentoUtente = (node) =>{
     if(!node.horarios){
       if(node.estado === 0)
-        axios.post(localhost+'/api/slots/repor',{med: node.Slot_med, utente: node.Slot_utente, horario: node.idHorario})
+        axios.post(localhost+'/api/slots/repor',{med: node.Slot_med, utente: node.Slot_utente, horario: node.idHorario, quantidade: node.quantidade})
           .then(()=> {alert("Medicamento adicionado à caixa"); this.componentWillMount()})
           .catch(() => alert("Erro na adição de medicamento, tente novamente"))
       else
