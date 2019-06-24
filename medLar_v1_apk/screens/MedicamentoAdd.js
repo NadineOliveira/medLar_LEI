@@ -48,17 +48,29 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: "solid",
     borderRadius: 20
- },
- inputBig: {
-  margin: 5,
-  height: 30,
-  width: 300,
-  paddingHorizontal: 10,
-  borderColor: '#808080',
-  borderWidth: 1,
-  borderStyle: "solid",
-  borderRadius: 20
-},
+  },
+  inputBig: {
+    margin: 5,
+    height: 30,
+    width: 300,
+    paddingHorizontal: 10,
+    borderColor: '#808080',
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderRadius: 20
+  },
+  TouchableOpacityStyle: {
+    position: 'absolute',
+    marginTop: 10,
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 30,
+    elevation: 3,
+    backgroundColor: 'orange',
+    borderRadius: 25
+  },
 })
 
 class MedicamentoAddScreen extends Component {
@@ -100,8 +112,8 @@ class MedicamentoAddScreen extends Component {
   render () {
     
     return (
-        <ScrollView style={styles.container}>
-          <KeyboardAvoidingView behavior="padding" enabled>
+        <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
+          <ScrollView>
           <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>
             Nome do medicamento: 
           </Text>
@@ -186,18 +198,26 @@ class MedicamentoAddScreen extends Component {
 
           </View>
           <View>
-            <Button
-              color='orange'
-              title="Guardar"
-              onPress={()=> {
-                  this.addMedicamento();
-              }}
-            />
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={()=>this.addUtente()}
+            style={styles.TouchableOpacityStyle}>
+            <Image
+                source={
+                  require('../assets/images/save.png')
+                }
+                resizeMode='contain'
+                style={{
+                  flex: 1,
+                  height: 35,
+                  width: 35
+                }}
+              />
+          </TouchableOpacity>
           </View>
           <View style={{height: 75}}/>
-          </KeyboardAvoidingView>
           </ScrollView>
-        
+          </KeyboardAvoidingView>       
     )
   }
 }

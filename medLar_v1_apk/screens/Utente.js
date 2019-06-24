@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
 
   TouchableOpacityStyle: {
     position: 'absolute',
+    marginTop: 15,
     width: 50,
     height: 50,
     alignItems: 'center',
@@ -89,11 +90,11 @@ class UtenteScreen extends Component {
     if(!node.horarios){
       if(node.estado === 0)
         axios.post(localhost+'/api/slots/repor',{med: node.Slot_med, utente: node.Slot_utente, horario: node.idHorario})
-          .then(()=> {alert("Medicamento adicionado à caixa"); this.componentDidMount()})
+          .then(()=> {alert("Medicamento adicionado à caixa"); this.componentWillMount()})
           .catch(() => alert("Erro na adição de medicamento, tente novamente"))
       else
         axios.post(localhost+'/api/slots/esvaziar',{med: node.Slot_med, utente: node.Slot_utente, horario: node.idHorario})
-          .then(()=> {alert("Medicamento retirado da caixa");this.componentDidMount()})
+          .then(()=> {alert("Medicamento retirado da caixa"); this.componentWillMount()})
           .catch(() => alert("Erro na remoção de medicamento, tente novamente"))
     }
   }
@@ -120,19 +121,18 @@ class UtenteScreen extends Component {
              onPress={() => {this.checkMedicamentoUtente(item.med,item.nr_utente)}}
             />
   }
-  componentDidMount() {
+  componentWillMount() {
     this.getUtente(this.state.nr_processo)
     this.getMedUtente(this.state.nr_processo)
   }
+
   render () {
-    
-    const { utente } = this.props
     return (
     <View>
       {this.state.utente.genero === "M" ? (
         <ListItem
           title={`Sr. ${this.state.utente.nome} ${this.state.utente.apelido}`}
-          subtitle={this.state.utente.contacto}
+          subtitle={this.state.utente.faltam ? <Text>{'Em Falta: '+this.state.utente.faltam+' Medicamentos'}</Text>:<Text>Caixa Preenchida</Text> }
           leftAvatar={{source: require("../assets/images/maleIcon.png")}}
           rightIcon={<Text style={{color: 'green'}}>Editar</Text>} 
           button
@@ -141,7 +141,7 @@ class UtenteScreen extends Component {
       ) : (
         <ListItem
           title={`D. ${this.state.utente.nome} ${this.state.utente.apelido}`}
-          subtitle={this.state.utente.contacto}
+          subtitle={this.state.utente.faltam ? <Text>{'Em Falta: '+this.state.utente.faltam+' Medicamentos'}</Text>:<Text>Caixa Preenchida</Text> }
           leftAvatar={{source: require("../assets/images/femaleIcon.png")}}
           rightIcon={<Text style={{color: 'green'}}>Editar</Text>} 
           button

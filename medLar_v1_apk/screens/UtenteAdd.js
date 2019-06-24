@@ -8,7 +8,8 @@ import {
   ActivityIndicator, 
   ScrollView,
   Image,
-  TextInput
+  TextInput,
+  KeyboardAvoidingView
 } from "react-native";
 import { Text, Divider,CheckBox, SearchBar, Input , ListItem } from 'react-native-elements'
 import axios from "axios";
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
     borderRadius: 20
  },TouchableOpacityStyle: {
   position: 'absolute',
+  marginTop: 15,
   width: 50,
   height: 50,
   alignItems: 'center',
@@ -119,12 +121,13 @@ class UtenteAddScreen extends Component {
   render () {
     
     return (
-      <View style={{
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        margin: 10,
-      }}>
+      <KeyboardAvoidingView behavior="padding" enabled 
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+          margin: 10,
+        }}>
+          <ScrollView>
         <Text h3>Utente</Text>
         <View style={{flexDirection: 'row'}}>
           {
@@ -288,13 +291,12 @@ class UtenteAddScreen extends Component {
                   height: 40,
                   width: 40
                 }}
-                //You can use you project image Example below
-                //source={require('./images/float-add-icon.png')}
-                //style={styles.FloatingButtonStyle}
               />
           </TouchableOpacity>
         </View>
-      </View>
+        <View style={{height: 90}}/>
+      </ScrollView>
+      </KeyboardAvoidingView>
     )
   }
 }

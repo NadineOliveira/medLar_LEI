@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     paddingTop: 25,
   },TouchableOpacityStyleLeft: {
     position: 'absolute',
+    marginTop: 15,
     width: 50,
     height: 50,
     alignItems: 'center',
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
     borderRadius: 25
   },TouchableOpacityStyleRight: {
     position: 'absolute',
+    marginTop: 15,
     width: 50,
     height: 50,
     alignItems: 'center',
@@ -156,13 +158,13 @@ class UtenteEditScreen extends Component {
   render () {
     
     return (
-      <View style={{
-        flex: 1,
-        flexDirection: 'column',
-        margin: 10,
-      }}>
-        <ScrollView>
-        <KeyboardAvoidingView behavior="padding" enabled>
+        <KeyboardAvoidingView behavior="padding" enabled 
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+          margin: 10,
+        }}>
+          <ScrollView>
         <Text h3>Utente</Text>
         <View style={{flexDirection: 'row'}}>
           {
@@ -311,22 +313,20 @@ class UtenteEditScreen extends Component {
             onChangeText={(val) => {this.setState({cidade: val})}}
           />
         </View>
-        </KeyboardAvoidingView>
-        </ScrollView>
-         <View> 
+        <View> 
            <TouchableOpacity
             activeOpacity={0.7}
             onPress={()=>this.closeUtente()}
             style={styles.TouchableOpacityStyleLeft}>
             <Image
                 source={
-                  require('../assets/images/save.png')
+                  require('../assets/images/delete.png')
                 }
                 resizeMode='contain'
                 style={{
                   flex: 1,
-                  height: 40,
-                  width: 40
+                  height: 35,
+                  width: 35
                 }}
               />
           </TouchableOpacity>
@@ -341,8 +341,8 @@ class UtenteEditScreen extends Component {
                 resizeMode='contain'
                 style={{
                   flex: 1,
-                  height: 40,
-                  width: 40
+                  height: 35,
+                  width: 35
                 }}
                 //You can use you project image Example below
                 //source={require('./images/float-add-icon.png')}
@@ -350,7 +350,9 @@ class UtenteEditScreen extends Component {
               />
           </TouchableOpacity>
           </View>
-      </View>
+        <View style={{height: 90}}/>
+        </ScrollView>
+        </KeyboardAvoidingView>
     )
   }
 }

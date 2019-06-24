@@ -82,6 +82,19 @@ module.exports.getHorarioByUtenteMedicamento = async function(idUtente, idMed) {
 }
 
 
+module.exports.countMedicamentosFalta = async function(idUtente) {
+    var result = [];
+    await db.query(`select sum(slot_horario.quantidade) as faltam from horario 
+                    join slot_horario 
+                    on horario.idHorario = slot_horario.Horario_idHorario 
+                    where Slot_utente = :utente AND slot_horario.estado = 0`,
+    { replacements: {utente: idUtente}, type: db.QueryTypes.SELECT }
+    ).then(projects => {
+        result = projects;
+    }).catch( err => result=err)
+    return result;
+}
+
 module.exports.updateSlotHorario = async function(med, utente, horario, estado){
     var result;
     await SlotHorario.update(

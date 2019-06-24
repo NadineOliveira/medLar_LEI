@@ -2,16 +2,25 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var UtentesController = require('../../controllers/utentes')
+var SlotController = require('../../controllers/slots')
 
 // Utentes Router
 router.get('/',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     var uts = await UtentesController.getAllUtentes();
+    for(i in uts){
+        var count = await SlotController.countMedicamentosFalta(uts[i].nr_processo)
+        uts[i].faltam = count[0].faltam
+    }
     res.status(200).send(uts);
 })
 
 
 router.get('/ativos',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     var uts = await UtentesController.getUtentesByEstado(1);
+    for(i in uts){
+        var count = await SlotController.countMedicamentosFalta(uts[i].nr_processo)
+        uts[i].dataValues.faltam = count[0].faltam
+    }
     res.status(200).send(uts);
 })
 
@@ -22,6 +31,8 @@ router.get('/inativos',passport.authenticate('jwt',{session: false}), async (req
 
 router.get('/:uid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     var ut = await UtentesController.getUtenteById(req.params.uid);
+    var count = await SlotController.countMedicamentosFalta(req.params.uid)
+    ut.faltam = count[0].faltam
     res.status(200).send(ut);
 })
 

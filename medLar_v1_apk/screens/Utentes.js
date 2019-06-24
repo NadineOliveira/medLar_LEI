@@ -69,25 +69,26 @@ class UtentesScreen extends Component {
     if(item.genero === 'M') 
      return <ListItem
               title={`Sr. ${item.nome} ${item.apelido}`}
-              subtitle={item.contacto}
+              subtitle={item.faltam ? <Text>{'Em Falta: '+item.faltam+' Medicamentos'}</Text>:<Text>Caixa Preenchida</Text> }
               leftAvatar={{source: require("../assets/images/maleIcon.png")}}
-              rightIcon={<Text style={{color: 'orange'}}>Ver</Text>} 
+              rightIcon={item.faltam ? <Text style={{color: 'orange'}}>Ver</Text> : <Text style={{color: 'green'}}>Ver</Text>} 
               button
               onPress={() => {this.goToMedicamentosUtente(item.nr_processo)}}
             />
     else  
      return <ListItem
              title={`D. ${item.nome} ${item.apelido}`}
-             subtitle={item.contacto}
+             subtitle={item.faltam ? <Text>{'Em Falta: '+item.faltam+' Medicamentos'}</Text>:<Text>Caixa Preenchida</Text> }
              leftAvatar={{source: require("../assets/images/femaleIcon.png")}}
-             rightIcon={<Text style={{color: 'orange'}}>Ver</Text>} 
+             rightIcon={item.faltam ? <Text style={{color: 'orange'}}>Ver</Text> : <Text style={{color: 'green'}}>Ver</Text>} 
              button
              onPress={() => {this.goToMedicamentosUtente(item.nr_processo)}}
             />
   }
-  componentDidMount() {
+  componentWillMount() {
     this.getUsers()
   }
+
   render () {
     return (
     <ScrollView>
