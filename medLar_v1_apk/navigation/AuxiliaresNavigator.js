@@ -4,31 +4,30 @@ import {
     createStackNavigator,
 } from "react-navigation";
 
-import Medicamentos from "../screens/Medicamentos";
-
-import MedicamentoAdd from "../screens/MedicamentoAdd"
-import MedicamentoEdit from "../screens/MedicamentoEdit"
-
+import Auxiliares from '../screens/Admin/Auxiliares'
+import AuxiliarAdd from "../screens/Admin/AuxiliarAdd";
+import AuxiliarEdit from "../screens/Admin/AuxiliarEdit";
+import TarefaAdd from "../screens/Admin/TarefaAdd";
 import Icon from '@expo/vector-icons/Ionicons';
-  
 
-
-const MedicamentosStack = createStackNavigator({
-    MedicamentosDashNavigator: Medicamentos,
-    MedicamentoAdd: MedicamentoAdd,
-    MedicamentoEdit: MedicamentoEdit
+const AuxiliaresStack = createStackNavigator({
+    AuxiliaresDashNavigator: Auxiliares,
+    AuxiliaresDashNavigatorAdd: AuxiliarAdd,
+    AuxiliaresDashNavigatorEdit: AuxiliarEdit,
+    TarefaDashNavigatorAdd: TarefaAdd,
 }, {
-    initialRouteName: 'MedicamentosDashNavigator',
+    initialRouteName: 'AuxiliaresDashNavigator',
     navigationOptions: {
         drawerIcon: (
             <Image 
-                source={require('../assets/images/meds.png')}
+                source={require('../assets/images/utentes.png')}
                 style={{ height: 24, width: 24, marginLeft: 25}}
             />
       )},
     defaultNavigationOptions: ({ navigation }) => {
         return {
-          title: 'Lista de Medicamentos',
+          title: 'Lista de Auxiliares',
+    
           headerLeft: ( <
             Icon style = {
                 { paddingLeft: 10 }
@@ -46,4 +45,4 @@ const MedicamentosStack = createStackNavigator({
 
 
 
-export default MedicamentosStack;
+export default AuxiliaresStack;

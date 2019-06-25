@@ -287,6 +287,7 @@ class MedicamentoAddUtenteScreen extends Component {
 
     today =  yyyy+ '-' + mm + '-' + dd;
     this.setState({data_fim: today, data_inicio:today})
+
   }
 
   handleSubmit= () => {
@@ -341,6 +342,8 @@ class MedicamentoAddUtenteScreen extends Component {
       this.setState({lenghtSelectedItems: this.state.lenghtSelectedItems-1})
 
     this.setState({ selectedItems: selectedItems });
+
+    
   };
 
   setQuantidades = () => {

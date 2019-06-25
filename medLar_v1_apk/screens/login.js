@@ -12,6 +12,8 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import axios from "axios";
+import { StackActions, NavigationActions } from 'react-navigation';
+
 const host = require("../serverAddress")
 const localhost = host.host
 const styles = StyleSheet.create({
@@ -58,7 +60,10 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      token: ""
+      token: "",
+      nome: "",
+      apelido: "",
+      estado: "",
     };
     this.handleChangeUser = this.handleChangeUser.bind(this);
     this.handleChangePass = this.handleChangePass.bind(this);
@@ -76,6 +81,7 @@ class Login extends Component {
     }
   }
 
+
   handleChangeUser(event = {}) {
     this.setState({ username: event.nativeEvent.text });
   }
@@ -91,10 +97,29 @@ class Login extends Component {
     }).catch(err=> alert(err));
     if (res.data.token != undefined) {
       this.setState({
-        token: res.data.token
+        token: res.data.token,
+        nome: res.data.nome,
+        apelido: res.data.apelido,
+        estado: res.data.estado
       })
       await this.storeItem('token',res.data.token);
-      this.props.navigation.navigate("UtentesDashNavigator");
+
+      if(this.state.estado===0) alert("Utilizador inativo");
+
+      if(this.state.estado===2){
+        this.props.navigation.navigate("AdminScreen",{
+          nome: this.state.nome,
+          apelido: this.state.apelido,
+          estado:this.state.estado
+        });
+      }
+      if(this.state.estado===1){
+          this.props.navigation.navigate("UtentesScreen",{
+          nome: this.state.nome,
+          apelido: this.state.apelido,
+          estado:this.state.estado
+        });
+      }
     }
   }
 

@@ -10,6 +10,12 @@ router.get('/',passport.authenticate('jwtAdmin',{session: false}), async (req,re
     res.status(200).send(slots)
 })
 
+router.post('/slothorario',passport.authenticate('jwtAdmin',{session: false}), async (req,res,next) => {
+    console.log(JSON.stringify(req.body))
+    var slots = await SlotsController.getHorariosMed(req.body.utente,req.body.med,req.body.data_inicio,req.body.data_fim)
+    res.status(200).send(slots)
+})
+
 router.get('/medicamentos/:uid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     var meds = await SlotsController.getMedicamentosByUtente(req.params.uid);
     for(i in meds){

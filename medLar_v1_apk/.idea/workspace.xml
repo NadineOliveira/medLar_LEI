@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1fa34cc7-ae47-4fe3-8f8f-d16fc9c80e51" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Extra_Files/database.mwb" beforeDir="false" afterPath="$PROJECT_DIR$/../Extra_Files/database.mwb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Extra_Files/database.mwb.bak" beforeDir="false" afterPath="$PROJECT_DIR$/../Extra_Files/database.mwb.bak" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../medLar_rest/controllers/slots.js" beforeDir="false" afterPath="$PROJECT_DIR$/../medLar_rest/controllers/slots.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../medLar_rest/routes/api/slots.js" beforeDir="false" afterPath="$PROJECT_DIR$/../medLar_rest/routes/api/slots.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.expo/packager-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/packager-info.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.expo/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/MedicamentoAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/MedicamentoAdd.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigation/AppNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/AppNavigator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigation/MainTabNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/MainTabNavigator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigation/MedicamentosNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/MedicamentosNavigator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/MedicamentoAddUtente.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/MedicamentoAddUtente.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/serverAddress.js" beforeDir="false" afterPath="$PROJECT_DIR$/serverAddress.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,7 +26,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
+            <state relative-caret-position="1">
               <caret line="72" column="3" selection-start-line="72" selection-start-column="3" selection-end-line="72" selection-end-column="3" />
             </state>
           </provider>
@@ -64,6 +67,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="medLar_v1_apk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="medLar_v1_apk" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
@@ -86,18 +101,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="medLar_v1_apk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="medLar_v1_apk" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -146,7 +149,7 @@
       <window_info id="Build Variants" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="TODO" order="1" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="2" sideWeight="0.49733475" visible="true" weight="0.4821029" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="2" sideWeight="0.49733475" visible="true" weight="0.96644294" />
       <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.5010661" side_tool="true" weight="0.1744312" />
       <window_info anchor="bottom" id="CheckStyle" order="4" />
       <window_info anchor="bottom" id="Logcat" order="5" />
@@ -219,7 +222,7 @@
     <entry file="file://$PROJECT_DIR$/components/login.js" />
     <entry file="file://$PROJECT_DIR$/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
+        <state relative-caret-position="1">
           <caret line="72" column="3" selection-start-line="72" selection-start-column="3" selection-end-line="72" selection-end-column="3" />
         </state>
       </provider>

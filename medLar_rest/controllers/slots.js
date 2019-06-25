@@ -96,6 +96,21 @@ module.exports.getHorarioByUtenteMedicamento = async function(idUtente, idMed) {
     return result;
 }
 
+module.exports.getHorariosMed = async function(idUtente, idMed, datai, dataf) {
+    var result = [];
+    await db.query('select slot_horario.quantidade, slot_horario.idHorario from slot '+
+                'join slot_horario '+
+                'on slot_horario.med = slot.med AND slot_horario.nr_utente = slot.nr_utente '+
+                'where slot_horario.med = :med AND slot_horario.nr_utente = :utente and '+
+                'slot.data_inicio = :di and slot.data_fim = :df',
+    { replacements: {med: idMed, utente: idUtente, di:datai,  df: dataf}, type: db.QueryTypes.SELECT }
+    ).then(projects => {
+        result = projects;
+    }).catch( err => result=err)
+    console.log(result)
+    return result;
+}
+
 
 module.exports.countMedicamentosFalta = async function(idUtente) {
     var result = [];

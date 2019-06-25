@@ -37,14 +37,15 @@ router.get('/:tid',passport.authenticate('jwt',{session: false}), async (req,res
 })
 
 router.post('/',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
+    console.log(JSON.stringify(req.body))
     var nome = req.body.nome;
     var descricao = req.body.descricao;
     var data = req.body.data;
-    var estado = req.body.estado;
-    var auxiliar = req.user.id;
-    if(req.body.auxiliar && req.user.estado==2) auxiliar = req.body.auxiliar;
+    var estado = 0;
+    var auxiliar = req.body.nr_auxiliar;
 
     var tar = await TarefasController.addTarefa(nome,descricao,data,estado,auxiliar);
+    console.dir(tar)
     res.status(200).send(tar);
 })
 

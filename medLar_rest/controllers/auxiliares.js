@@ -26,7 +26,7 @@ module.exports.getAuxiliaresByEstado = async function(estado){
   return result;
 };  
 
-module.exports.addAuxiliar = async function(id,password,contacto,nome,apelido,
+module.exports.addAuxiliar = async function(password,contacto,nome,apelido,
   data_nascimento,rua,localidade,codigo_postal,cidade,estado){
     
   var hash = await bcrypt.hash(password, 10);
@@ -34,7 +34,6 @@ module.exports.addAuxiliar = async function(id,password,contacto,nome,apelido,
   var result;
 
   await Auxiliar.create({
-    id: id,
     password: hash,
     contacto: contacto,
     nome: nome, 
@@ -63,7 +62,7 @@ module.exports.mudarEstadoAuxiliarById = async function(id, estado){
     { where: { id: id } }
   )
     .then(()=>{
-      result = Utente.findOne({where: {id: id}})
+      result = Auxiliar.findOne({where: {id: id}})
     })
     .catch(err=> result = err)
   return result;
@@ -95,4 +94,49 @@ module.exports.validatePassword = async (id, password) => {
       throw new Error ("Invalid password")
   
   return auxiliar
+}
+
+module.exports.updateAuxiliar = async function(np, nome,apelido, password, data_nascimento, contacto, rua, localidade, codigo_postal, cidade, estado){
+  var result;
+
+  if(password!==''){
+    var hash = await bcrypt.hash(password, 10);
+
+    await Auxiliar.update({
+      nome: nome, 
+      apelido: apelido, 
+      password: hash,
+      data_nascimento: data_nascimento, 
+      contacto: contacto,
+      rua: rua, 
+      localidade: localidade,
+      codigo_postal: codigo_postal, 
+      cidade: cidade, 
+      estado: estado},{
+        where: {id: np}
+      })
+      .then(()=> {
+        result = Auxiliar.findOne({where: {id: np}})
+      })
+      .catch(err=> result = err)
+    }
+    else{
+      await Auxiliar.update({
+        nome: nome, 
+        apelido: apelido, 
+        data_nascimento: data_nascimento, 
+        contacto: contacto,
+        rua: rua, 
+        localidade: localidade,
+        codigo_postal: codigo_postal, 
+        cidade: cidade, 
+        estado: estado},{
+          where: {id: np}
+        })
+        .then(()=> {
+          result = Auxiliar.findOne({where: {id: np}})
+        })
+        .catch(err=> result = err)
+    }
+  return result;
 }

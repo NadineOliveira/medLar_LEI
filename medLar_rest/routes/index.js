@@ -16,6 +16,9 @@ router.post('/login', async (req,res,next) => {
                 const myuser = {id: user.id, password: user.password, estado: user.estado}
                 const token = jwt.sign({user: myuser}, 'MedLar_Lei2019')
                 req.user.token = token
+                req.user.nome = user.nome
+                req.user.apelido = user.apelido
+                req.user.estado = user.estado
                 req.session.token = token
 
                 res.status(200).send(req.user)

@@ -65,7 +65,7 @@ module.exports.addTarefa = async function(nome, descricao, data, estado, auxilia
       descricao: descricao, 
       data: data, 
       estado: estado,
-      auxiliar: auxiliar
+      nr_auxiliar: auxiliar
     }).then(tr => {
             result = tr;
     }).catch(err => {
