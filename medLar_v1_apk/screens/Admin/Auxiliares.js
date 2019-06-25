@@ -4,9 +4,9 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
-  ListView,
   FlatList,
-  ActivityIndicator, ScrollView, Image
+  RefreshControl,
+  ScrollView, Image
 } from "react-native";
 import { SearchBar , ListItem } from 'react-native-elements'
 import axios from "axios";
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
    },
    TouchableOpacityStyle: {
     position: 'absolute',
-    marginTop: 15,
+    marginTop: 10,
     width: 50,
     height: 50,
     alignItems: 'center',
@@ -56,7 +56,8 @@ class AuxiliaresScreen extends Component {
       auxiliars: [],
       auxiliarsOriginal: [],
       error: null,
-      update: false
+      update: false,
+      refreshing: false,
     }
     this.getUsers = this.getUsers.bind(this);
   }
@@ -74,7 +75,7 @@ class AuxiliaresScreen extends Component {
   getUsers = () =>{
     axios.get(localhost+"/api/auxiliares/ativos")
       .then(res => {
-        this.setState({auxiliars: res.data, auxiliarsOriginal: res.data})
+        this.setState({auxiliars: res.data, auxiliarsOriginal: res.data, refreshing:false})
       })
       .catch(error => this.setState({error: error}))
   }
@@ -83,6 +84,11 @@ class AuxiliaresScreen extends Component {
     this.props.navigation.push('AuxiliaresDashNavigatorEdit', {
       id: nr
     });
+  }
+
+  _onRefresh = () => {
+    this.setState({refreshing: true});
+    this.componentWillMount()
   }
 
   keyExtractor = (item, index) => index.toString()
@@ -103,8 +109,7 @@ class AuxiliaresScreen extends Component {
 
   render () {
     return (
-    <ScrollView>
-        <View>
+        <View><View>
             <SearchBar
                 placeholder="Escreva aqui..."
                 onChangeText={e => this.updateSearch(e)} 
@@ -112,12 +117,22 @@ class AuxiliaresScreen extends Component {
                 lightTheme
                 round
             />
+    <ScrollView
+        refreshControl={
+        <RefreshControl
+          refreshing={this.state.refreshing}
+          onRefresh={this._onRefresh}
+        />
+      }>
             <FlatList
                 keyExtractor={this.keyExtractor}
                 data={this.state.auxiliars}
                 renderItem={this.renderItem}
-            />
-                <TouchableOpacity
+                />
+            </ScrollView> 
+        </View>
+        <View>
+            <TouchableOpacity
                 activeOpacity={0.7}
                 onPress={()=>this.props.navigation.navigate("AuxiliaresDashNavigatorAdd", {
                     id: this.state.id
@@ -133,13 +148,10 @@ class AuxiliaresScreen extends Component {
                         height: 40,
                         width: 40
                     }}
-                    //You can use you project image Example below
-                    //source={require('./images/float-add-icon.png')}
-                    //style={styles.FloatingButtonStyle}
                     />
                 </TouchableOpacity>
         </View>
-      </ScrollView> 
+        </View>
     )
   }
 }

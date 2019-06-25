@@ -3,11 +3,7 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
-  ListView,
-  FlatList,
-  ActivityIndicator,
   Image,
-  BackHandler
 } from "react-native";
 import { SearchBar , ListItem, Text} from 'react-native-elements'
 import axios from "axios";

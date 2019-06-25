@@ -1,8 +1,0 @@
-.idea
-build
-
-node_modules/*
-.expo/*
-npm-debug.*
-
-/beta

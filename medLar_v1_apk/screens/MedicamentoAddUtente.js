@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import {
   View,
   TouchableOpacity,
-  Modal,
+  Image,
   StyleSheet,
   Picker,
-  TouchableHighlight,
-  Alert
 } from "react-native";
 import { Text, Divider,CheckBox, SearchBar, Input , ListItem, Button, Overlay } from 'react-native-elements'
 import axios from "axios";
@@ -58,6 +56,18 @@ const styles = StyleSheet.create({
   borderWidth: 1,
   borderStyle: "solid",
   borderRadius: 20
+},
+TouchableOpacityStyle: {
+  position: 'absolute',
+  marginTop: 15,
+  width: 50,
+  height: 50,
+  alignItems: 'center',
+  justifyContent: 'center',
+  left: 30,
+  elevation: 3,
+  backgroundColor: 'orange',
+  borderRadius: 25
 },
 })
 
@@ -314,6 +324,7 @@ class MedicamentoAddUtenteScreen extends Component {
       nr_utente: this.state.nr_processo,
     })
       .then(() =>{
+                alert("Medicamento adicionado à caixa")
                 this.props.navigation.push("Lista de Medicamentos")
       })
       .catch(() => alert("Erro na adição de medicamento"))
@@ -431,8 +442,27 @@ class MedicamentoAddUtenteScreen extends Component {
             selectedItems={this.state.selectedItems}
           />
         </View>
-
-        <Button onPress={this.handleSubmit} title="Adicionar" />
+        <View>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={()=>this.handleSubmit()}
+          style={styles.TouchableOpacityStyle}>
+          <Image
+              source={
+                require('../assets/images/addSimple.png')
+              }
+              resizeMode='contain'
+              style={{
+                flex: 1,
+                height: 40,
+                width: 40
+              }}
+              //You can use you project image Example below
+              //source={require('./images/float-add-icon.png')}
+              //style={styles.FloatingButtonStyle}
+            />
+        </TouchableOpacity>
+      </View>
         
         <Overlay
           isVisible={this.state.isVisible}
@@ -448,6 +478,7 @@ class MedicamentoAddUtenteScreen extends Component {
                   onChangeText={(val) => this.setState({quant: val})}//guardaqt(val,uniquekey)
                 />
             <Button title="Confirmar" onPress={() => this.setQuantidades()} />
+            
           </View>
         </Overlay>
 

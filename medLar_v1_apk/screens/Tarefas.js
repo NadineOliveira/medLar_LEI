@@ -4,9 +4,9 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
-  ListView,
   FlatList,
-  ActivityIndicator, ScrollView, Image
+  RefreshControl,
+  ScrollView, Image
 } from "react-native";
 import { SearchBar , ListItem } from 'react-native-elements'
 import axios from "axios";
@@ -35,6 +35,7 @@ class TarefasScreen extends Component {
       tarefas: [],
       tarefasOriginal: [],
       error: null,
+      refreshing: false
     }
     this.getTarefas = this.getTarefas.bind(this);
   }
@@ -52,7 +53,7 @@ class TarefasScreen extends Component {
   getTarefas = () =>{
     axios.get(localhost+"/api/tarefas/",)
       .then(res => {
-          this.setState({tarefas: res.data, tarefasOriginal: res.data})
+          this.setState({tarefas: res.data, tarefasOriginal: res.data, refreshing: false})
       })
       .catch(error => this.setState({error: error}))
   }
@@ -61,10 +62,15 @@ class TarefasScreen extends Component {
     axios.get(localhost+'/api/tarefas/concluir/'+id)
     .then(res => {
       alert("Tarefa concluida")
-      this.componentDidMount()
+      this.componentWillMount()
     })
   }
 
+  _onRefresh = () => {
+    this.setState({refreshing: true});
+    this.componentWillMount()
+  }
+  
   keyExtractor = (item, index) => index.toString()
   
   renderItem = ({ item }) => {
@@ -88,12 +94,17 @@ class TarefasScreen extends Component {
               onPress={() => {if(item.estado===0) this.concluirTarefa(item.id_Tarefa)}}
             />
   }
-  componentDidMount() {
+  componentWillMount() {
     this.getTarefas()
   }
   render () {
     return (
-    <ScrollView>
+      <ScrollView
+      refreshControl={
+      <RefreshControl
+        refreshing={this.state.refreshing}
+        onRefresh={this._onRefresh}
+      />}>
       <FlatList
         keyExtractor={this.keyExtractor}
         data={this.state.tarefas}

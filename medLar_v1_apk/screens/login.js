@@ -8,7 +8,8 @@ import {
   View,
   Button,
   Dimensions,
-  ImageBackground
+  ImageBackground,
+  Image
 } from "react-native";
 import { connect } from "react-redux";
 import axios from "axios";
@@ -54,6 +55,14 @@ const styles = StyleSheet.create({
 })
 
 class Login extends Component {
+  static navigationOptions = {
+    drawerIcon: (
+    <Image 
+        source={require('../assets/images/logout.png')}
+        style={{ height: 24, width: 24, marginLeft: 25}}
+    />
+)
+  };
   constructor(props) {
     super(props);
 

@@ -35,11 +35,11 @@ getUsername=async()=>{
 
 const CustomDrawerContentComponent = (props) => (
     <Container>
-        <Header style={{height: 250, backgroundColor: 'white'}}>
+        <Header style={{height: 250, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center'}}>
             <Body>
                 <Image 
                     style={{height: 150, width: 150, borderRadius: 75}}
-                    source={require('../assets/images/maleIcon.png')}
+                    source={require('../assets/images/robot-prod.png')}
                 />
                 <Text>{(props.navigation.state.params.nome) + " "+
                         (props.navigation.state.params.apelido)}</Text>

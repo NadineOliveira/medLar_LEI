@@ -4,9 +4,9 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
-  ListView,
+  RefreshControl,
   FlatList,
-  ActivityIndicator, ScrollView, Image
+  ScrollView, 
 } from "react-native";
 import { SearchBar , ListItem } from 'react-native-elements'
 import axios from "axios";
@@ -35,8 +35,11 @@ class UtentesScreen extends Component {
       utentes: [],
       utentesOriginal: [],
       error: null,
-      update: false
+      update: false,
+      refreshing: false,
     }
+
+   
     this.getUsers = this.getUsers.bind(this);
   }
 
@@ -53,7 +56,7 @@ class UtentesScreen extends Component {
   getUsers = () =>{
     axios.get(localhost+"/api/utentes/ativos")
       .then(res => {
-        this.setState({utentes: res.data, utentesOriginal: res.data})
+        this.setState({utentes: res.data, utentesOriginal: res.data, refreshing: false})
       })
       .catch(error => this.setState({error: error}))
   }
@@ -62,6 +65,11 @@ class UtentesScreen extends Component {
     this.props.navigation.push('UtenteDashNavigator', {
       nr_processo: nr
     });
+  }
+  
+  _onRefresh = () => {
+    this.setState({refreshing: true});
+    this.componentWillMount()
   }
 
   keyExtractor = (item, index) => index.toString()
@@ -92,7 +100,13 @@ class UtentesScreen extends Component {
 
   render () {
     return (
-    <ScrollView>
+    <ScrollView
+    refreshControl={
+      <RefreshControl
+        refreshing={this.state.refreshing}
+        onRefresh={this._onRefresh}
+      />
+    }>
       <SearchBar
         placeholder="Escreva aqui..."
         onChangeText={e => this.updateSearch(e)} 
