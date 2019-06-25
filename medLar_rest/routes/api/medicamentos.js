@@ -14,7 +14,7 @@ router.get('/',passport.authenticate('jwt',{session: false}), async (req,res,nex
 router.get('/:mid',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     if(req.query.qt!=null)
         var med = await MedicamentosController.addQuantidadeById(req.params.mid,req.query.qt)
-    else if(req.query.price!=null)
+    if(req.query.price!=null)
         var med = await MedicamentosController.updatePrecoById(req.params.mid, req.query.price)    
     else
         var med = await MedicamentosController.getMedicamentoById(req.params.mid)

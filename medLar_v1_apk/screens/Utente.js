@@ -90,11 +90,11 @@ class UtenteScreen extends Component {
   checkMedicamentoUtente = (node) =>{
     if(!node.horarios){
       if(node.estado === 0)
-        axios.post(localhost+'/api/slots/repor',{med: node.Slot_med, utente: node.Slot_utente, horario: node.idHorario, quantidade: node.quantidade})
+        axios.post(localhost+'/api/slots/repor',{med: node.med, utente: node.nr_utente, horario: node.idHorario, quantidade: node.quantidade})
           .then(()=> {alert("Medicamento adicionado à caixa"); this.componentWillMount()})
           .catch(() => alert("Erro na adição de medicamento, tente novamente"))
       else
-        axios.post(localhost+'/api/slots/esvaziar',{med: node.Slot_med, utente: node.Slot_utente, horario: node.idHorario})
+        axios.post(localhost+'/api/slots/esvaziar',{med: node.med, utente: node.nr_utente, horario: node.idHorario})
           .then(()=> {alert("Medicamento retirado da caixa"); this.componentWillMount()})
           .catch(() => alert("Erro na remoção de medicamento, tente novamente"))
     }
@@ -123,16 +123,8 @@ class UtenteScreen extends Component {
             />
   }
   componentWillMount() {
-    this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-      this.props.navigation.push('UtentesDashNavigator'); // works best when the goBack is async
-      return true;
-    });
     this.getUtente(this.state.nr_processo)
     this.getMedUtente(this.state.nr_processo)
-  }
-
-  componentWillUnmount() {
-    this.backHandler.remove();
   }
 
   render () {

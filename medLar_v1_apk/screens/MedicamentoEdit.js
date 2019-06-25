@@ -11,7 +11,7 @@ import {
   KeyboardAvoidingView,
   Picker
 } from "react-native";
-import { Text, Divider,CheckBox, SearchBar, Input , ListItem, Button } from 'react-native-elements'
+import { Text, Divider,CheckBox, SearchBar, Input , ListItem, Button, Icon  } from 'react-native-elements'
 import axios from "axios";
 import DatePicker from 'react-native-datepicker'
 import { FloatingAction } from "react-native-floating-action";
@@ -80,32 +80,34 @@ class MedicamentoAddScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nome:'',
-      preco:'',
-      lab:'',
-      uni:'',
-      dosagem:'',
-      qt:'',
-      formato: 'comp'
+      id_med: this.props.navigation.state.params.id_med,
+      medicamento: {},
+      qt: '',
+      preco: ''
     }
     this.addMedicamento = this.addMedicamento.bind(this);
+    this.getMedicamento = this.getMedicamento.bind(this);
+  }
+
+  getMedicamento = (nr) =>{
+    axios.get(localhost+"/api/medicamentos/"+nr)
+      .then(res => {
+        this.setState({medicamento: res.data, qt: ''+res.data.quantidade, preco: ''+res.data.preco})
+      })
+      .catch(error => this.setState({error: error}))
+  }
+  
+  componentWillMount() {
+    this.getMedicamento(this.state.id_med)
   }
 
   addMedicamento = () => {
-    axios.post(localhost+"/api/medicamentos/",{
-      nome: this.state.nome,
-      preco: this.state.preco,
-      lab: this.state.lab,
-      uni_emb: this.state.uni,
-      formato: this.state.formato,
-      dosagem: this.state.dosagem,
-      quantidade: this.state.qt
-    })
+    axios.get(localhost+"/api/medicamentos/"+this.state.id_med+'?qt='+this.state.qt+'&price='+this.state.preco)
       .then(() =>{
-                    alert("Medicamento Adicionado com sucesso")
+                    alert("Medicamento Atualizado com sucesso")
                     this.props.navigation.push("MedicamentosDashNavigator")
                   })
-      .catch(() => alert("Erro na adição de medicamento"))
+      .catch(() => alert("Erro na atualização de medicamento"))
     //falta rota
   }
 
@@ -118,10 +120,10 @@ class MedicamentoAddScreen extends Component {
             Nome do medicamento: 
           </Text>
           <TextInput
+                editable={false}
                 style={styles.inputBig}
                 placeholder="Escreva aqui ..."
-                value={this.state.nome}
-                onChangeText={(val) => {this.setState({nome: val})}}
+                value={this.state.medicamento.nome}
           />
 
           <View style={styles.item}>
@@ -135,29 +137,24 @@ class MedicamentoAddScreen extends Component {
 
           <View style={styles.item}>
             <TextInput
+                editable={false}
                   style={styles.input}
                   placeholder="Escreva aqui ..."
-                  value={this.state.dosagem}
-                  onChangeText={(val) => {this.setState({dosagem: val})}}
+                  value={this.state.medicamento.dosagem}
                 />
-            <Picker
-              selectedValue={this.state.formato}
-              style={styles.input}
-              onValueChange={(itemValue, itemIndex) =>
-                this.setState({formato: itemValue})
-              }>
-              <Picker.Item label="comprimidos" value="comp" />
-              <Picker.Item label="miligramas" value="mg" />
-              <Picker.Item label="mililitros" value="ml" />
-              <Picker.Item label="Gotas" value="gotas" />
-            </Picker>
-          </View>
-
-            <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>
-              Quantidade: 
-            </Text>
             <TextInput
+                editable={false}
                   style={styles.input}
+                  placeholder="Escreva aqui ..."
+                  value={this.state.medicamento.formato}
+                />
+          </View>
+            <View style={{flexDirection: 'row'}}>
+            <Text style={{fontSize: 20,fontWeight: '300', textAlignVertical: 'center'}}>
+              Quantidade:
+            </Text><Icon name='edit' /></View>
+            <TextInput
+                  style={styles.inputBig}
                   placeholder="Escreva aqui ..."
                   value={this.state.qt}
                   onChangeText={(val) => {this.setState({qt: val})}}
@@ -167,27 +164,27 @@ class MedicamentoAddScreen extends Component {
             Laboratório: 
             </Text>
             <TextInput
+                  editable={false}
                   style={styles.inputBig}
                   placeholder="Escreva aqui ..."
-                  value={this.state.lab}
-                  onChangeText={(val) => {this.setState({lab: val})}}
+                  value={this.state.medicamento.lab}
             />
 
           <View style={styles.item}>
-          <Text style={styles.text}>
-            Unidade p/Emb.: 
-          </Text>
-          <Text style={styles.text}>
-            Preço p/emb: 
-          </Text>
+            <Text style={styles.text}>
+              Unidade p/Emb.: 
+            </Text>
+            <Text style={styles.text}>
+                Preço p/emb: 
+              </Text><Icon name="edit"/>
           </View>
 
           <View style={styles.item}>
               <TextInput
+                    editable={false}
                     style={styles.input}
                     placeholder="Escreva aqui ..."
-                    value={this.state.uni}
-                    onChangeText={(val) => {this.setState({uni: val})}}
+                    value={''+this.state.medicamento.uni_emb}
               />
               <TextInput
                     style={styles.input}

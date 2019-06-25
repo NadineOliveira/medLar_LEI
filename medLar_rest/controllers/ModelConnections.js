@@ -54,14 +54,14 @@ Utente.belongsToMany(Medicamento, {through:'Slot', foreignKey:'nr_utente'})
     Slot N-N Horario
     Horario N-N Slot
 */
-Slot_Horario.belongsTo(Horario,{foreignKey: 'Horario_idHorario'});
-Horario.hasMany(Slot_Horario,{foreignKey: 'Horario_idHorario'});
+Slot_Horario.belongsTo(Horario,{foreignKey: 'idHorario'});
+Horario.hasMany(Slot_Horario,{foreignKey: 'idHorario'});
 
-Slot_Horario.belongsTo(Slot,{foreignKey: ['Slot_med','Slot_utente']});
-Slot.hasMany(Slot_Horario,{foreignKey: ['Slot_med','Slot_utente']});
+Slot_Horario.belongsTo(Slot,{foreignKey: ['med','nr_utente']});
+Slot.hasMany(Slot_Horario,{foreignKey: ['med','nr_utente']});
 
-Slot.belongsToMany(Horario,{through: 'Slot_Horario', foreignKey:['Slot_med','Slot_utente']})
-Horario.belongsToMany(Slot,{through: 'Slot_Horario', foreignKey:'Horario_idHorario'})
+Slot.belongsToMany(Horario,{through: 'Slot_Horario', foreignKey:['med','nr_utente']})
+Horario.belongsToMany(Slot,{through: 'Slot_Horario', foreignKey:'idHorario'})
 
 exports.medicamento = Medicamento;
 exports.utente = Utente;

@@ -67,13 +67,13 @@ module.exports.addSlot = async function(med, nr_utente, data_inicio, data_fim) {
     });
     return result;
 }
-module.exports.addSlot_Horario = async function(qt,med, nr_utente, idHorario) {
+module.exports.addSlot_Horario = async function(qt, med, nr_utente, idHorario) {
     var result;
     await SlotHorario.create({
         quantidade: qt,
-        Slot_med: med,
-        Slot_utente: nr_utente,
-        Horario_idHorario: idHorario,
+        med: med,
+        nr_utente: nr_utente,
+        idHorario: idHorario,
         estado: 0
     }).then( value => {
                 result = value;
@@ -85,10 +85,10 @@ module.exports.addSlot_Horario = async function(qt,med, nr_utente, idHorario) {
 
 module.exports.getHorarioByUtenteMedicamento = async function(idUtente, idMed) {
     var result = [];
-    await db.query('select slot_horario.Slot_med, slot_horario.Slot_utente, slot_horario.quantidade, slot_horario.estado, horario.* from horario '+
+    await db.query('select slot_horario.med, slot_horario.nr_utente, slot_horario.quantidade, slot_horario.estado, horario.* from horario '+
                 'join slot_horario '+
-                'on horario.idHorario = slot_horario.Horario_idHorario '+
-                'where slot_horario.Slot_med = :med AND Slot_utente = :utente',
+                'on horario.idHorario = slot_horario.idHorario '+
+                'where slot_horario.med = :med AND slot_horario.nr_utente = :utente',
     { replacements: {med: idMed, utente: idUtente}, type: db.QueryTypes.SELECT }
     ).then(projects => {
         result = projects;
@@ -101,8 +101,8 @@ module.exports.countMedicamentosFalta = async function(idUtente) {
     var result = [];
     await db.query(`select sum(slot_horario.quantidade) as faltam from horario 
                     join slot_horario 
-                    on horario.idHorario = slot_horario.Horario_idHorario 
-                    where Slot_utente = :utente AND slot_horario.estado = 0`,
+                    on horario.idHorario = slot_horario.idHorario 
+                    where slot_horario.nr_utente = :utente AND slot_horario.estado = 0`,
     { replacements: {utente: idUtente}, type: db.QueryTypes.SELECT }
     ).then(projects => {
         result = projects;
@@ -114,7 +114,7 @@ module.exports.updateSlotHorario = async function(med, utente, horario, estado){
     var result;
     await SlotHorario.update(
       { estado: estado},
-      { where: { Slot_med: med, Slot_utente: utente, Horario_idHorario: horario } }
+      { where: { med: med, nr_utente: utente, idHorario: horario } }
     )
       .then(()=> result = {message: "Alterado com sucesso!"})
       .catch(err=> result = err)

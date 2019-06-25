@@ -47,6 +47,7 @@ router.get('/:mid/horarios/:uid',passport.authenticate('jwt',{session: false}), 
 router.post('/repor',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
     var medicamento = await MedicamentosController.getMedicamentoById(req.body.med)
     if(medicamento.quantidade >= req.body.quantidade) {
+        var med = await MedicamentosController.addQuantidadeById(req.body.med,(-req.body.quantidade))
         var horarios = await SlotsController.updateSlotHorario(req.body.med,req.body.utente,req.body.horario,1);
         res.status(200).send(horarios)
     } else res.status(500).send({Message: 'Quantidade indisponivel'})
@@ -63,10 +64,12 @@ router.post('/slot',passport.authenticate('jwt',{session: false}), async (req,re
 })
 
 router.post('/horario',passport.authenticate('jwt',{session: false}), async (req,res,next) => {
-    var add2 = "Erro";
-    for(i in req.body.qt){
-        console.log(JSON.stringify(req.body.qt[i]))
-        add2 = await SlotsController.addSlot_Horario(req.body.qt[i].val,req.body.med, req.body.nr_utente, req.body.qt[i].id);
+    var dict = req.body.qt
+    for(i in dict){
+        var qt = dict[i].val
+        var horario = dict[i].id
+        add2 = await SlotsController.addSlot_Horario(parseInt(qt), parseInt(req.body.med), req.body.nr_utente, horario);
+        console.log(JSON.stringify(add2))
     }
     res.status(200).send(add2);
 })

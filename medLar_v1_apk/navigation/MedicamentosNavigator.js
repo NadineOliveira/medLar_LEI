@@ -7,6 +7,7 @@ import {
 import Medicamentos from "../screens/Medicamentos";
 
 import MedicamentoAdd from "../screens/MedicamentoAdd"
+import MedicamentoEdit from "../screens/MedicamentoEdit"
 
 import Icon from '@expo/vector-icons/Ionicons';
   
@@ -14,7 +15,8 @@ import Icon from '@expo/vector-icons/Ionicons';
 
 const MedicamentosStack = createStackNavigator({
     MedicamentosDashNavigator: Medicamentos,
-    MedicamentoAdd: MedicamentoAdd
+    MedicamentoAdd: MedicamentoAdd,
+    MedicamentoEdit: MedicamentoEdit
 }, {
     initialRouteName: 'MedicamentosDashNavigator',
     navigationOptions: {

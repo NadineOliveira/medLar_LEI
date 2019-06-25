@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(11),
       allowNull: false
     },
-    Slot_med: {
+    med: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
         key: 'med'
       }
     },
-    Slot_utente: {
+    nr_utente: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
         key: 'utente'
       }
     },
-    Horario_idHorario: {
+    idHorario: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,

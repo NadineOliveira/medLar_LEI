@@ -29,12 +29,12 @@ const styles = StyleSheet.create({
   },
   TouchableOpacityStyle: {
     position: 'absolute',
+    marginTop: 10,
     width: 50,
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
     right: 30,
-    bottom: 30,
     elevation: 3,
     backgroundColor: 'orange',
     borderRadius: 25
@@ -74,7 +74,9 @@ class MedicamentosScreen extends Component {
   }
   
   goToMedicamentosUtente = (nr) =>{
-    console.warn('NR--> '+nr)
+    this.props.navigation.navigate('MedicamentoEdit', {
+      id_med: nr
+    });
   }
 
   keyExtractor = (item, index) => index.toString()
@@ -94,7 +96,6 @@ class MedicamentosScreen extends Component {
   render () {
     return (
     <View>
-      <ScrollView>
         <SearchBar 
           placeholder="Escreva aqui..."
           onChangeText={e => this.updateSearch(e)} 
@@ -103,33 +104,31 @@ class MedicamentosScreen extends Component {
           lightTheme
           round
         />
-        <FlatList
-          keyExtractor={this.keyExtractor}
-          data={this.state.medicamentos}
-          renderItem={this.renderItem}
-        />
-      </ScrollView> 
-
-      <TouchableOpacity
-        activeOpacity={0.7}
-        onPress={()=>this.props.navigation.navigate("MedicamentoAdd")}
-        style={styles.TouchableOpacityStyle}>
-         <Image
-            source={
-              require('../assets/images/addSimple.png')
-            }
-            resizeMode='contain'
-            style={{
-              flex: 1,
-              height: 40,
-              width: 40
-            }}
-            //You can use you project image Example below
-            //source={require('./images/float-add-icon.png')}
-            //style={styles.FloatingButtonStyle}
+        <ScrollView>
+          <FlatList
+            keyExtractor={this.keyExtractor}
+            data={this.state.medicamentos}
+            renderItem={this.renderItem}
           />
-      </TouchableOpacity>
-      
+        </ScrollView>
+      <View>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={()=>this.props.navigation.navigate("MedicamentoAdd")}
+          style={styles.TouchableOpacityStyle}>
+          <Image
+              source={
+                require('../assets/images/addSimple.png')
+              }
+              resizeMode='contain'
+              style={{
+                flex: 1,
+                height: 40,
+                width: 40
+              }}
+            />
+        </TouchableOpacity>
+      </View>
     </View>
     )
   }
