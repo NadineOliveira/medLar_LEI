@@ -18,7 +18,7 @@
     "lib": "^4.0.2",
     "morgan": "~1.9.0",
     "mysql2": "^1.6.5",
-    "npm": "^6.9.0",
+    "npm": "^6.13.4",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
