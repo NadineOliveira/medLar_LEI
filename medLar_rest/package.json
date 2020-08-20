@@ -7,7 +7,7 @@
     "generator-sequelize": "sequelize-auto -o ./models -d medlar -h localhost -u root -p 3306 -x pass -e mysql"
   },
   "dependencies": {
-    "bcrypt": "^3.0.4",
+    "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
