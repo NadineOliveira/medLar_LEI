@@ -13,7 +13,7 @@
   "dependencies": {
     "@expo/samples": "2.1.1",
     "axios": "^0.18.0",
-    "expo": "^32.0.0",
+    "expo": "^46.0.16",
     "link": "^0.1.5",
     "native-base": "^2.12.1",
     "react": "16.5.0",
